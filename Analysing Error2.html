@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Table Viewer with Range</title>
+  <style>
+    /* General page styling */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* File upload and input styles */
+    .input-container {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #5c6bc0;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    input[type="number"], input[type="text"] {
+      padding: 8px;
+      margin-right: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 120px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #5c6bc0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #3f51b5;
+    }
+
+    /* Table styling */
+    table {
+      width: 80%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table th, table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #5c6bc0;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Dropdown styling */
+    select {
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 80px;
+    }
+
+    /* LaTeX styling */
+    .latex-cell {
+      display: inline-block;
+      background-color: #f9f9f9;
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+    /* Container for the table */
+    #table-container {
+      width: 80%;
+      overflow-x: auto;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+</head>
+<body>
+  <h1>Math expressions</h1>
+  
+  
+  <!-- File upload section -->
+  <div class="input-container">
+    <input type="file" id="jsonFileInput" accept=".json" />
+    
+    <input type="number" id="startRow" placeholder="Start Row" value="1"/>
+    <input type="number" id="endRow" placeholder="End Row" value="10" />
+    <span>OR</span>
+    <input type="text" id="idList" placeholder="Enter IDs (comma-separated)" />
+    <button id="searchButton">Search</button>
+  </div>
+ <!-- Update JSON button -->
+ <div class="input-container">
+    <button id="updateButton">Update JSON</button>
+  </div>
+  <!-- Table container -->
+  <div id="table-container"></div>
+
+ 
+
+  <div class="footer">
+    <p></p>
+  </div>
+
+  <script>
+    let parsedData = null; // Global variable to store parsed JSON data
+
+// Handle JSON file upload
+document.getElementById("jsonFileInput").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (!file) {
+    alert("Please select a valid JSON file.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      parsedData = JSON.parse(e.target.result); // Parse JSON file content
+      if (!Array.isArray(parsedData)) {
+        throw new Error("Invalid JSON format. Expected an array of objects.");
+      }
+      alert("JSON file uploaded successfully! Now specify the range or IDs and click Search.");
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      parsedData = null;
+      alert("Error processing the JSON file. Ensure it contains a valid array of objects.");
+    }
+  };
+  reader.readAsText(file);
+});
+
+// Handle Search button click
+// Listen for "Enter" key press on the input fields
+document.getElementById("idList").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent form submission (if any)
+    document.getElementById("searchButton").click(); // Trigger the search button click
+  }
+});
+
+document.getElementById("startRow").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent form submission (if any)
+    document.getElementById("searchButton").click(); // Trigger the search button click
+  }
+});
+
+document.getElementById("endRow").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent form submission (if any)
+    document.getElementById("searchButton").click(); // Trigger the search button click
+  }
+});
+
+document.getElementById("searchButton").addEventListener("click", function () {
+  const start = parseInt(document.getElementById("startRow").value, 10);
+  const end = parseInt(document.getElementById("endRow").value, 10);
+  const idList = document.getElementById("idList").value.trim();
+
+  if (!parsedData || !parsedData.length) {
+    alert("Please upload a JSON file first.");
+    return;
+  }
+
+  if (idList) {
+  const ids = idList.split(",").map((id) => id.trim());
+  const filteredData = parsedData.filter((row) => ids.includes(row.id)); 
+  generateTable(filteredData);
+  return;
+}
+
+
+  if (isNaN(start) || isNaN(end) || start < 1 || end < start) {
+    alert("Please enter a valid range (Start and End) or a list of IDs.");
+    return;
+  }
+
+  const rangeData = parsedData.slice(start - 1, end); // Extract rows from start to end
+  generateTable(rangeData);
+});
+
+function generateTable(data) {
+    const container = document.getElementById("table-container");
+    container.innerHTML = ""; // Clear existing content
+
+    if (!data.length) {
+      container.innerHTML = "<p>No data available for the specified criteria.</p>";
+      return;
+    }
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    // Add table headers
+    const headers = Object.keys(data[0]);
+    const headerRow = document.createElement("tr");
+    headers.forEach((header) => {
+      const th = document.createElement("th");
+      th.textContent = header;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+
+    // Add index header
+    const indexHeader = document.createElement("th");
+    indexHeader.textContent = "Index";
+    headerRow.insertBefore(indexHeader, headerRow.firstChild);
+
+    // Add table rows
+    data.forEach((row, index) => {
+      const tr = document.createElement("tr");
+
+      // Add index cell at the beginning of the row
+      const indexCell = document.createElement("td");
+      indexCell.textContent = index + 1; // Assuming index is zero-based
+      tr.appendChild(indexCell);
+
+      headers.forEach((header) => {
+        const td = document.createElement("td");
+
+        if (header === "label") {
+          // Create dropdown for 'label' column
+          const select = document.createElement("select");
+          for (let i = 0; i <= 40; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            if (parseInt(row[header], 10) === i) {
+              option.selected = true; // Set the current value as selected
+            }
+            select.appendChild(option);
+          }
+          select.addEventListener("change", function () {
+            // Update the value of label when the dropdown is changed
+            row.label = select.value;
+            console.log("Updated row data:", row); // Log updated row
+          });
+          td.appendChild(select);
+        } 
+       
+
+
+        // Handle latex rendering for specific fields
+        else if (["assumptions", "t0", "t1"].includes(header)) {
+          const latexSpan = document.createElement("span");
+          latexSpan.className = "latex-cell";
+          katex.render(row[header] || "", latexSpan, {
+            throwOnError: false,
+          });
+          td.appendChild(latexSpan);
+        } else {
+          td.textContent = row[header];
+        }
+
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    container.appendChild(table);
+  }
+
+  // Handle Update JSON button click
+  document.getElementById("updateButton").addEventListener("click", function () {
+    if (!parsedData || !parsedData.length) {
+      alert("Please upload a JSON file first.");
+      return;
+    }
+
+    // Update label values in parsedData from the table
+    const tableRows = document.querySelectorAll("#table-container table tbody tr");
+    tableRows.forEach((row) => {
+      const select = row.querySelector("select");
+      // get the second cell
+      const idCell = row.querySelector("td:nth-child(2)"); // Assuming the second cell contains the id
+      if (select && idCell) {
+        const id = idCell.textContent.trim();
+        const parsedDataItem = parsedData.find(item => item.id === id);
+        if (parsedDataItem) {
+          parsedDataItem.label = select.value; // Update the label value in parsedData
+        }
+      }
+    });
+
+    // Log updated data to the console (or use it as needed)
+    console.log("Updated JSON:", parsedData);
+
+    // Optionally, save the updated JSON to a file
+    const updatedJson = JSON.stringify(parsedData, null, 2);
+    const blob = new Blob([updatedJson], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const originalFileName = document.getElementById("jsonFileInput").files[0].name;
+    const updatedFileName = originalFileName.replace(/\.json$/, '') + 'updated.json';
+    link.download = updatedFileName;
+    link.click(); // Automatically download the updated JSON
+  });
+
+  </script>
+</body>
+</html>
