@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Table Viewer with Range</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+</head>
+<body>
+  <h1>Math expressions</h1>
+  
+  
+  <!-- File upload section -->
+  <div class="input-container">
+    <input type="file" id="jsonFileInput" accept=".json" />
+    
+    <input type="number" id="startRow" placeholder="Start Row" value="1"/>
+    <input type="number" id="endRow" placeholder="End Row" value="10" />
+    <span>OR</span>
+    <input type="text" id="idList" placeholder="Enter IDs (comma-separated)" />
+    <button id="searchButton">Search</button>
+  </div>
+ <!-- Update JSON button -->
+ <div class="input-container">
+    <button id="updateButton">Update JSON</button>
+  </div>
+  <!-- Table container -->
+  <div id="table-container"></div>
+
+ 
+
+  <div class="footer">
+    <p></p>
+  </div>
+  <script src="script.js"></script>
+
+  
+</body>
+</html>

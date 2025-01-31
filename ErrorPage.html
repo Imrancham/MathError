@@ -136,6 +136,11 @@
     }
 
     .pagination button:hover {
+      /*add margen between the elements*/
+      margin: 0 5px;
+      padding: 10px 20px;
+      
+
       background-color: #3f51b5;
     }
 
@@ -165,10 +170,10 @@
  <!-- Update JSON button -->
  <div class="input-container">
     <button id="updateButton">Update JSON</button>
-  </div>
+
   <!-- Filter section -->
-  <div class="input-container">
-    <input type="number" id="filterInput" min="0" max="50" placeholder="Enter label value (0-50)">
+
+    <input type="number" id="filterInput" min="0" max="100" placeholder="Enter label value (0-50)">
     <button id="filterButton">Filter</button>
   </div>
   <!-- Table container -->
