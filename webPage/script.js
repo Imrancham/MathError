@@ -37,8 +37,13 @@ document.getElementById("searchButton").addEventListener("click", function () {
   }
 
   if (idList) {
-    const ids = idList.split(",").map((id) => id.trim());
-    const filteredData = parsedData.filter((row) => ids.includes(row.id));
+    console.log("ID List:", idList);
+    const ids = idList.trim().split(",").map((id) => id.trim());
+    const filteredData = parsedData.filter((row) => ids.includes(String(row.id)));
+    if (filteredData.length === 0) {
+      alert("No data available for the specified IDs.");
+      return; 
+    }
     generateTable(filteredData);
     return;
   }
@@ -89,7 +94,7 @@ function generateTable(data) {
       const td = document.createElement("td");
       if (header === "label") {
         const select = document.createElement("select");
-        for (let i = 0; i <= 50; i++) {
+        for (let i = -1; i <= 60; i++) {
           const option = document.createElement("option");
           option.value = i;
           option.textContent = i;
