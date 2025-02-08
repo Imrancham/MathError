@@ -7,7 +7,7 @@ from mistralai.models.sdkerror import SDKError
 
 import pandas as pd
 
-api_key = "dXMrrJyyV2G2RjabskIGmylVcCuap55E"
+api_key = ""
 model = "open-mistral-nemo"  # "pixtral-12b-2409"
 matched_ids = {'id': [1,2]}
 df = pd.read_json("/data/ichamieh/mistral/1_200_annotated.csv")
