@@ -1,0 +1,11 @@
+id,category,assumptions,t0,t1,label,Error Type
+1,2,\textrm{wahr},\left| \begin{array}{cc}a + 7& 7\\2& 4\end{array} \right| = -4,"4\,(a + 7) + 2 \cdot 7 = -4",6,Invalid Expression
+2,1,\textrm{wahr},"(2\,x + 4)\,(2\,x-4)","4\,x-16",26,Possible Term Manipulation Error
+3,1,\textrm{wahr},"(3\,n-4\,k)\,(3\,n + 4\,k)","9\,n^{2}-16\,k",26,Possible Term Manipulation Error
+4,1,\textrm{wahr},"-4\,l\,b + \frac{4\,b^{2}}{b^{2}-l\,b}","\frac{4\,(b^{2}-l\,b)}{b^{2}-l\,b}",17,Possible Term Manipulation Error
+5,1,\textrm{wahr},"-\frac{4\,l\,b}{b^{2}-l\,b} + \frac{4\,b^{2}}{b^{2}-l\,b}","-4\,l\,b + \frac{4\,b^{2}}{b^{2}-l\,b}",10,Possible Term Manipulation Error
+6,1,\textrm{wahr},"\frac{\frac{\left( u + g\right)^{2}}{u-g}-(u-g)}{2\,g}","\frac{\frac{\left( u + g\right)^{2}-2\,(u-g)}{u-g}}{2\,g}",17,Possible Term Manipulation Error
+7,1,\textrm{wahr},"\frac{\frac{\left( u + g\right)^{2}-\left( u-g\right)^{2}}{u-g}}{2\,g}","\frac{\left( u + g\right)^{2}-2\,(u-g)}{2\,g\,(u-g)}",24,Possible Term Manipulation Error
+8,1,\textrm{wahr},"\frac{\left( u + g\right)^{2}-\left( u-g\right)^{2}}{2\,g\,(u-g)}","\frac{u^{2} + 2\,g\,u + g^{2}-2\,u + 2\,g}{2\,g\,u-2\,g^{2}}",24,Possible Term Manipulation Error
+9,2,\left( h\neq y\right) \wedge \left( q\neq 1\right),"q\,(h-y) = h + y","q\,h-g\,y = h + y",9,Invalid Expression
+10,2,\left( h\neq y\right) \wedge \left( q\neq 1\right),"-q\,y-y = h\,(1-q)","-q\,y-\frac{y}{1-q} = h",14,Invalid Expression
