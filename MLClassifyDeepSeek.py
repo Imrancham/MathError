@@ -11,17 +11,16 @@ expression_pairs = [
     ("-8*s", "-r - 2", "-8*s", "-2*r"),
     ("-4*c", "-w/2 - 2", "c", "w/2 - 1/2"),
     ("-4*n - 3", "3*n - y", "-3", "-1*n - y"),
-    ("7*s - 4", "4*c", "LL", "{1/8}"),
     ("3*c + 1", "-c + m", "c", "(m + 1)/4"),
     ("3*c + 1", "-c + m", "4 + 1", "m"),
     ("4", "3*d + 4*v", "o", "3*d - 4 + 4*v"),
     ("o", "3*d + 4*v - 4", "-4*v", "3*d - 4"),
     ("d*m - d*x - x", "m", "m", "((d + 1)*x)/d - 1"),
-    ("r - 4", "12", "r - 4", "-sp.sqrt(12)"),
+    ("r - 4", "12", "r - 4", "-sqrt(12)"),
     ("x + 4", "-x - 5*o", "0", "4 + 5*o"),
     ("8*c", "5 - p", "c", "1.6 - p"),
     ("-5*c + 5", "3*c + p", "-8*c", "-5*p"),
-    ("b - 3/2", "3/2", "b - 3/2", "-sp.sqrt(3/2)"),
+    ("b - 3/2", "3/2", "b - 3/2", "-sqrt(3/2)"),
     ("2*p", "-5 - q", "p", "-2"),
     ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
     ("-8*s", "-r - 2", "4*s", "r/2"),
@@ -39,6 +38,15 @@ expression_pairs = [
     ("x", "3/2*x", "1", "3/2")
 ]
 
+# Function to check if an expression is linear
+def is_linear(expr, variables):
+    """
+    Check if an expression is linear with respect to the given variables.
+    """
+    return expr.as_poly().degree() == 1
+
+
+
 # Function to extract features
 def extract_features(expr1, expr2, expr3, expr4):
     # Parse expressions
@@ -54,14 +62,20 @@ def extract_features(expr1, expr2, expr3, expr4):
     }
     
     # Semantic features
+    eq1_diff = simplify(eq1.lhs - eq1.rhs)
+    eq2_diff = simplify(eq2.lhs - eq2.rhs)
+    is_equivalent = False
+    if not isinstance(eq1_diff, bool) and not isinstance(eq2_diff, bool):
+        is_equivalent = eq1_diff == eq2_diff
+
     semantic_features = {
-        "is_equivalent": simplify(eq1.lhs - eq1.rhs) == simplify(eq2.lhs - eq2.rhs),  # Check equivalence
+        "is_equivalent": is_equivalent,  # Check equivalence
         "is_simplified": simplify(eq1) == simplify(eq2),  # Check simplification
     }
     
     # Contextual features
     contextual_features = {
-        "is_linear": eq1.lhs.is_linear and eq1.rhs.is_linear,  # Check if equations are linear
+        "is_linear": is_linear(eq1.lhs - eq1.rhs) and is_linear(eq2.lhs - eq2.rhs),  # Check if equations are linear
         "is_solution_correct": solve(eq1) == solve(eq2),  # Check if solutions match
     }
     
@@ -69,8 +83,11 @@ def extract_features(expr1, expr2, expr3, expr4):
 
 # Extract features for all pairs
 for idx, (expr1, expr2, expr3, expr4) in enumerate(expression_pairs):
-    print(f"Pair {idx + 1}:")
-    features = extract_features(expr1, expr2, expr3, expr4)
-    for key, value in features.items():
-        print(f"  {key}: {value}")
-    print("\n")
+    try:
+        print(f"Pair {idx + 1}:")
+        features = extract_features(expr1, expr2, expr3, expr4)
+        for key, value in features.items():
+            print(f"  {key}: {value}")
+        print("\n")
+    except Exception as e:
+        print(f"Error processing pair {idx + 1}: {e}")
