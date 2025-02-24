@@ -1,5 +1,7 @@
-from sympy import symbols, Eq, simplify, expand, sympify
+
+from sympy import symbols, Eq, simplify, expand, sympify, Add
 import re
+from itertools import combinations
 
 def format_equation(equation_str):
     """Ensure multiplication is explicit in the equation (e.g., 5x → 5*x, 2(x + y) → 2*(x + y))."""
@@ -29,15 +31,31 @@ def parse_equation(equation_str):
     
     # Create an equation
     equation = Eq(lhs_expr, rhs_expr)
+
+    # Move all terms to the left side and expand
+    all_terms = expand(lhs_expr - rhs_expr)
+    terms = all_terms.as_ordered_terms()
+    n_terms = len(terms)
     
-    return equation, list(lhs_terms), list(rhs_terms), symbols_map
+    rearrangements = set()
+    
+    # Generate all possible splits of terms into left and right
+    for k in range(1, n_terms):  # Avoid empty splits
+        for left_terms in combinations(terms, k):
+            left_sum = sum(left_terms)
+            right_sum = all_terms - left_sum
+            rearranged_eq = Eq(left_sum, -right_sum)
+            rearrangements.add(rearranged_eq)
+    
+    
+    return rearrangements, equation, list(lhs_terms), list(rhs_terms), symbols_map
 
 def compare_expressions(eq1_str, eq2_str):
     """Compare all expression pairs from eq1 with the left and right side of eq2."""
     
     # Parse both equations
-    eq1, lhs_terms1, rhs_terms1, _ = parse_equation(eq1_str)
-    eq2, lhs_terms2, rhs_terms2, _ = parse_equation(eq2_str)
+    _, eq1, lhs_terms1, rhs_terms1, _ = parse_equation(eq1_str)
+    _, eq2, lhs_terms2, rhs_terms2, _ = parse_equation(eq2_str)
     
     print(f"Equation 1: {eq1}")
     print(f"Equation 2: {eq2}\n")
@@ -70,8 +88,61 @@ def compare_expressions(eq1_str, eq2_str):
     else:
         print("No matching expressions found.")
 
-# Example input equations
-eq1 = "5x + 9y = 2(x + 3y)"
-eq2 = "5x - 3x = 6y + 9y"
 
-compare_expressions(eq1, eq2)
+
+def compare_expressions2(exp1_str, exp2_str):
+    """Compare exp2 to all rearrangements of exp1 using SymPy."""
+    # Parse input strings into SymPy equations
+    try:
+        equation_str1, _  = parse_equation(exp1_str)  # Ensure correct formatting
+        equation_str2, _  = parse_equation(exp2_str)  # Ensure correct formatting
+        
+        # Identify all variables dynamically
+        variables = set(re.findall(r'[a-zA-Z]+', equation_str1))
+        symbols_map = {var: symbols(var) for var in variables}  # Define variables in SymPy
+        
+        # Convert string expressions to sympy expressions
+        exp1 = sympify(equation_str1, locals=symbols_map)  
+        exp2 = sympify(equation_str2, locals=symbols_map)  
+        
+ 
+    except Exception as e:
+        raise ValueError(f"Error parsing input expressions: {str(e)}")
+    
+    if not isinstance(exp1, Eq) or not isinstance(exp2, Eq):
+        raise ValueError("Inputs must be equations")
+    
+    # Generate all rearrangements of exp1 takle only the first output of the pqrse_equation function
+    all_rearrangements = parse_equation(exp1_str)[0]
+    
+    # Check if exp2 matches any rearrangement
+    matches = []
+    for eq in all_rearrangements:
+        if simplify(eq.rewrite(Add) - exp2.rewrite(Add)) == 0:
+            matches.append(eq)
+    
+    return matches
+
+
+# Example usage
+if __name__ == "__main__":
+    # Define possible symbols (could be extended based on the user's input)
+    symbols = symbols('x y a b c d')
+
+    # Input expressions (can include variables and constants)
+    exp1_input = input("Enter exp1 (e.g., 'a + b = c + d'): ")
+    exp2_input = input("Enter exp2 (e.g., 'c + d - a = b'): ")
+    
+    try:
+        matches = compare_expressions2(exp1_input, exp2_input)
+        if matches:
+            print("\nMatching rearrangements found:")
+            for i, match in enumerate(matches, 1):
+                print(f"{i}. {match}")
+        else:
+            print("\nNo matching rearrangements found.")
+        
+        compare_expressions(exp1_input, exp2_input)
+    
+    except Exception as e:
+        print(f"Error: {str(e)}")
