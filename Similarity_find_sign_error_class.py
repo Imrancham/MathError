@@ -247,6 +247,10 @@ def subtract_term(eq: Eq, term: sp.Expr) -> Eq:
     lhs_str =""
     rhs_str = ""
     term_str = str(term)
+    # remove the first character if it is a negative or positive sign
+    if term_str[0] == '-' or term_str[0] == '+':
+        term_str = term_str[1:]
+
     variable = term_str.__getitem__(-1)
     # initialize the equation string
     eq_str = Eq(eq.lhs, eq.rhs)
@@ -418,16 +422,16 @@ if __name__ == "__main__":
         ("2*p", "-5 - q", "p", "-2"),
         ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
         ("-8*s", "-r - 2", "4*s", "r/2"),
-        ("r*(2 - 3)", "0", "r", "0"),
+       # ("r*(2 - 3)", "0", "r", "0"),
         ("3*r + 2", "2*x", "1.5*r", "x"),
         ("2*m + 5", "0", "3*m + 5", "0"),
         ("2*x", "1", "x", "0"),
         #("-4*o - 4*y", "2*y + 4", "0", "-1"),
         ("-f - 1", "0", "-5*f - 4", "0"),
-        ("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
-        ("-4*x", "7 + a*x", "x", "-7/4 + a*x"),
+        #("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
+        #("-4*x", "7 + a*x", "x", "-7/4 + a*x"),
         ("-9*t - 2", "5*o", "(-9*t)/5 - 2/5", "o"),
-        ("x", "3/2*x", "1", "3/2")
+        #("x", "3/2*x", "1", "3/2")
     ]
     #    df_data = pd.read_json('0_9999_v7.json')
         i = 1
@@ -438,6 +442,18 @@ if __name__ == "__main__":
     #        eq2_str = parse_latex(exp2)
     #        #eq1_str = f"{parsed_exp1.lhs}={parsed_exp1.rhs}"
     #        #eq2_str = f"{parsed_exp2.lhs}={parsed_exp2.rhs}"
+    
+        # create data frame contain the following columns
+        # 1. expression 1
+        # 2. expression 2
+        # 3. similarity score structural
+        #4. best match structural
+        #5. similarity score jaccard
+        #6. best match jaccard
+        #7. similarity score cosine
+        #8. best match cosine
+        #9. total rearrangements
+        df_similarity_results = pd.DataFrame(columns=['expression 1', 'expression 2', 'similarity score structural', 'best match structural', 'similarity score jaccard', 'best match jaccard', 'similarity score cosine', 'best match cosine', 'total rearrangements'])
 
         for exp1, exp2, exp3, exp4 in expression_pairs:
             
@@ -449,8 +465,15 @@ if __name__ == "__main__":
             print(f" {i} -Comparison Results for: \n {eq1_str} and \n {eq2_str}:")
             i = i + 1
             print("Comparison Results:")
+
+            # extract the column to be assined to the data frame df_similarity_results
+            js = {'expression 1': eq1_str, 'expression 2': eq2_str, 'similarity score structural': result['similarities']['structural']['max_score'], 'best match structural': result['similarities']['structural']['best_match'], 'similarity score jaccard': result['similarities']['jaccard']['max_score'], 'best match jaccard': result['similarities']['jaccard']['best_match'], 'similarity score cosine': result['similarities']['cosine']['max_score'], 'best match cosine': result['similarities']['cosine']['best_match'], 'total rearrangements': result['total_rearrangements']}
+            df_similarity_results.loc[len(df_similarity_results)] = js
+         
             for key, value in result.items():
                 print(f"{key}: {value}")
             print("--------------------------------------")
+        # save the results to a csv file
+        df_similarity_results.to_csv('similarity_results.csv')
     except Exception as e:
         print(f"Error during comparison: {e}")
