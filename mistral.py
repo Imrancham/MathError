@@ -4,14 +4,14 @@ from mistralai import Mistral
 from mistralai.models.sdkerror import SDKError
 from sympy.parsing.latex import parse_latex
 
-
+import os
 from openai import OpenAI
 
 import pandas as pd
 
-api_key = "sk-94826c035a2b47c9a8145a7585f0074a"
-client = OpenAI(api_key="sk-94826c035a2b47c9a8145a7585f0074a", base_url="https://api.deepseek.com")
-##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   dXMrrJyyV2G2RjabskIGmylVcCuap55E
+api_key = os.getenv("api_key_deepSeek")
+client = OpenAI(api_key, base_url="https://api.deepseek.com")
+##
 
 model = "mistral-large-latest"
 matched_ids = []
