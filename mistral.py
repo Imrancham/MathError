@@ -11,7 +11,6 @@ import pandas as pd
 
 api_key = os.getenv("api_key_deepSeek")
 client = OpenAI(api_key, base_url="https://api.deepseek.com")
-##
 
 model = "mistral-large-latest"
 matched_ids = []
