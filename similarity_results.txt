@@ -1,0 +1,3019 @@
+
+=== Similarity Analysis ===
+ 2 -Comparison Results for: 
+ -4*s + 2=4*s - r and 
+ 2=-r:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2, -r + 8*s)
+   📊 Max Similarity Score: 0.7298
+   🔀 Symbolic Difference: -8*s
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - where did s disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-4*s - 4*s + 2, -r)
+   📊 Max Similarity Score: 0.7500
+   🔀 Symbolic Difference: -8*s
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - where did s disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.9844
+   🔀 Symbolic Difference: -2*r + 8*s - 4
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - where did s disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(r - 8*s, -2)
+   📊 Max Similarity Score: 0.3600
+   🔀 Symbolic Difference: -8*s
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - where did s disappear
+
+=== Rearranged Equations ===
+   🔄 r - 4*s - 4*s + 2 = 0 
+   🔄 r - 8.0*s = -2.0 
+   🔄 -4*s - 4*s + 2 = -r 
+   🔄 -8.0*s = -r - 2.0 
+   🔄 -r = 2 - 8*s 
+   🔄 8.0*s = r + 2.0 
+   🔄 r - 8.0*s + 2.0 = 0 
+   🔄 s = r/8 + 1/4 
+   🔄 4*s + 4*s - 2 = r 
+   🔄 -r = 2.0 - 8.0*s 
+   🔄 0 = -r + 8.0*s - 2.0 
+   🔄 -4*s - 4*s + 2 = -r 
+   🔄 0 = -r + 4*s + 4*s - 2 
+   🔄 -r + 8.0*s = 2.0 
+   🔄 0.13*r + 0.25 = s 
+   🔄 -2 = r - 4*s - 4*s 
+   🔄 r/8 + 1/4 = s 
+   🔄 r - 8*s = -2 
+   🔄 -2 = r - 4*s - 4*s 
+   🔄 0 = -r + 8*s - 2 
+   🔄 -r = -4*s - 4*s + 2 
+   🔄 r - 4*s - 4*s = -2 
+   🔄 -r + 4*s + 4*s - 2 = 0 
+   🔄 -2.0 = r - 8.0*s 
+   🔄 -r - 2.0 = -8.0*s 
+   🔄 -r - 2 = -8*s 
+   🔄 -r = -4*s - 4*s + 2 
+   🔄 -4*s - 4*s = -r - 2 
+   🔄 r = 4*s + 4*s - 2 
+   🔄 -r - 2 = -4*s - 4*s 
+   🔄 r + 2.0 = 8.0*s 
+   🔄 s = 0.13*r + 0.25 
+   🔄 2 - 8*s = -r 
+   🔄 0 = r - 8.0*s + 2.0 
+   🔄 0 = r - 4*s - 4*s + 2 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 r + 2 = 8*s 
+   🔄 0 = -r + 4*s + 4*s - 2 
+   🔄 -8*s = -r - 2 
+   🔄 2 = -r + 8*s 
+   🔄 r - 4*s - 4*s = -2 
+   🔄 -r + 4*s + 4*s = 2 
+   🔄 0 = r - 4*s - 4*s + 2 
+   🔄 -r + 4*s + 4*s - 2 = 0 
+   🔄 2 = -r + 4*s + 4*s 
+   🔄 -r + 8*s = 2 
+   🔄 r = 8*s - 2 
+   🔄 2.0 = -r + 8.0*s 
+   🔄 -r + 8.0*s - 2.0 = 0 
+   🔄 r - 4*s - 4*s + 2 = 0 
+   🔄 0 = r - 8*s + 2 
+   🔄 8*s - 2 = r 
+   🔄 r - 8*s + 2 = 0 
+   🔄 r + 2 = 4*s + 4*s 
+   🔄 8*s = r + 2 
+   🔄 -2 = r - 8*s 
+   🔄 -r + 4*s + 4*s = 2 
+   🔄 2 = -r + 4*s + 4*s 
+   🔄 4*s + 4*s = r + 2 
+   🔄 8.0*s - 2.0 = r 
+   🔄 r = 4*s + 4*s - 2 
+   🔄 r = 8.0*s - 2.0 
+   🔄 4*s + 4*s - 2 = r 
+   🔄 2.0 - 8.0*s = -r 
+
+📌 Total Rearrangements: 64
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 3 -Comparison Results for: 
+ -2 - 3=b + 3 and 
+ -3*b=6:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-b, 8)
+   📊 Max Similarity Score: 0.8655
+   🔀 Symbolic Difference: 2*b - 2
+   🔎 Variable Factor Error: b
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of b
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-b, 2 + 3 + 3)
+   📊 Max Similarity Score: 0.7500
+   🔀 Symbolic Difference: 2*b - 2
+   🔎 Variable Factor Error: b
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of b
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-b - 1*3 - 3, 2)
+   📊 Max Similarity Score: 0.9807
+   🔀 Symbolic Difference: 2*b - 2
+   🔎 Variable Factor Error: b
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of b
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-b, 8)
+   📊 Max Similarity Score: 0.4300
+   🔀 Symbolic Difference: 2*b - 2
+   🔎 Variable Factor Error: b
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of b
+
+=== Rearranged Equations ===
+   🔄 -b = 2 + 3 + 3 
+   🔄 0 = b + 2 + 3 + 3 
+   🔄 b + 3 = -1*3 - 2 
+   🔄 8 = -b 
+   🔄 b + 2 = -6 
+   🔄 b = -8.0 
+   🔄 b + 3 + 3 = -2 
+   🔄 b + 2.0 = -6.0 
+   🔄 2.0 = -b - 6.0 
+   🔄 -1*3 - 3 - 2 = b 
+   🔄 -b = 8.0 
+   🔄 b = -5 - 3 
+   🔄 b + 8 = 0 
+   🔄 0 = -b - 5 - 3 
+   🔄 -3 = b + 5 
+   🔄 -3.0 = b + 5.0 
+   🔄 -b - 2 = 6 
+   🔄 5 = -b - 3 
+   🔄 0 = b + 8.0 
+   🔄 b = -1*3 - 3 - 2 
+   🔄 3.0 = -b - 5.0 
+   🔄 b + 8.0 = 0 
+   🔄 -b - 8 = 0 
+   🔄 3 + 5 = -b 
+   🔄 b + 2 = -1*3 - 3 
+   🔄 2 = -b - 6 
+   🔄 -b - 1*3 - 3 = 2 
+   🔄 -b - 3 = 5 
+   🔄 b + 3 = -3 - 2 
+   🔄 -b - 5.0 = 3.0 
+   🔄 -b - 2.0 = 6.0 
+   🔄 -b - 1*3 = 2 + 3 
+   🔄 b = -8 
+   🔄 -b - 3 - 2 = 3 
+   🔄 b + 6.0 = -2.0 
+   🔄 -5.0 = b + 3.0 
+   🔄 -3 = b + 2 + 3 
+   🔄 -8 = b 
+   🔄 b + 6 = -2 
+   🔄 -2 = b + 3 + 3 
+   🔄 b + 2 + 3 = -1*3 
+   🔄 -b - 3.0 = 5.0 
+   🔄 -1*3 - 3 = b + 2 
+   🔄 -1*3 = b + 2 + 3 
+   🔄 -5 - 3 = b 
+   🔄 5.0 = -b - 3.0 
+   🔄 -b - 6.0 = 2.0 
+   🔄 -6 = b + 2 
+   🔄 0 = b + 3 + 5 
+   🔄 8.0 = -b 
+   🔄 b + 3.0 = -5.0 
+   🔄 -b - 5 = 3 
+   🔄 -1*3 - 2 = b + 3 
+   🔄 2 + 3 = -b - 3 
+   🔄 -3 - 2 = b + 3 
+   🔄 -b - 6 = 2 
+   🔄 0 = -b - 8 
+   🔄 b + 5 = -3 
+   🔄 6 = -b - 2 
+   🔄 3 + 3 = -b - 2 
+   🔄 b + 5.0 = -3.0 
+   🔄 -b - 2 = 3 + 3 
+   🔄 6.0 = -b - 2.0 
+   🔄 -b = 3 + 5 
+   🔄 -2 = b + 6 
+   🔄 b + 2 + 3 = -3 
+   🔄 3 = -b - 5 
+   🔄 0 = -b - 1*3 - 3 - 2 
+   🔄 b + 2 + 3 + 3 = 0 
+   🔄 -b - 5 - 3 = 0 
+   🔄 -8.0 = b 
+   🔄 b + 3 = -5 
+   🔄 -b - 1*3 - 3 - 2 = 0 
+   🔄 -5 = b + 3 
+   🔄 3 = -b - 1*3 - 2 
+   🔄 2 + 3 = -b - 1*3 
+   🔄 -b - 8.0 = 0 
+   🔄 b + 3 + 5 = 0 
+   🔄 3 = -b - 3 - 2 
+   🔄 2 + 3 + 3 = -b 
+   🔄 0 = b + 8 
+   🔄 -b - 1*3 - 2 = 3 
+   🔄 -b = 8 
+   🔄 -2.0 = b + 6.0 
+   🔄 0 = -b - 8.0 
+   🔄 -6.0 = b + 2.0 
+   🔄 -b - 3 = 2 + 3 
+   🔄 2 = -b - 1*3 - 3 
+
+📌 Total Rearrangements: 88
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 4 -Comparison Results for: 
+ -8*s=-r - 2 and 
+ -8*s=-2*r:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-r - 2, -8*s)
+   📊 Max Similarity Score: 0.8232
+   🔀 Symbolic Difference: -3*r + 16*s - 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(r - 8*s, -2)
+   📊 Max Similarity Score: 0.9167
+   🔀 Symbolic Difference: 2 - r
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.9964
+   🔀 Symbolic Difference: -3*r + 16*s - 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.4100
+   🔀 Symbolic Difference: -3*r + 16*s - 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+=== Rearranged Equations ===
+   🔄 r - 8.0*s = -2.0 
+   🔄 r - 8*s = -2 
+   🔄 -8.0*s = -r - 2.0 
+   🔄 -r = 2 - 8*s 
+   🔄 2 = -r + 8*s 
+   🔄 8.0*s = r + 2.0 
+   🔄 r - 8.0*s + 2.0 = 0 
+   🔄 s = r/8 + 1/4 
+   🔄 8*s = r + 2 
+   🔄 -r = 2.0 - 8.0*s 
+   🔄 0 = -r + 8.0*s - 2.0 
+   🔄 r + 2 = 8*s 
+   🔄 -r + 8.0*s = 2.0 
+   🔄 0 = -r + 8*s - 2 
+   🔄 0 = r - 8*s + 2 
+   🔄 0.13*r + 0.25 = s 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 r - 8*s + 2 = 0 
+   🔄 r/8 + 1/4 = s 
+   🔄 r - 8*s = -2 
+   🔄 0 = -r + 8*s - 2 
+   🔄 -2 = r - 8*s 
+   🔄 0 = -r + 8*s - 2 
+   🔄 r - 8*s + 2 = 0 
+   🔄 8*s - 2 = r 
+   🔄 -r - 2.0 = -8.0*s 
+   🔄 -r - 2 = -8*s 
+   🔄 -2.0 = r - 8.0*s 
+   🔄 2 - 8*s = -r 
+   🔄 r = 8*s - 2 
+   🔄 0 = r - 8.0*s + 2.0 
+   🔄 r + 2.0 = 8.0*s 
+   🔄 2 - 8*s = -r 
+   🔄 s = 0.13*r + 0.25 
+   🔄 -8*s = -r - 2 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 r + 2 = 8*s 
+   🔄 -r + 8*s = 2 
+   🔄 2 = -r + 8*s 
+   🔄 -r - 2 = -8*s 
+   🔄 -r + 8*s = 2 
+   🔄 r = 8*s - 2 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 2.0 = -r + 8.0*s 
+   🔄 0 = r - 8*s + 2 
+   🔄 -r + 8.0*s - 2.0 = 0 
+   🔄 0 = r - 8*s + 2 
+   🔄 8*s - 2 = r 
+   🔄 r - 8*s + 2 = 0 
+   🔄 8*s = r + 2 
+   🔄 -2 = r - 8*s 
+   🔄 8.0*s - 2.0 = r 
+   🔄 r = 8.0*s - 2.0 
+   🔄 -r = 2 - 8*s 
+   🔄 -8*s = -r - 2 
+   🔄 2.0 - 8.0*s = -r 
+
+📌 Total Rearrangements: 56
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 5 -Comparison Results for: 
+ -4*c=-w/2 - 2 and 
+ c=w/2 - 1/2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(c, -1/4*(-w)/2 + 1/2)
+   📊 Max Similarity Score: 0.8285
+   🔀 Symbolic Difference: 3*w/8 - 1
+   🔎 Variable Factor Error: w
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of w
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(4*c - 2, -1*(-w)/2)
+   📊 Max Similarity Score: 0.9231
+   🔀 Symbolic Difference: 3*c - 5/2
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(4*c, -1*(-w)/2 + 2)
+   📊 Max Similarity Score: 0.9969
+   🔀 Symbolic Difference: 3*c - 5/2
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(c, -1/4*(-w)/2 + 1/2)
+   📊 Max Similarity Score: 0.4100
+   🔀 Symbolic Difference: 3*w/8 - 1
+   🔎 Variable Factor Error: w
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of w
+
+=== Rearranged Equations ===
+   🔄 0.5*w + 2.0 = 4.0*c 
+   🔄 4*c - w/2 - 2 = 0 
+   🔄 -4.0*c + 0.5*w = -2.0 
+   🔄 0 = 4*c - w/2 - 2 
+   🔄 -4*c + w/2 + 2 = 0 
+   🔄 4*c - w/2 - 2 = 0 
+   🔄 4*c - 2 = -1*(-w)/2 
+   🔄 w/2 + 2 = 4*c 
+   🔄 -4*c = -w/2 - 2 
+   🔄 -4*c = -w/2 - 2 
+   🔄 8.0*c - w = 4.0 
+   🔄 4*c = w/2 + 2 
+   🔄 0 = -4.0*c + 0.5*w + 2.0 
+   🔄 2 = 4*c - w/2 
+   🔄 0.13*w + 0.5 = c 
+   🔄 -w/2 - 2 = -4*c 
+   🔄 w = 8.0*c - 4.0 
+   🔄 -1/4*(-w)/2 + 1/2 = c 
+   🔄 -2 = -4*c + w/2 
+   🔄 w = 8*c - 4 
+   🔄 0 = 4*c - w/2 - 2 
+   🔄 -w/2 = 2 - 4*c 
+   🔄 0 = 4.0*c - 0.5*w - 2.0 
+   🔄 0 = 4*c - w/2 - 2 
+   🔄 4.0*c - 0.5*w - 2.0 = 0 
+   🔄 2.0 - 4.0*c = -0.5*w 
+   🔄 -2 = -4*c + w/2 
+   🔄 0 = -4*c - 1*(-w)/2 + 2 
+   🔄 -1*(-w)/2 + 2 = 4*c 
+   🔄 2 - 4*c = -w/2 
+   🔄 w/8 + 1/2 = c 
+   🔄 -1*(-w)/2 = 4*c - 2 
+   🔄 0 = -4*c - 1*(-w)/2 + 2 
+   🔄 -4*c - 1*(-w)/2 + 2 = 0 
+   🔄 4*c = -1*(-w)/2 + 2 
+   🔄 -0.5*w - 2.0 = -4.0*c 
+   🔄 -4*c - 1*(-w)/2 = -2 
+   🔄 4*c = -1*(-w)/2 + 2 
+   🔄 -4*c + w/2 = -2 
+   🔄 2 - 4*c = -w/2 
+   🔄 -1*(-w)/2 = 4*c - 2 
+   🔄 4*c - w/2 = 2 
+   🔄 -w/2 = 2 - 4*c 
+   🔄 c = 0.13*w + 0.5 
+   🔄 4*c - 2 = w/2 
+   🔄 4*c - w/2 - 2 = 0 
+   🔄 -4.0*c = -0.5*w - 2.0 
+   🔄 -w/2 - 2 = -4*c 
+   🔄 0 = 4*c - w/2 - 2 
+   🔄 4.0*c = 0.5*w + 2.0 
+   🔄 -4*c + w/2 + 2 = 0 
+   🔄 2.0 = 4.0*c - 0.5*w 
+   🔄 8.0*c - 4.0 = w 
+   🔄 0.5*w = 4.0*c - 2.0 
+   🔄 -1*(-w)/2 + 2 = 4*c 
+   🔄 -4*c = -w/2 - 2 
+   🔄 8*c - w = 4 
+   🔄 2 - 4*c = -w/2 
+   🔄 0 = 4*c - w/2 - 2 
+   🔄 -2 = -4*c - 1*(-w)/2 
+   🔄 -w/2 - 2 = -4*c 
+   🔄 w/2 = 4*c - 2 
+   🔄 4*c - w/2 = 2 
+   🔄 2 = 4*c - w/2 
+   🔄 0 = -4*c + w/2 + 2 
+   🔄 8*c - 4 = w 
+   🔄 -4*c + w/2 = -2 
+   🔄 2 - 4*c = -w/2 
+   🔄 w/2 = 4*c - 2 
+   🔄 -w/2 = 2 - 4*c 
+   🔄 -w/2 = 2 - 4*c 
+   🔄 -0.5*w = 2.0 - 4.0*c 
+   🔄 c = w/8 + 1/2 
+   🔄 2 = 4*c - w/2 
+   🔄 4*c - w/2 = 2 
+   🔄 4*c - 2 = w/2 
+   🔄 -4.0*c + 0.5*w + 2.0 = 0 
+   🔄 -2.0 = -4.0*c + 0.5*w 
+   🔄 0 = -4*c + w/2 + 2 
+   🔄 -4*c - 1*(-w)/2 + 2 = 0 
+   🔄 4.0*c - 0.5*w = 2.0 
+   🔄 4*c - w/2 - 2 = 0 
+   🔄 4*c - 2 = -1*(-w)/2 
+   🔄 c = -1/4*(-w)/2 + 1/2 
+   🔄 4.0*c - 2.0 = 0.5*w 
+   🔄 4*c - w/2 - 2 = 0 
+
+📌 Total Rearrangements: 86
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 6 -Comparison Results for: 
+ -4*n - 3=3*n - y and 
+ -3=-1*n - y:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-3, 7*n - y)
+   📊 Max Similarity Score: 0.9045
+   🔀 Symbolic Difference: -8*n
+   🔎 Variable Factor Error: n
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of n
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-3*n - 1*3, 4*n - y)
+   📊 Max Similarity Score: 0.9167
+   🔀 Symbolic Difference: -8*n
+   🔎 Variable Factor Error: n
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of n
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-y, -7*n - 3)
+   📊 Max Similarity Score: 0.9956
+   🔀 Symbolic Difference: 6*n - 2*y + 6
+   🔎 Variable Factor Error: n
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of y
+      - There is an error calculatin the factor of n
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(7*n - y, -3)
+   📊 Max Similarity Score: 0.4500
+   🔀 Symbolic Difference: 6*n - 2*y + 6
+   🔎 Variable Factor Error: n
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of y
+      - There is an error calculatin the factor of n
+
+=== Rearranged Equations ===
+   🔄 3.0 = -7.0*n + y 
+   🔄 n = -3*n/4 + y/4 - 3/4 
+   🔄 -3*n - 1*3 = 4*n - y 
+   🔄 -y = -4*n - 3*n - 3 
+   🔄 3.0 - y = -7.0*n 
+   🔄 -3.0*n = 4.0*n - y + 3.0 
+   🔄 -3.0*n - 3.0 = 4.0*n - y 
+   🔄 0 = -4*n - 3*n + y - 3 
+   🔄 -7.0*n - 3.0 = -y 
+   🔄 -3*n/4 + y/4 - 3/4 = n 
+   🔄 -7.0*n = 3.0 - y 
+   🔄 7.0*n - y + 3.0 = 0 
+   🔄 n = -1.3*n + 0.33*y - 1.0 
+   🔄 -4*n + y - 3 = 3*n 
+   🔄 7.0*n - y = -3.0 
+   🔄 -3*n - 3 = 4*n - y 
+   🔄 7*n + 3 = y 
+   🔄 3 = -7*n + y 
+   🔄 3*n + 3 = -4*n + y 
+   🔄 4.0*n = -3.0*n + y - 3.0 
+   🔄 4*n = -3*n + y - 3 
+   🔄 3*n - y + 3 = -4*n 
+   🔄 -4.0*n + y = 3.0*n + 3.0 
+   🔄 4*n - y + 3 = -3*n 
+   🔄 -4*n - 3*n + y - 3 = 0 
+   🔄 y = 3*n + 4*n + 3 
+   🔄 -3 = 3*n + 4*n - y 
+   🔄 3*n = -4*n + y - 1*3 
+   🔄 -4*n - 3*n - 3 = -y 
+   🔄 0 = -4*n - 3*n + y - 1*3 
+   🔄 7.0*n + 3.0 = y 
+   🔄 4*n - y + 3 = -3*n 
+   🔄 -1*3 = 3*n + 4*n - y 
+   🔄 4*n - y = -3*n - 1*3 
+   🔄 3*n + 4*n - y + 3 = 0 
+   🔄 y/7 - 3/7 = n 
+   🔄 4.0*n - y + 3.0 = -3.0*n 
+   🔄 3 - y = -7*n 
+   🔄 -4*n = 3*n - y + 3 
+   🔄 -4*n - 1*3 = 3*n - y 
+   🔄 -4*n - 3*n + y = 3 
+   🔄 -4*n - 3*n + y - 1*3 = 0 
+   🔄 -y = -7.0*n - 3.0 
+   🔄 n = 0.14*y - 0.43 
+   🔄 -3*n + y - 3 = 4*n 
+   🔄 3*n - y + 3 = -4*n 
+   🔄 -4*n + y - 1*3 = 3*n 
+   🔄 3.0*n - y = -4.0*n - 3.0 
+   🔄 -3*n + y = 4*n + 3 
+   🔄 -4*n/3 + y/3 - 1 = n 
+   🔄 -3.0*n + y - 3.0 = 4.0*n 
+   🔄 3*n + 4*n - y = -3 
+   🔄 -7*n + y - 3 = 0 
+   🔄 -3*n = 4*n - y + 3 
+   🔄 7*n - y = -3 
+   🔄 3.0*n - y + 3.0 = -4.0*n 
+   🔄 -3*n + y = 4*n + 3 
+   🔄 3 = -4*n - 3*n + y 
+   🔄 0 = -7*n + y - 3 
+   🔄 7*n - y + 3 = 0 
+   🔄 3*n + 4*n = y - 1*3 
+   🔄 -4*n - 3 = 3*n - y 
+   🔄 y - 3 = 7*n 
+   🔄 -4*n - 3*n = 3 - y 
+   🔄 3*n - y = -4*n - 1*3 
+   🔄 4*n - y = -3*n - 3 
+   🔄 n = y/7 - 3/7 
+   🔄 3*n = -4*n + y - 3 
+   🔄 3*n + 4*n = y - 3 
+   🔄 y = 3*n + 4*n + 3 
+   🔄 7.0*n = y - 3.0 
+   🔄 -4.0*n + y - 3.0 = 3.0*n 
+   🔄 3*n - y = -4*n - 3 
+   🔄 -3*n - 3 = 4*n - y 
+   🔄 -3.0 = 7.0*n - y 
+   🔄 0 = 7.0*n - y + 3.0 
+   🔄 y - 1*3 = 3*n + 4*n 
+   🔄 y = 7*n + 3 
+   🔄 y - 3.0 = 7.0*n 
+   🔄 y - 3 = 3*n + 4*n 
+   🔄 7*n = y - 3 
+   🔄 3*n = -4*n + y - 3 
+   🔄 -7.0*n + y - 3.0 = 0 
+   🔄 -7*n + y = 3 
+   🔄 0 = 3*n + 4*n - y + 3 
+   🔄 -3*n + y - 1*3 = 4*n 
+   🔄 -3*n = 4*n - y + 3 
+   🔄 -0.75*n + 0.25*y - 0.75 = n 
+   🔄 3 - y = -4*n - 3*n 
+   🔄 -y = -7*n - 3 
+   🔄 n = -0.75*n + 0.25*y - 0.75 
+   🔄 4.0*n + 3.0 = -3.0*n + y 
+   🔄 3 = -4*n - 3*n + y 
+   🔄 0.14*y - 0.43 = n 
+   🔄 4*n + 3 = -3*n + y 
+   🔄 3.0*n + 3.0 = -4.0*n + y 
+   🔄 3*n + 4*n + 3 = y 
+   🔄 -4.0*n = 3.0*n - y + 3.0 
+   🔄 4.0*n - y = -3.0*n - 3.0 
+   🔄 3*n + 3 = -4*n + y 
+   🔄 3*n + 4*n - y + 3 = 0 
+   🔄 4*n - y = -3*n - 3 
+   🔄 y = 7.0*n + 3.0 
+   🔄 -4*n - 3*n - 1*3 = -y 
+   🔄 4*n = -3*n + y - 1*3 
+   🔄 4*n - y + 3 = -3*n 
+   🔄 -4*n + y = 3*n + 3 
+   🔄 -4.0*n - 3.0 = 3.0*n - y 
+   🔄 0 = -7.0*n + y - 3.0 
+   🔄 -3*n = 4*n - y + 3 
+   🔄 0 = 3*n + 4*n - y + 3 
+   🔄 -3.0*n + y = 4.0*n + 3.0 
+   🔄 -y = -4*n - 3*n - 1*3 
+   🔄 -1.3*n + 0.33*y - 1.0 = n 
+   🔄 -3 = 7*n - y 
+   🔄 -4*n - 3*n + y = 3 
+   🔄 -7*n = 3 - y 
+   🔄 3.0*n = -4.0*n + y - 3.0 
+   🔄 4*n + 3 = -3*n + y 
+   🔄 -4*n + y = 3*n + 3 
+   🔄 3*n + 4*n + 3 = y 
+   🔄 0 = 7*n - y + 3 
+   🔄 -7.0*n + y = 3.0 
+   🔄 3*n + 4*n - y = -1*3 
+   🔄 -4*n + y - 3 = 3*n 
+   🔄 -7*n - 3 = -y 
+   🔄 n = -4*n/3 + y/3 - 1 
+   🔄 -4*n = 3*n - y + 3 
+
+📌 Total Rearrangements: 128
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 7 -Comparison Results for: 
+ 3*c + 1=-c + m and 
+ c=(m + 1)/4:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(c, m/4 - 1/4)
+   📊 Max Similarity Score: 0.7899
+   🔀 Symbolic Difference: 1/2
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.5
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-4*c, 1 - m)
+   📊 Max Similarity Score: 0.9167
+   🔀 Symbolic Difference: -5*c + 5*m/4 - 3/4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(1, -4*c + m)
+   📊 Max Similarity Score: 0.9954
+   🔀 Symbolic Difference: 3*c - 3*m/4 + 5/4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(c, -3*c + m - 1)
+   📊 Max Similarity Score: 0.3900
+   🔀 Symbolic Difference: 3*c - 3*m/4 + 5/4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+      - There is an error calculatin the factor of c
+
+=== Rearranged Equations ===
+   🔄 -4*c = 1 - m 
+   🔄 c - m = -3*c - 1 
+   🔄 c = -3*c + m - 1 
+   🔄 -c = 3*c - m + 1 
+   🔄 -4.0*c + m - 1.0 = 0 
+   🔄 -4.0*c = 1.0 - m 
+   🔄 -1.0 = 4.0*c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 -c + m - 1 = 3*c 
+   🔄 -c - 1 = 3*c - m 
+   🔄 -c = 3*c - m + 1 
+   🔄 -1 = 4*c - m 
+   🔄 -3*c = c - m + 1 
+   🔄 -m = -3*c - c - 1 
+   🔄 4.0*c + 1.0 = m 
+   🔄 -3*c + m = c + 1 
+   🔄 3.0*c - m = -c - 1.0 
+   🔄 -3*c - c + m = 1 
+   🔄 3*c - m + 1 = -c 
+   🔄 -c - 1.0 = 3.0*c - m 
+   🔄 c - m = -3.0*c - 1.0 
+   🔄 -3*c - c + m - 1 = 0 
+   🔄 c - m + 1.0 = -3.0*c 
+   🔄 -3*c - c + m = 1 
+   🔄 3*c - m = -c - 1 
+   🔄 -c/3 + m/3 - 1/3 = c 
+   🔄 c = -3*c + m - 1 
+   🔄 3*c - m = -c - 1 
+   🔄 -0.33*c + 0.33*m - 0.33 = c 
+   🔄 0 = 4*c - m + 1 
+   🔄 1 = -3*c - c + m 
+   🔄 m = 4.0*c + 1.0 
+   🔄 4.0*c - m = -1.0 
+   🔄 1 - m = -3*c - c 
+   🔄 -c + m = 3.0*c + 1.0 
+   🔄 -3.0*c = c - m + 1.0 
+   🔄 -3.0*c + m = c + 1.0 
+   🔄 -c - 1 = 3*c - m 
+   🔄 m - 1.0 = 4.0*c 
+   🔄 3*c = -c + m - 1 
+   🔄 m/4 - 1/4 = c 
+   🔄 -m = -4*c - 1 
+   🔄 -c + m - 1.0 = 3.0*c 
+   🔄 c + 3*c - m = -1 
+   🔄 c + 3*c - m = -1 
+   🔄 -4*c - 1 = -m 
+   🔄 -3*c - c + m - 1 = 0 
+   🔄 -m = -3*c - c - 1 
+   🔄 0.25*m - 0.25 = c 
+   🔄 -c + m - 1 = 3*c 
+   🔄 -4.0*c - 1.0 = -m 
+   🔄 1.0 = -4.0*c + m 
+   🔄 4*c - m = -1 
+   🔄 0 = -4.0*c + m - 1.0 
+   🔄 m = 4*c + 1 
+   🔄 c = -3*c + m - 1 
+   🔄 3.0*c + 1.0 = -c + m 
+   🔄 c + 3*c + 1 = m 
+   🔄 3.0*c - m + 1.0 = -c 
+   🔄 c + 3*c = m - 1 
+   🔄 c - m = -3*c - 1 
+   🔄 1 - m = -4*c 
+   🔄 -c + m = 3*c + 1 
+   🔄 1 = -4*c + m 
+   🔄 4*c - m + 1 = 0 
+   🔄 -3*c + m - 1 = c 
+   🔄 c + 3*c - m + 1 = 0 
+   🔄 -1 = c + 3*c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 4.0*c - m + 1.0 = 0 
+   🔄 4*c = m - 1 
+   🔄 1.0 - m = -4.0*c 
+   🔄 3*c = -c + m - 1 
+   🔄 -c = 3.0*c - m + 1.0 
+   🔄 -1 = c + 3*c - m 
+   🔄 -4.0*c + m = 1.0 
+   🔄 c - m + 1 = -3*c 
+   🔄 m = c + 3*c + 1 
+   🔄 0 = 4.0*c - m + 1.0 
+   🔄 3.0*c = -c + m - 1.0 
+   🔄 3*c + 1 = -c + m 
+   🔄 -3*c - c - 1 = -m 
+   🔄 c + 1 = -3*c + m 
+   🔄 0 = c + 3*c - m + 1 
+   🔄 -3*c - c - 1 = -m 
+   🔄 c + 1 = -3*c + m 
+   🔄 c - m + 1 = -3*c 
+   🔄 -m = -4.0*c - 1.0 
+   🔄 1 = -3*c - c + m 
+   🔄 c = m/4 - 1/4 
+   🔄 -4*c + m = 1 
+   🔄 -3.0*c - 1.0 = c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 c = -3.0*c + m - 1.0 
+   🔄 c = -c/3 + m/3 - 1/3 
+   🔄 m - 1 = 4*c 
+   🔄 -3*c + m - 1 = c 
+   🔄 0 = c + 3*c - m + 1 
+   🔄 0 = -3*c - c + m - 1 
+   🔄 0 = -4*c + m - 1 
+   🔄 m - 1 = c + 3*c 
+   🔄 -3*c + m - 1 = c 
+   🔄 -c + m = 3*c + 1 
+   🔄 3*c - m + 1 = -c 
+   🔄 -c = 3*c - m + 1 
+   🔄 c + 3*c + 1 = m 
+   🔄 -3.0*c + m - 1.0 = c 
+   🔄 m = c + 3*c + 1 
+   🔄 -4*c + m - 1 = 0 
+   🔄 -3*c = c - m + 1 
+   🔄 -3*c - c = 1 - m 
+   🔄 3*c - m + 1 = -c 
+   🔄 c = 0.25*m - 0.25 
+   🔄 4.0*c = m - 1.0 
+   🔄 3*c + 1 = -c + m 
+   🔄 0 = -3*c - c + m - 1 
+   🔄 c - m = -3*c - 1 
+   🔄 c = -0.33*c + 0.33*m - 0.33 
+   🔄 -3*c + m = c + 1 
+   🔄 c + 3*c - m + 1 = 0 
+   🔄 c + 1.0 = -3.0*c + m 
+   🔄 4*c + 1 = m 
+
+📌 Total Rearrangements: 122
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 8 -Comparison Results for: 
+ 3*c + 1=-c + m and 
+ 4 + 1=m:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(4*c + 1, m)
+   📊 Max Similarity Score: 0.8107
+   🔀 Symbolic Difference: 4*c - 4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - where did c disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(m, 4*c + 1)
+   📊 Max Similarity Score: 0.8000
+   🔀 Symbolic Difference: -4*c + 2*m - 6
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+      - where did c disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(1, -4*c + m)
+   📊 Max Similarity Score: 0.9796
+   🔀 Symbolic Difference: 4*c - 4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - where did c disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(4*c + 1, m)
+   📊 Max Similarity Score: 0.4100
+   🔀 Symbolic Difference: 4*c - 4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - where did c disappear
+
+=== Rearranged Equations ===
+   🔄 -4*c = 1 - m 
+   🔄 c - m = -3*c - 1 
+   🔄 c = -3*c + m - 1 
+   🔄 -c = 3*c - m + 1 
+   🔄 -4.0*c + m - 1.0 = 0 
+   🔄 -4.0*c = 1.0 - m 
+   🔄 -1.0 = 4.0*c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 -c + m - 1 = 3*c 
+   🔄 -c - 1 = 3*c - m 
+   🔄 -c = 3*c - m + 1 
+   🔄 -1 = 4*c - m 
+   🔄 -3*c = c - m + 1 
+   🔄 -m = -3*c - c - 1 
+   🔄 4.0*c + 1.0 = m 
+   🔄 -3*c + m = c + 1 
+   🔄 3.0*c - m = -c - 1.0 
+   🔄 -3*c - c + m = 1 
+   🔄 3*c - m + 1 = -c 
+   🔄 -c - 1.0 = 3.0*c - m 
+   🔄 c - m = -3.0*c - 1.0 
+   🔄 -3*c - c + m - 1 = 0 
+   🔄 c - m + 1.0 = -3.0*c 
+   🔄 -3*c - c + m = 1 
+   🔄 3*c - m = -c - 1 
+   🔄 -c/3 + m/3 - 1/3 = c 
+   🔄 c = -3*c + m - 1 
+   🔄 3*c - m = -c - 1 
+   🔄 -0.33*c + 0.33*m - 0.33 = c 
+   🔄 0 = 4*c - m + 1 
+   🔄 1 = -3*c - c + m 
+   🔄 m = 4.0*c + 1.0 
+   🔄 4.0*c - m = -1.0 
+   🔄 1 - m = -3*c - c 
+   🔄 -c + m = 3.0*c + 1.0 
+   🔄 -3.0*c = c - m + 1.0 
+   🔄 -3.0*c + m = c + 1.0 
+   🔄 -c - 1 = 3*c - m 
+   🔄 m - 1.0 = 4.0*c 
+   🔄 3*c = -c + m - 1 
+   🔄 m/4 - 1/4 = c 
+   🔄 -m = -4*c - 1 
+   🔄 -c + m - 1.0 = 3.0*c 
+   🔄 c + 3*c - m = -1 
+   🔄 c + 3*c - m = -1 
+   🔄 -4*c - 1 = -m 
+   🔄 -3*c - c + m - 1 = 0 
+   🔄 -m = -3*c - c - 1 
+   🔄 0.25*m - 0.25 = c 
+   🔄 -c + m - 1 = 3*c 
+   🔄 -4.0*c - 1.0 = -m 
+   🔄 1.0 = -4.0*c + m 
+   🔄 4*c - m = -1 
+   🔄 0 = -4.0*c + m - 1.0 
+   🔄 m = 4*c + 1 
+   🔄 c = -3*c + m - 1 
+   🔄 3.0*c + 1.0 = -c + m 
+   🔄 c + 3*c + 1 = m 
+   🔄 3.0*c - m + 1.0 = -c 
+   🔄 c + 3*c = m - 1 
+   🔄 c - m = -3*c - 1 
+   🔄 1 - m = -4*c 
+   🔄 -c + m = 3*c + 1 
+   🔄 1 = -4*c + m 
+   🔄 4*c - m + 1 = 0 
+   🔄 -3*c + m - 1 = c 
+   🔄 c + 3*c - m + 1 = 0 
+   🔄 -1 = c + 3*c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 4.0*c - m + 1.0 = 0 
+   🔄 4*c = m - 1 
+   🔄 1.0 - m = -4.0*c 
+   🔄 3*c = -c + m - 1 
+   🔄 -c = 3.0*c - m + 1.0 
+   🔄 -1 = c + 3*c - m 
+   🔄 -4.0*c + m = 1.0 
+   🔄 c - m + 1 = -3*c 
+   🔄 m = c + 3*c + 1 
+   🔄 0 = 4.0*c - m + 1.0 
+   🔄 3.0*c = -c + m - 1.0 
+   🔄 3*c + 1 = -c + m 
+   🔄 -3*c - c - 1 = -m 
+   🔄 c + 1 = -3*c + m 
+   🔄 0 = c + 3*c - m + 1 
+   🔄 -3*c - c - 1 = -m 
+   🔄 c + 1 = -3*c + m 
+   🔄 c - m + 1 = -3*c 
+   🔄 -m = -4.0*c - 1.0 
+   🔄 1 = -3*c - c + m 
+   🔄 c = m/4 - 1/4 
+   🔄 -4*c + m = 1 
+   🔄 -3.0*c - 1.0 = c - m 
+   🔄 -3*c - 1 = c - m 
+   🔄 c = -3.0*c + m - 1.0 
+   🔄 c = -c/3 + m/3 - 1/3 
+   🔄 m - 1 = 4*c 
+   🔄 -3*c + m - 1 = c 
+   🔄 0 = c + 3*c - m + 1 
+   🔄 0 = -3*c - c + m - 1 
+   🔄 0 = -4*c + m - 1 
+   🔄 m - 1 = c + 3*c 
+   🔄 -3*c + m - 1 = c 
+   🔄 -c + m = 3*c + 1 
+   🔄 3*c - m + 1 = -c 
+   🔄 -c = 3*c - m + 1 
+   🔄 c + 3*c + 1 = m 
+   🔄 -3.0*c + m - 1.0 = c 
+   🔄 m = c + 3*c + 1 
+   🔄 -4*c + m - 1 = 0 
+   🔄 -3*c = c - m + 1 
+   🔄 -3*c - c = 1 - m 
+   🔄 3*c - m + 1 = -c 
+   🔄 c = 0.25*m - 0.25 
+   🔄 4.0*c = m - 1.0 
+   🔄 3*c + 1 = -c + m 
+   🔄 0 = -3*c - c + m - 1 
+   🔄 c - m = -3*c - 1 
+   🔄 c = -0.33*c + 0.33*m - 0.33 
+   🔄 -3*c + m = c + 1 
+   🔄 c + 3*c - m + 1 = 0 
+   🔄 c + 1.0 = -3.0*c + m 
+   🔄 4*c + 1 = m 
+
+📌 Total Rearrangements: 122
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 9 -Comparison Results for: 
+ 4=3*d + 4*v and 
+ o=3*d - 4 + 4*v:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(1 - 3*d/4, v)
+   📊 Max Similarity Score: 0.7306
+   🔀 Symbolic Difference: 9*d/4 - o + 3*v - 3
+   🔎 Variable Factor Error: v
+   ✍️ Possible Typo: o
+   ❌ Suggested Errors:
+      - There is no such a vriable  o in the original equatoin.
+      - There is an error calculatin the factor of o
+      - There is an error calculatin the factor of d
+      - There is an error calculatin the factor of v
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(4 - 4*v, 3*d)
+   📊 Max Similarity Score: 0.9231
+   🔀 Symbolic Difference: -o
+   🔎 Variable Factor Error: o
+   ✍️ Possible Typo: o
+   ❌ Suggested Errors:
+      - There is no such a vriable  o in the original equatoin.
+      - There is an error calculatin the factor of o
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(4 - 4*v, 3*d)
+   📊 Max Similarity Score: 0.9950
+   🔀 Symbolic Difference: -o
+   🔎 Variable Factor Error: o
+   ✍️ Possible Typo: o
+   ❌ Suggested Errors:
+      - There is no such a vriable  o in the original equatoin.
+      - There is an error calculatin the factor of o
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(1 - 3*d/4, v)
+   📊 Max Similarity Score: 0.3700
+   🔀 Symbolic Difference: 9*d/4 - o + 3*v - 3
+   🔎 Variable Factor Error: v
+   ✍️ Possible Typo: o
+   ❌ Suggested Errors:
+      - There is no such a vriable  o in the original equatoin.
+      - There is an error calculatin the factor of o
+      - There is an error calculatin the factor of d
+      - There is an error calculatin the factor of v
+
+=== Rearranged Equations ===
+   🔄 3.0*d + 4.0*v - 4.0 = 0 
+   🔄 -4.0 = -3.0*d - 4.0*v 
+   🔄 v = 1 - 3*d/4 
+   🔄 4.0*v - 4.0 = -3.0*d 
+   🔄 1.0 - 0.75*d = v 
+   🔄 0 = -3*d - 4*v + 4 
+   🔄 d = 1.3 - 1.3*v 
+   🔄 0 = -3*d - 4*v + 4 
+   🔄 4 - 4*v = 3*d 
+   🔄 4.0 - 3.0*d = 4.0*v 
+   🔄 -4 = -3*d - 4*v 
+   🔄 4.0*v = 4.0 - 3.0*d 
+   🔄 0 = 3*d + 4*v - 4 
+   🔄 1 - 3*d/4 = v 
+   🔄 -4*v = 3*d - 4 
+   🔄 4 = 3*d + 4*v 
+   🔄 -3*d = 4*v - 4 
+   🔄 3.0*d = 4.0 - 4.0*v 
+   🔄 4*v - 4 = -3*d 
+   🔄 3*d + 4*v - 4 = 0 
+   🔄 1.3 - 1.3*v = d 
+   🔄 -3.0*d - 4.0*v + 4.0 = 0 
+   🔄 4*v = 4 - 3*d 
+   🔄 3*d + 4*v = 4 
+   🔄 4.0 - 4.0*v = 3.0*d 
+   🔄 4.0 = 3.0*d + 4.0*v 
+   🔄 v = 1.0 - 0.75*d 
+   🔄 0 = 3*d + 4*v - 4 
+   🔄 -4 = -3*d - 4*v 
+   🔄 -3.0*d - 4.0*v = -4.0 
+   🔄 0 = 3.0*d + 4.0*v - 4.0 
+   🔄 3*d + 4*v = 4 
+   🔄 -4.0*v = 3.0*d - 4.0 
+   🔄 4/3 - 4*v/3 = d 
+   🔄 0 = -3.0*d - 4.0*v + 4.0 
+   🔄 -3*d - 4*v = -4 
+   🔄 3.0*d - 4.0 = -4.0*v 
+   🔄 3*d - 4 = -4*v 
+   🔄 -3*d - 4*v + 4 = 0 
+   🔄 4 = 3*d + 4*v 
+   🔄 4 - 3*d = 4*v 
+   🔄 3*d + 4*v - 4 = 0 
+   🔄 3*d = 4 - 4*v 
+   🔄 -3.0*d = 4.0*v - 4.0 
+   🔄 -3*d - 4*v = -4 
+   🔄 -3*d - 4*v + 4 = 0 
+   🔄 d = 4/3 - 4*v/3 
+   🔄 3.0*d + 4.0*v = 4.0 
+
+📌 Total Rearrangements: 48
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 10 -Comparison Results for: 
+ o=3*d + 4*v - 4 and 
+ -4*v=3*d - 4:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-4*v, 3*d - o - 4)
+   📊 Max Similarity Score: 0.9417
+   🔀 Symbolic Difference: o
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-o + 4*v, 4 - 3*d)
+   📊 Max Similarity Score: 0.9231
+   🔀 Symbolic Difference: 6*d - o + 8*v - 8
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-3*d - 4*v + 4, -o)
+   📊 Max Similarity Score: 0.9967
+   🔀 Symbolic Difference: o
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-4*v, 3*d - o - 4)
+   📊 Max Similarity Score: 0.4700
+   🔀 Symbolic Difference: o
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+=== Rearranged Equations ===
+   🔄 -o + 4*v = 4 - 3*d 
+   🔄 -3*d - 4*v = -o - 4 
+   🔄 -o + 4*v - 4 = -3*d 
+   🔄 -3*d + o = 4*v - 4 
+   🔄 o + 4.0 = 3.0*d + 4.0*v 
+   🔄 o + 4 = 3*d + 4*v 
+   🔄 0 = 3*d - o + 4*v - 4 
+   🔄 4 = 3*d - o + 4*v 
+   🔄 -3.0*d - 4.0*v + 4.0 = -o 
+   🔄 o - 4*v + 4 = 3*d 
+   🔄 3*d + 4*v - 4 = o 
+   🔄 3*d + 4*v = o + 4 
+   🔄 0.33*o - 1.3*v + 1.3 = d 
+   🔄 3.0*d + 4.0*v - 4.0 = o 
+   🔄 3*d - o + 4*v = 4 
+   🔄 3*d - o + 4*v - 4 = 0 
+   🔄 -4 = -3*d + o - 4*v 
+   🔄 3.0*d - o + 4.0*v - 4.0 = 0 
+   🔄 d = 0.33*o - 1.3*v + 1.3 
+   🔄 3.0*d - 4.0 = o - 4.0*v 
+   🔄 -3*d - 4*v + 4 = -o 
+   🔄 3.0*d - o - 4.0 = -4.0*v 
+   🔄 -o + 4*v = 4 - 3*d 
+   🔄 v = -0.75*d + 0.25*o + 1.0 
+   🔄 o = 3*d + 4*v - 4 
+   🔄 o - 4.0*v = 3.0*d - 4.0 
+   🔄 3.0*d = o - 4.0*v + 4.0 
+   🔄 -o + 4.0*v - 4.0 = -3.0*d 
+   🔄 3*d - o + 4*v - 4 = 0 
+   🔄 -3*d + o - 4*v + 4 = 0 
+   🔄 -o = -3*d - 4*v + 4 
+   🔄 -o + 4*v - 4 = -3*d 
+   🔄 -3*d/4 + o/4 + 1 = v 
+   🔄 3*d - o + 4*v - 4 = 0 
+   🔄 o + 4 = 3*d + 4*v 
+   🔄 4*v - 4 = -3*d + o 
+   🔄 4.0 = 3.0*d - o + 4.0*v 
+   🔄 -0.75*d + 0.25*o + 1.0 = v 
+   🔄 o - 4*v = 3*d - 4 
+   🔄 -3*d + o + 4 = 4*v 
+   🔄 3*d - o = 4 - 4*v 
+   🔄 -3*d + o = 4*v - 4 
+   🔄 -3*d - 4*v + 4 = -o 
+   🔄 3*d - 4 = o - 4*v 
+   🔄 3.0*d - o + 4.0*v = 4.0 
+   🔄 o - 4*v + 4 = 3*d 
+   🔄 3*d + 4*v = o + 4 
+   🔄 -3*d - 4*v + 4 = -o 
+   🔄 -4*v = 3*d - o - 4 
+   🔄 -3.0*d + o = 4.0*v - 4.0 
+   🔄 o/3 - 4*v/3 + 4/3 = d 
+   🔄 -3*d = -o + 4*v - 4 
+   🔄 d = o/3 - 4*v/3 + 4/3 
+   🔄 4 - 3*d = -o + 4*v 
+   🔄 o = 3*d + 4*v - 4 
+   🔄 -o = -3.0*d - 4.0*v + 4.0 
+   🔄 -3*d - 4*v = -o - 4 
+   🔄 4*v - 4 = -3*d + o 
+   🔄 3*d - o - 4 = -4*v 
+   🔄 4*v = -3*d + o + 4 
+   🔄 3*d - o + 4*v - 4 = 0 
+   🔄 -3.0*d + o - 4.0*v = -4.0 
+   🔄 4.0*v - 4.0 = -3.0*d + o 
+   🔄 3*d + 4*v - 4 = o 
+   🔄 4.0 - 4.0*v = 3.0*d - o 
+   🔄 o = 3.0*d + 4.0*v - 4.0 
+   🔄 -3*d + o - 4*v + 4 = 0 
+   🔄 3*d - o = 4 - 4*v 
+   🔄 -4.0 = -3.0*d + o - 4.0*v 
+   🔄 -3*d + o - 4*v = -4 
+   🔄 3*d = o - 4*v + 4 
+   🔄 -3*d + o + 4 = 4*v 
+   🔄 3*d = o - 4*v + 4 
+   🔄 -4.0*v = 3.0*d - o - 4.0 
+   🔄 4*v = -3*d + o + 4 
+   🔄 0 = -3.0*d + o - 4.0*v + 4.0 
+   🔄 0 = 3*d - o + 4*v - 4 
+   🔄 -o = -3*d - 4*v + 4 
+   🔄 -o = -3*d - 4*v + 4 
+   🔄 -o - 4 = -3*d - 4*v 
+   🔄 4.0*v = -3.0*d + o + 4.0 
+   🔄 3*d - o - 4 = -4*v 
+   🔄 -o + 4*v - 4 = -3*d 
+   🔄 -3*d + o + 4 = 4*v 
+   🔄 3*d + 4*v = o + 4 
+   🔄 0 = 3.0*d - o + 4.0*v - 4.0 
+   🔄 -3*d = -o + 4*v - 4 
+   🔄 4*v = -3*d + o + 4 
+   🔄 3.0*d - o = 4.0 - 4.0*v 
+   🔄 4 - 4*v = 3*d - o 
+   🔄 -4*v = 3*d - o - 4 
+   🔄 -3*d + o - 4*v + 4 = 0 
+   🔄 -3*d = -o + 4*v - 4 
+   🔄 3*d + 4*v - 4 = o 
+   🔄 0 = -3*d + o - 4*v + 4 
+   🔄 o - 4.0*v + 4.0 = 3.0*d 
+   🔄 o - 4*v + 4 = 3*d 
+   🔄 o = 3*d + 4*v - 4 
+   🔄 -3.0*d + o + 4.0 = 4.0*v 
+   🔄 v = -3*d/4 + o/4 + 1 
+   🔄 3*d - o - 4 = -4*v 
+   🔄 0 = -3*d + o - 4*v + 4 
+   🔄 -o - 4.0 = -3.0*d - 4.0*v 
+   🔄 4.0 - 3.0*d = -o + 4.0*v 
+   🔄 3*d = o - 4*v + 4 
+   🔄 3.0*d + 4.0*v = o + 4.0 
+   🔄 -4*v = 3*d - o - 4 
+   🔄 -o - 4 = -3*d - 4*v 
+   🔄 0 = 3*d - o + 4*v - 4 
+   🔄 o - 4*v = 3*d - 4 
+   🔄 -3*d + o - 4*v = -4 
+   🔄 3*d - o + 4*v = 4 
+   🔄 4 - 4*v = 3*d - o 
+   🔄 -o + 4.0*v = 4.0 - 3.0*d 
+   🔄 3*d - 4 = o - 4*v 
+   🔄 -4 = -3*d + o - 4*v 
+   🔄 -3.0*d + o - 4.0*v + 4.0 = 0 
+   🔄 o + 4 = 3*d + 4*v 
+   🔄 -3.0*d = -o + 4.0*v - 4.0 
+   🔄 4 - 3*d = -o + 4*v 
+   🔄 0 = -3*d + o - 4*v + 4 
+   🔄 4 = 3*d - o + 4*v 
+   🔄 -3.0*d - 4.0*v = -o - 4.0 
+   🔄 0 = 3*d - o + 4*v - 4 
+
+📌 Total Rearrangements: 124
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 11 -Comparison Results for: 
+ r - 4=12 and 
+ r - 4=-sqrt(12):
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(12 - r, -1*4)
+   📊 Max Similarity Score: 0.6533
+   🔀 Symbolic Difference: -12*qr*s*t - 2*r + 20
+   🔎 Variable Factor Error: s
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is an error calculatin the factor of r
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-r, -12 - 4)
+   📊 Max Similarity Score: 0.7857
+   🔀 Symbolic Difference: -12*qr*s*t - 2*r + 20
+   🔎 Variable Factor Error: s
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is an error calculatin the factor of r
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-1*4, 12 - r)
+   📊 Max Similarity Score: 0.9773
+   🔀 Symbolic Difference: -12*qr*s*t - 12
+   🔎 Variable Factor Error: qr
+   ✍️ Possible Typo: qr
+   ❌ Suggested Errors:
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(12 - r, -1*4)
+   📊 Max Similarity Score: 0.3300
+   🔀 Symbolic Difference: -12*qr*s*t - 2*r + 20
+   🔎 Variable Factor Error: s
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is an error calculatin the factor of r
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+
+=== Rearranged Equations ===
+   🔄 4 = r - 12 
+   🔄 12 = r - 4 
+   🔄 0 = 16 - r 
+   🔄 -r + 4 + 12 = 0 
+   🔄 r - 12 = 4 
+   🔄 0 = r - 12 - 1*4 
+   🔄 r - 4 = 12 
+   🔄 r - 4.0 = 12 
+   🔄 r - 16 = 0 
+   🔄 0 = 16.0 - r 
+   🔄 -r = -12 - 4 
+   🔄 -12 - 1*4 = -r 
+   🔄 -12 = 4.0 - r 
+   🔄 0 = r - 16 
+   🔄 r - 1*4 = 12 
+   🔄 16 = r 
+   🔄 4 = r - 12 
+   🔄 -1*4 = 12 - r 
+   🔄 12 - r = -1*4 
+   🔄 r - 12 = 4 
+   🔄 -4 = 12 - r 
+   🔄 0 = -r + 4 + 12 
+   🔄 r = 4 + 12 
+   🔄 r = 16 
+   🔄 -r = -12 - 1*4 
+   🔄 12 = r - 1*4 
+   🔄 12 - r = -4 
+   🔄 16 - r = 0 
+   🔄 -r + 4 + 12 = 0 
+   🔄 16 = r 
+   🔄 -12 = 4 - r 
+   🔄 0 = -r + 4 + 12 
+   🔄 r - 12 - 4 = 0 
+   🔄 r = 16 
+   🔄 -4.0 = 12.0 - r 
+   🔄 -r = -16 
+   🔄 r - 16.0 = 0 
+   🔄 12.0 - r = -4.0 
+   🔄 4 - r = -12 
+   🔄 -r = -16 
+   🔄 12 - r = -4 
+   🔄 16.0 - r = 0 
+   🔄 -16 = -r 
+   🔄 12 = r - 4.0 
+   🔄 0 = r - 16.0 
+   🔄 -4 = 12 - r 
+   🔄 -12 - 4 = -r 
+   🔄 4 - r = -12 
+   🔄 -12 = 4 - r 
+   🔄 4 + 12 = r 
+   🔄 -16 = -r 
+   🔄 r - 12.0 = 4.0 
+   🔄 4.0 - r = -12 
+   🔄 4.0 = r - 12.0 
+   🔄 0 = r - 12 - 4 
+   🔄 r - 12 - 1*4 = 0 
+
+📌 Total Rearrangements: 56
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 12 -Comparison Results for: 
+ x + 4=-x - 5*o and 
+ 0=4 + 5*o:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(0, 5*o + x + x + 4)
+   📊 Max Similarity Score: 0.8363
+   🔀 Symbolic Difference: -2*x
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(5*o + x + x + 4, 0)
+   📊 Max Similarity Score: 0.9091
+   🔀 Symbolic Difference: 10*o + 2*x + 8
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(5*o + 2*x + 4, 0)
+   📊 Max Similarity Score: 0.9899
+   🔀 Symbolic Difference: 10*o + 2*x + 8
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(0, 5*o + x + x + 4)
+   📊 Max Similarity Score: 0.4200
+   🔀 Symbolic Difference: -2*x
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+=== Rearranged Equations ===
+   🔄 5.0*o + 2.0*x = -4.0 
+   🔄 -2*x = 5.0*o + 4.0 
+   🔄 2*x = -5.0*o - 4.0 
+   🔄 -5*o - 4 = x + x 
+   🔄 5*o + 2*x = -4 
+   🔄 -2*x - 4.0 = 5.0*o 
+   🔄 -2*x/5 - 4/5 = o 
+   🔄 -5.0*o - 2*x - 4.0 = 0 
+   🔄 -x - x - 4 = 5*o 
+   🔄 -5.0*o - 2*x = 4.0 
+   🔄 5.0*o = -2.0*x - 4.0 
+   🔄 0 = 5.0*o + 2*x + 4.0 
+   🔄 -5*o - 2*x - 4 = 0 
+   🔄 -2.0*x = 5.0*o + 4.0 
+   🔄 -5*o - 2*x - 4 = 0 
+   🔄 5*o + 4 = -x - x 
+   🔄 -5*o/2 - 2 = x 
+   🔄 -2.0*x - 4.0 = 5.0*o 
+   🔄 -4.0 = 5.0*o + 2*x 
+   🔄 -5.0*o - 2.0*x - 4.0 = 0 
+   🔄 -4 = 5*o + x + x 
+   🔄 5*o + x + x + 4 = 0 
+   🔄 -2*x - 4 = 5*o 
+   🔄 5*o + 4 = -2*x 
+   🔄 5*o = -2*x - 4 
+   🔄 -4 = 5*o + 2*x 
+   🔄 0 = 5*o + x + x + 4 
+   🔄 5.0*o + 4.0 = -2*x 
+   🔄 o = -0.4*x - 0.8 
+   🔄 -4.0 = 5.0*o + 2.0*x 
+   🔄 -5*o - 2*x = 4 
+   🔄 0 = -5.0*o - 2.0*x - 4.0 
+   🔄 2*x = -5*o - 4 
+   🔄 4.0 = -5.0*o - 2*x 
+   🔄 -5.0*o - 2.0*x = 4.0 
+   🔄 0 = 5*o + x + x + 4 
+   🔄 x + x + 4 = -5*o 
+   🔄 4 = -5*o - x - x 
+   🔄 2*x + 4 = -5*o 
+   🔄 4 = -5*o - 2*x 
+   🔄 -x - x - 4 = 5*o 
+   🔄 5*o + 2*x + 4 = 0 
+   🔄 -5.0*o = 2*x + 4.0 
+   🔄 4.0 = -5.0*o - 2.0*x 
+   🔄 -5.0*o = 2.0*x + 4.0 
+   🔄 -5*o - 2*x = 4 
+   🔄 -0.4*x - 0.8 = o 
+   🔄 -5*o = x + x + 4 
+   🔄 4 = -5*o - 2*x 
+   🔄 -5*o = 2*x + 4 
+   🔄 -5*o - x - x = 4 
+   🔄 0 = -5*o - x - x - 4 
+   🔄 5.0*o + 2*x + 4.0 = 0 
+   🔄 -2.5*o - 2.0 = x 
+   🔄 x + x + 4 = -5*o 
+   🔄 5*o = -x - x - 4 
+   🔄 5.0*o + 2*x = -4.0 
+   🔄 0 = -5.0*o - 2*x - 4.0 
+   🔄 5*o + x + x = -4 
+   🔄 0 = -5*o - 2*x - 4 
+   🔄 0 = 5*o + 2*x + 4 
+   🔄 x = -2.5*o - 2.0 
+   🔄 x = -5*o/2 - 2 
+   🔄 5.0*o + 4.0 = -2.0*x 
+   🔄 0 = -5*o - 2*x - 4 
+   🔄 5.0*o + 2.0*x + 4.0 = 0 
+   🔄 -5*o - x - x - 4 = 0 
+   🔄 -5*o - 4 = 2*x 
+   🔄 0 = -5*o - x - x - 4 
+   🔄 -2*x = 5*o + 4 
+   🔄 2*x + 4.0 = -5.0*o 
+   🔄 5.0*o = -2*x - 4.0 
+   🔄 5*o + x + x + 4 = 0 
+   🔄 -5*o = x + x + 4 
+   🔄 2.0*x + 4.0 = -5.0*o 
+   🔄 o = -2*x/5 - 4/5 
+   🔄 -5*o - x - x - 4 = 0 
+   🔄 -5.0*o - 4.0 = 2*x 
+   🔄 2.0*x = -5.0*o - 4.0 
+   🔄 x + x = -5*o - 4 
+   🔄 0 = 5.0*o + 2.0*x + 4.0 
+   🔄 -x - x = 5*o + 4 
+   🔄 5*o = -x - x - 4 
+   🔄 -5.0*o - 4.0 = 2.0*x 
+
+📌 Total Rearrangements: 84
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 13 -Comparison Results for: 
+ 8*c=5 - p and 
+ c=1.6 - p:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(p, 5.0 - 8.0*c)
+   📊 Max Similarity Score: 0.7581
+   🔀 Symbolic Difference: 7.0*c - 3.4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-8.0*c, p - 5.0)
+   📊 Max Similarity Score: 0.6667
+   🔀 Symbolic Difference: -9.0*c - 2*p + 6.6
+   🔎 Variable Factor Error: p
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+      - There is an error calculatin the factor of p
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-5.0, -8.0*c - p)
+   📊 Max Similarity Score: 0.9501
+   🔀 Symbolic Difference: 7.0*c - 3.4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(p, 5.0 - 8.0*c)
+   📊 Max Similarity Score: 0.3800
+   🔀 Symbolic Difference: 7.0*c - 3.4
+   🔎 Variable Factor Error: c
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+
+=== Rearranged Equations ===
+   🔄 -8.0*c = p - 5.0 
+   🔄 8*c + p = 5 
+   🔄 5.0 - 8.0*c = p 
+   🔄 0 = 8*c + p - 5 
+   🔄 p = 5 - 8*c 
+   🔄 8*c + p = 5 
+   🔄 0 = -8.0*c - p + 5.0 
+   🔄 5.0 = 8.0*c + p 
+   🔄 -8*c - p + 5 = 0 
+   🔄 -8.0*c - p + 5.0 = 0 
+   🔄 p - 5 = -8*c 
+   🔄 c = 5/8 - p/8 
+   🔄 5/8 - p/8 = c 
+   🔄 0 = 8.0*c + p - 5.0 
+   🔄 5 - 8*c = p 
+   🔄 c = 0.63 - 0.13*p 
+   🔄 -p = 8*c - 5 
+   🔄 -p = 8.0*c - 5.0 
+   🔄 p = 5 - 8*c 
+   🔄 -8*c = p - 5 
+   🔄 5 - 8*c = p 
+   🔄 8.0*c - 5.0 = -p 
+   🔄 p - 5.0 = -8.0*c 
+   🔄 5.0 - p = 8.0*c 
+   🔄 8*c + p - 5 = 0 
+   🔄 -5.0 = -8.0*c - p 
+   🔄 8.0*c + p - 5.0 = 0 
+   🔄 -p = 8*c - 5 
+   🔄 8.0*c + p = 5.0 
+   🔄 -8*c - p + 5 = 0 
+   🔄 8*c - 5 = -p 
+   🔄 5 - p = 8*c 
+   🔄 5 = 8*c + p 
+   🔄 -8*c - p = -5 
+   🔄 8*c - 5 = -p 
+   🔄 -8.0*c - p = -5.0 
+   🔄 0 = -8*c - p + 5 
+   🔄 0 = 8*c + p - 5 
+   🔄 0 = -8*c - p + 5 
+   🔄 -8*c - p = -5 
+   🔄 -5 = -8*c - p 
+   🔄 0.63 - 0.13*p = c 
+   🔄 p = 5.0 - 8.0*c 
+   🔄 5 = 8*c + p 
+   🔄 8.0*c = 5.0 - p 
+   🔄 8*c = 5 - p 
+   🔄 8*c + p - 5 = 0 
+   🔄 -5 = -8*c - p 
+
+📌 Total Rearrangements: 48
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 14 -Comparison Results for: 
+ -5*c + 5=3*c + p and 
+ -8*c=-5*p:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-5*c, 3*c + p - 5)
+   📊 Max Similarity Score: 0.8349
+   🔀 Symbolic Difference: 5 - 6*p
+   🔎 Variable Factor Error: p
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of p
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(p - 5, -8*c)
+   📊 Max Similarity Score: 0.9167
+   🔀 Symbolic Difference: 16*c - 4*p - 5
+   🔎 Variable Factor Error: p
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+      - There is an error calculatin the factor of p
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-5, -8*c - p)
+   📊 Max Similarity Score: 0.9950
+   🔀 Symbolic Difference: 16*c - 4*p - 5
+   🔎 Variable Factor Error: p
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of c
+      - There is an error calculatin the factor of p
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-5*c, 3*c + p - 5)
+   📊 Max Similarity Score: 0.4200
+   🔀 Symbolic Difference: 5 - 6*p
+   🔎 Variable Factor Error: p
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of p
+
+=== Rearranged Equations ===
+   🔄 -3*c = 5*c + p - 5 
+   🔄 -5.0*c - p = 3.0*c - 5.0 
+   🔄 3*c - 5 = -5*c - p 
+   🔄 -3*c - p = 5*c - 5 
+   🔄 3*c + p - 5 = -5*c 
+   🔄 -p = 3*c + 5*c - 5 
+   🔄 5 - 3*c = 5*c + p 
+   🔄 c = -1.7*c - 0.33*p + 1.7 
+   🔄 -5*c - 3*c - p + 5 = 0 
+   🔄 -3*c - p + 5 = 5*c 
+   🔄 p = -5*c - 3*c + 5 
+   🔄 3*c - 5 = -5*c - p 
+   🔄 5.0 - 5.0*c = 3.0*c + p 
+   🔄 5/8 - p/8 = c 
+   🔄 5 - p = 3*c + 5*c 
+   🔄 p - 5 = -8*c 
+   🔄 0 = 3*c + 5*c + p - 5 
+   🔄 c = -5*c/3 - p/3 + 5/3 
+   🔄 -8*c = p - 5 
+   🔄 -5 = -5*c - 3*c - p 
+   🔄 -3*c - p + 5 = 5*c 
+   🔄 8.0*c + p = 5.0 
+   🔄 3*c = -5*c - p + 5 
+   🔄 0 = -5*c - 3*c - p + 5 
+   🔄 5 - p = 8*c 
+   🔄 5 = 8*c + p 
+   🔄 -8.0*c - p = -5.0 
+   🔄 3*c + 5*c - 5 = -p 
+   🔄 -5 = -8*c - p 
+   🔄 0.63 - 0.13*p = c 
+   🔄 3.0*c + p - 5.0 = -5.0*c 
+   🔄 5 = 3*c + 5*c + p 
+   🔄 p = 5.0 - 8.0*c 
+   🔄 -3.0*c = 5.0*c + p - 5.0 
+   🔄 -5*c = 3*c + p - 5 
+   🔄 -5*c - 3*c - p = -5 
+   🔄 3*c + p - 5 = -5*c 
+   🔄 5.0*c + p = 5.0 - 3.0*c 
+   🔄 5*c + p - 5 = -3*c 
+   🔄 -8.0*c = p - 5.0 
+   🔄 0 = 3*c + 5*c + p - 5 
+   🔄 5.0 - 8.0*c = p 
+   🔄 5*c = -3*c - p + 5 
+   🔄 5*c - 5 = -3*c - p 
+   🔄 5 = 3*c + 5*c + p 
+   🔄 3.0*c + p = 5.0 - 5.0*c 
+   🔄 0 = -8.0*c - p + 5.0 
+   🔄 8*c + p = 5 
+   🔄 -5*c - 3*c - p + 5 = 0 
+   🔄 -3.0*c - p = 5.0*c - 5.0 
+   🔄 p - 5 = -5*c - 3*c 
+   🔄 -8*c - p + 5 = 0 
+   🔄 -8.0*c - p + 5.0 = 0 
+   🔄 5 - 3*c = 5*c + p 
+   🔄 0 = 8.0*c + p - 5.0 
+   🔄 c = 0.63 - 0.13*p 
+   🔄 -3*c/5 - p/5 + 1 = c 
+   🔄 8.0*c - 5.0 = -p 
+   🔄 3*c + 5*c = 5 - p 
+   🔄 -5*c/3 - p/3 + 5/3 = c 
+   🔄 -p = 8*c - 5 
+   🔄 8.0*c + p - 5.0 = 0 
+   🔄 -3*c = 5*c + p - 5 
+   🔄 -3.0*c - p + 5.0 = 5.0*c 
+   🔄 -5*c - p + 5 = 3*c 
+   🔄 5*c - 5 = -3*c - p 
+   🔄 0 = -5*c - 3*c - p + 5 
+   🔄 3*c + 5*c + p = 5 
+   🔄 0 = 8*c + p - 5 
+   🔄 -5*c - p + 5 = 3*c 
+   🔄 3*c = -5*c - p + 5 
+   🔄 -5*c - 3*c + 5 = p 
+   🔄 -3*c - p = 5*c - 5 
+   🔄 -3*c = 5*c + p - 5 
+   🔄 5 - 5*c = 3*c + p 
+   🔄 5 - 5*c = 3*c + p 
+   🔄 3.0*c - 5.0 = -5.0*c - p 
+   🔄 3*c + 5*c + p - 5 = 0 
+   🔄 c = -0.6*c - 0.2*p + 1.0 
+   🔄 -5*c - 3*c - p = -5 
+   🔄 c = 5/8 - p/8 
+   🔄 5 - 8*c = p 
+   🔄 -p = 8.0*c - 5.0 
+   🔄 p = 5 - 8*c 
+   🔄 -5*c - p = 3*c - 5 
+   🔄 3*c + p = 5 - 5*c 
+   🔄 5.0*c = -3.0*c - p + 5.0 
+   🔄 -5*c - 3*c + 5 = p 
+   🔄 -5*c - p = 3*c - 5 
+   🔄 -5.0*c - p + 5.0 = 3.0*c 
+   🔄 3*c + p = 5 - 5*c 
+   🔄 8*c - 5 = -p 
+   🔄 5*c + p = 5 - 3*c 
+   🔄 5.0 - 3.0*c = 5.0*c + p 
+   🔄 3.0*c = -5.0*c - p + 5.0 
+   🔄 0 = -8*c - p + 5 
+   🔄 c = -3*c/5 - p/5 + 1 
+   🔄 -8*c - p = -5 
+   🔄 -0.6*c - 0.2*p + 1.0 = c 
+   🔄 5*c = -3*c - p + 5 
+   🔄 5.0*c - 5.0 = -3.0*c - p 
+   🔄 -5 = -5*c - 3*c - p 
+   🔄 8.0*c = 5.0 - p 
+   🔄 8*c = 5 - p 
+   🔄 -5.0*c = 3.0*c + p - 5.0 
+   🔄 -5*c - p + 5 = 3*c 
+   🔄 p = -5*c - 3*c + 5 
+   🔄 3*c + 5*c - 5 = -p 
+   🔄 5.0 = 8.0*c + p 
+   🔄 3*c = -5*c - p + 5 
+   🔄 3*c + 5*c + p = 5 
+   🔄 5.0 - p = 8.0*c 
+   🔄 -5*c = 3*c + p - 5 
+   🔄 p - 5.0 = -8.0*c 
+   🔄 -p = 3*c + 5*c - 5 
+   🔄 -5.0 = -8.0*c - p 
+   🔄 -1.7*c - 0.33*p + 1.7 = c 
+   🔄 5.0*c + p - 5.0 = -3.0*c 
+   🔄 3*c + 5*c + p - 5 = 0 
+   🔄 5*c + p - 5 = -3*c 
+   🔄 5*c + p - 5 = -3*c 
+   🔄 5*c + p = 5 - 3*c 
+   🔄 -5*c - 3*c = p - 5 
+   🔄 8*c + p - 5 = 0 
+
+📌 Total Rearrangements: 124
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 15 -Comparison Results for: 
+ b - 3/2=3/2 and 
+ b - 3/2=-sqrt(3/2):
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(3/2, b - 3/2)
+   📊 Max Similarity Score: 0.6789
+   🔀 Symbolic Difference: -2*b - 3*qr*s*t/2 + 9/2
+   🔎 Variable Factor Error: b
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of b
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-3/2 - 3/2, -b)
+   📊 Max Similarity Score: 0.8000
+   🔀 Symbolic Difference: -3*qr*s*t/2 - 3/2
+   🔎 Variable Factor Error: qr
+   ✍️ Possible Typo: qr
+   ❌ Suggested Errors:
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(3/2, b - 3/2)
+   📊 Max Similarity Score: 0.9921
+   🔀 Symbolic Difference: -2*b - 3*qr*s*t/2 + 9/2
+   🔎 Variable Factor Error: b
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of b
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(3/2, b - 3/2)
+   📊 Max Similarity Score: 0.3400
+   🔀 Symbolic Difference: -2*b - 3*qr*s*t/2 + 9/2
+   🔎 Variable Factor Error: b
+   ✍️ Possible Typo: s
+   ❌ Suggested Errors:
+      - There is no such a vriable  qr in the original equatoin.
+      - There is an error calculatin the factor of qr
+      - There is no such a vriable  t in the original equatoin.
+      - There is an error calculatin the factor of t
+      - There is no such a vriable  s in the original equatoin.
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of b
+
+=== Rearranged Equations ===
+   🔄 -3/2 - 3/2 = -b 
+   🔄 -b + 3/2 = -3/2 
+   🔄 0 = b - 3 
+   🔄 -b = -3/2 - 3/2 
+   🔄 -3/2 = 3/2 - b 
+   🔄 0 = 3 - b 
+   🔄 b - 3 = 0 
+   🔄 0 = -b + 3/2 + 3/2 
+   🔄 -3/2 - 3/2 = -b 
+   🔄 3/2 + 3/2 = b 
+   🔄 -b = -3/2 - 3/2 
+   🔄 -b = -3.0 
+   🔄 b - 3/2 = 3/2 
+   🔄 3/2 = b - 3/2 
+   🔄 b - 3/2 - 3/2 = 0 
+   🔄 3/2 - b = -3/2 
+   🔄 3.0 = b 
+   🔄 3.0 - b = 0 
+   🔄 -b = -3 
+   🔄 0 = b - 3.0 
+   🔄 b = 3/2 + 3/2 
+   🔄 3/2 - b = -3/2 
+   🔄 -1.5 = 1.5 - b 
+   🔄 0 = b - 3/2 - 3/2 
+   🔄 0 = b - 3/2 - 3/2 
+   🔄 3/2 = b - 3/2 
+   🔄 b - 3/2 = 3/2 
+   🔄 3/2 + 3/2 = b 
+   🔄 b - 1.5 = 1.5 
+   🔄 3 - b = 0 
+   🔄 3/2 = b - 3/2 
+   🔄 -3/2 = 3/2 - b 
+   🔄 -b + 3/2 + 3/2 = 0 
+   🔄 b - 3.0 = 0 
+   🔄 3/2 = b - 3/2 
+   🔄 b = 3/2 + 3/2 
+   🔄 -3/2 = -b + 3/2 
+   🔄 1.5 = b - 1.5 
+   🔄 3 = b 
+   🔄 -b + 3/2 + 3/2 = 0 
+   🔄 -3.0 = -b 
+   🔄 -3/2 = -b + 3/2 
+   🔄 b - 3/2 - 3/2 = 0 
+   🔄 b - 3/2 = 3/2 
+   🔄 b = 3.0 
+   🔄 0 = -b + 3/2 + 3/2 
+   🔄 -b + 3/2 = -3/2 
+   🔄 b = 3 
+   🔄 -3 = -b 
+   🔄 1.5 - b = -1.5 
+   🔄 0 = 3.0 - b 
+   🔄 b - 3/2 = 3/2 
+
+📌 Total Rearrangements: 52
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 16 -Comparison Results for: 
+ 2*p=-5 - q and 
+ p=-2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2*p + q, -5)
+   📊 Max Similarity Score: 0.6410
+   🔀 Symbolic Difference: p + q + 3
+   🔎 Variable Factor Error: q
+   ❌ Suggested Errors:
+      - where did q disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-5, 2*p + q)
+   📊 Max Similarity Score: 0.6364
+   🔀 Symbolic Difference: -3*p - q - 7
+   🔎 Variable Factor Error: q
+   ❌ Suggested Errors:
+      - where did q disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-2*p - 5, q)
+   📊 Max Similarity Score: 0.9291
+   🔀 Symbolic Difference: -3*p - q - 7
+   🔎 Variable Factor Error: q
+   ❌ Suggested Errors:
+      - where did q disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(2*p + q, -5)
+   📊 Max Similarity Score: 0.3200
+   🔀 Symbolic Difference: p + q + 3
+   🔎 Variable Factor Error: q
+   ❌ Suggested Errors:
+      - where did q disappear
+
+=== Rearranged Equations ===
+   🔄 0 = -2.0*p - q - 5.0 
+   🔄 -2*p - q - 5 = 0 
+   🔄 -q = 2*p + 5 
+   🔄 -q - 5 = 2*p 
+   🔄 q = -2.0*p - 5.0 
+   🔄 q + 5.0 = -2.0*p 
+   🔄 -2*p - q - 5 = 0 
+   🔄 2.0*p + 5.0 = -q 
+   🔄 -2*p - 5 = q 
+   🔄 5 = -2*p - q 
+   🔄 q = -2*p - 5 
+   🔄 0 = -2*p - q - 5 
+   🔄 2.0*p + q = -5.0 
+   🔄 -2*p - q = 5 
+   🔄 -q = 2*p + 5 
+   🔄 -2*p = q + 5 
+   🔄 0 = 2.0*p + q + 5.0 
+   🔄 -q/2 - 5/2 = p 
+   🔄 -0.5*q - 2.5 = p 
+   🔄 2*p + q + 5 = 0 
+   🔄 0 = 2*p + q + 5 
+   🔄 -5 = 2*p + q 
+   🔄 -2*p - q = 5 
+   🔄 -2.0*p - q = 5.0 
+   🔄 p = -q/2 - 5/2 
+   🔄 q + 5 = -2*p 
+   🔄 -2.0*p = q + 5.0 
+   🔄 2*p + q = -5 
+   🔄 -2.0*p - q - 5.0 = 0 
+   🔄 2*p + 5 = -q 
+   🔄 0 = -2*p - q - 5 
+   🔄 -2*p - 5 = q 
+   🔄 5 = -2*p - q 
+   🔄 -5.0 = 2.0*p + q 
+   🔄 q = -2*p - 5 
+   🔄 0 = 2*p + q + 5 
+   🔄 2*p + q = -5 
+   🔄 p = -0.5*q - 2.5 
+   🔄 2*p + q + 5 = 0 
+   🔄 2.0*p = -q - 5.0 
+   🔄 2*p = -q - 5 
+   🔄 -5 = 2*p + q 
+   🔄 -q - 5.0 = 2.0*p 
+   🔄 2.0*p + q + 5.0 = 0 
+   🔄 5.0 = -2.0*p - q 
+   🔄 2*p + 5 = -q 
+   🔄 -q = 2.0*p + 5.0 
+   🔄 -2.0*p - 5.0 = q 
+
+📌 Total Rearrangements: 48
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 17 -Comparison Results for: 
+ 2*p=-9*r - 5 and 
+ p=-9/2 - 5/2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-9*r/2 - 5/2, p)
+   📊 Max Similarity Score: 0.6232
+   🔀 Symbolic Difference: -2*p - 9*r/2 - 19/2
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - where did r disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(9*r, -2*p - 5)
+   📊 Max Similarity Score: 0.8571
+   🔀 Symbolic Difference: p + 9*r - 2
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - where did r disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-2*p - 9*r - 5, 0)
+   📊 Max Similarity Score: 0.9882
+   🔀 Symbolic Difference: -3*p - 9*r - 12
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - where did r disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-9*r/2 - 5/2, p)
+   📊 Max Similarity Score: 0.3100
+   🔀 Symbolic Difference: -2*p - 9*r/2 - 19/2
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - where did r disappear
+
+=== Rearranged Equations ===
+   🔄 0 = 2*p + 9*r + 5 
+   🔄 9*r = -2*p - 5 
+   🔄 -2.0*p = 9.0*r + 5.0 
+   🔄 -2.0*p - 9.0*r = 5.0 
+   🔄 2.0*p + 9.0*r + 5.0 = 0 
+   🔄 -2*p = 9*r + 5 
+   🔄 -5 = 2*p + 9*r 
+   🔄 -2*p - 9*r - 5 = 0 
+   🔄 2*p = -9*r - 5 
+   🔄 -9*r/2 - 5/2 = p 
+   🔄 -2*p - 9*r = 5 
+   🔄 -9*r = 2*p + 5 
+   🔄 5 = -2*p - 9*r 
+   🔄 2*p + 5 = -9*r 
+   🔄 5 = -2*p - 9*r 
+   🔄 0 = -2*p - 9*r - 5 
+   🔄 -4.5*r - 2.5 = p 
+   🔄 -9*r - 5 = 2*p 
+   🔄 0 = 2.0*p + 9.0*r + 5.0 
+   🔄 -9.0*r - 5.0 = 2.0*p 
+   🔄 2*p + 9*r + 5 = 0 
+   🔄 -2*p - 5 = 9*r 
+   🔄 0 = -2*p - 9*r - 5 
+   🔄 5.0 = -2.0*p - 9.0*r 
+   🔄 0 = 2*p + 9*r + 5 
+   🔄 -9*r - 5 = 2*p 
+   🔄 0 = -2*p - 9*r - 5 
+   🔄 2.0*p + 5.0 = -9.0*r 
+   🔄 9*r = -2*p - 5 
+   🔄 9.0*r + 5.0 = -2.0*p 
+   🔄 p = -4.5*r - 2.5 
+   🔄 -2*p - 9*r - 5 = 0 
+   🔄 -2*p = 9*r + 5 
+   🔄 2*p + 9*r + 5 = 0 
+   🔄 -2.0*p - 5.0 = 9.0*r 
+   🔄 -2*p - 9*r = 5 
+   🔄 2.0*p = -9.0*r - 5.0 
+   🔄 9*r + 5 = -2*p 
+   🔄 0 = 2*p + 9*r + 5 
+   🔄 -0.22*p - 0.56 = r 
+   🔄 r = -0.22*p - 0.56 
+   🔄 2*p = -9*r - 5 
+   🔄 -9*r = 2*p + 5 
+   🔄 -2*p - 9*r - 5 = 0 
+   🔄 0 = -2.0*p - 9.0*r - 5.0 
+   🔄 -2*p/9 - 5/9 = r 
+   🔄 -5.0 = 2.0*p + 9.0*r 
+   🔄 9*r + 5 = -2*p 
+   🔄 9.0*r = -2.0*p - 5.0 
+   🔄 2*p + 9*r + 5 = 0 
+   🔄 2.0*p + 9.0*r = -5.0 
+   🔄 -2*p - 5 = 9*r 
+   🔄 -9.0*r = 2.0*p + 5.0 
+   🔄 0 = -2*p - 9*r - 5 
+   🔄 -2.0*p - 9.0*r - 5.0 = 0 
+   🔄 -2*p - 9*r - 5 = 0 
+   🔄 2*p + 9*r = -5 
+   🔄 p = -9*r/2 - 5/2 
+   🔄 r = -2*p/9 - 5/9 
+   🔄 2*p + 5 = -9*r 
+
+📌 Total Rearrangements: 60
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 18 -Comparison Results for: 
+ -8*s=-r - 2 and 
+ 4*s=r/2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.8152
+   🔀 Symbolic Difference: -r/2 + 4*s - 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(r - 8*s, -2)
+   📊 Max Similarity Score: 0.7143
+   🔀 Symbolic Difference: 3*r/2 - 12*s + 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(2, -r + 8*s)
+   📊 Max Similarity Score: 0.9868
+   🔀 Symbolic Difference: 3*r/2 - 12*s + 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.4100
+   🔀 Symbolic Difference: -r/2 + 4*s - 2
+   🔎 Variable Factor Error: s
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+      - There is an error calculatin the factor of s
+
+=== Rearranged Equations ===
+   🔄 r - 8.0*s = -2.0 
+   🔄 r - 8*s = -2 
+   🔄 -8.0*s = -r - 2.0 
+   🔄 -r = 2 - 8*s 
+   🔄 2 = -r + 8*s 
+   🔄 8.0*s = r + 2.0 
+   🔄 r - 8.0*s + 2.0 = 0 
+   🔄 s = r/8 + 1/4 
+   🔄 8*s = r + 2 
+   🔄 -r = 2.0 - 8.0*s 
+   🔄 0 = -r + 8.0*s - 2.0 
+   🔄 r + 2 = 8*s 
+   🔄 -r + 8.0*s = 2.0 
+   🔄 0 = -r + 8*s - 2 
+   🔄 0 = r - 8*s + 2 
+   🔄 0.13*r + 0.25 = s 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 r - 8*s + 2 = 0 
+   🔄 r/8 + 1/4 = s 
+   🔄 r - 8*s = -2 
+   🔄 0 = -r + 8*s - 2 
+   🔄 -2 = r - 8*s 
+   🔄 0 = -r + 8*s - 2 
+   🔄 r - 8*s + 2 = 0 
+   🔄 8*s - 2 = r 
+   🔄 -r - 2.0 = -8.0*s 
+   🔄 -r - 2 = -8*s 
+   🔄 -2.0 = r - 8.0*s 
+   🔄 2 - 8*s = -r 
+   🔄 r = 8*s - 2 
+   🔄 0 = r - 8.0*s + 2.0 
+   🔄 r + 2.0 = 8.0*s 
+   🔄 2 - 8*s = -r 
+   🔄 s = 0.13*r + 0.25 
+   🔄 -8*s = -r - 2 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 r + 2 = 8*s 
+   🔄 -r + 8*s = 2 
+   🔄 2 = -r + 8*s 
+   🔄 -r - 2 = -8*s 
+   🔄 -r + 8*s = 2 
+   🔄 r = 8*s - 2 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 2.0 = -r + 8.0*s 
+   🔄 0 = r - 8*s + 2 
+   🔄 -r + 8.0*s - 2.0 = 0 
+   🔄 0 = r - 8*s + 2 
+   🔄 8*s - 2 = r 
+   🔄 r - 8*s + 2 = 0 
+   🔄 8*s = r + 2 
+   🔄 -2 = r - 8*s 
+   🔄 8.0*s - 2.0 = r 
+   🔄 r = 8.0*s - 2.0 
+   🔄 -r = 2 - 8*s 
+   🔄 -8*s = -r - 2 
+   🔄 2.0 - 8.0*s = -r 
+
+📌 Total Rearrangements: 56
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 19 -Comparison Results for: 
+ r*(2 - 3)=0 and 
+ r=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(r + 0, 0)
+   📊 Max Similarity Score: 0.8547
+   🔀 Symbolic Difference: 0
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(0, r)
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: -2*r
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(0, r)
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: -2*r
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(r + 0, 0)
+   📊 Max Similarity Score: 0.4300
+   🔀 Symbolic Difference: 0
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+=== Rearranged Equations ===
+   🔄 -r*(2 - 1*3) = 0 
+   🔄 -r + 0 = 0 
+   🔄 0 = -r*(2 - 1*3) + 0 
+   🔄 0 = -r*(2 - 1*3) 
+   🔄 0 = -1.0*r 
+   🔄 r*(2 - 1*3) + 0 = 0 
+   🔄 -1.0*r = 0 
+   🔄 -r*(2 - 1*3) + 0 = 0 
+   🔄 0 = r*(2 - 1*3) + 0 
+   🔄 -r = 0 
+   🔄 0 = r + 0 
+   🔄 0 = -r + 0 
+   🔄 0 = 1.0*r 
+   🔄 1.0*r = 0 
+   🔄 r + 0 = 0 
+   🔄 0 = r 
+   🔄 0 = -r 
+   🔄 r*(2 - 1*3) = 0 
+   🔄 0 = r*(2 - 1*3) 
+
+📌 Total Rearrangements: 19
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 20 -Comparison Results for: 
+ 3*r + 2=2*x and 
+ 1.5*r=x:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(1.5*r + 1.0, x)
+   📊 Max Similarity Score: 0.8413
+   🔀 Symbolic Difference: 1.0
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 1.0
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(x, 1.5*r + 1.0)
+   📊 Max Similarity Score: 0.7143
+   🔀 Symbolic Difference: -3.0*r + 2*x - 1.0
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(x, 1.5*r + 1.0)
+   📊 Max Similarity Score: 0.9442
+   🔀 Symbolic Difference: -3.0*r + 2*x - 1.0
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(1.5*r + 1.0, x)
+   📊 Max Similarity Score: 0.4200
+   🔀 Symbolic Difference: 1.0
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 1.0
+
+=== Rearranged Equations ===
+   🔄 0.67*x - 0.67 = r 
+   🔄 2*x - 2 = 3*r 
+   🔄 r = 0.67*x - 0.67 
+   🔄 -3*r - 2 = -2*x 
+   🔄 -3*r + 2*x = 2 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 -2*x = -3*r - 2 
+   🔄 r = 2*x/3 - 2/3 
+   🔄 2 = -3*r + 2*x 
+   🔄 2*x/3 - 2/3 = r 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 3*r + 2 = 2*x 
+   🔄 x = 3*r/2 + 1 
+   🔄 3.0*r + 2.0 = 2.0*x 
+   🔄 3.0*r - 2.0*x + 2.0 = 0 
+   🔄 x = 1.5*r + 1.0 
+   🔄 -3.0*r - 2.0 = -2.0*x 
+   🔄 -2.0*x = -3.0*r - 2.0 
+   🔄 2.0 = -3.0*r + 2.0*x 
+   🔄 0 = 3.0*r - 2.0*x + 2.0 
+   🔄 3*r - 2*x = -2 
+   🔄 2 = -3*r + 2*x 
+   🔄 -2.0 = 3.0*r - 2.0*x 
+   🔄 -3.0*r = 2.0 - 2.0*x 
+   🔄 -3*r + 2*x = 2 
+   🔄 -3*r + 2*x - 2 = 0 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 3*r + 2 = 2*x 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 0 = -3.0*r + 2.0*x - 2.0 
+   🔄 3*r = 2*x - 2 
+   🔄 2.0*x - 2.0 = 3.0*r 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 3*r/2 + 1 = x 
+   🔄 3*r - 2*x = -2 
+   🔄 -3*r - 2 = -2*x 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 -3*r = 2 - 2*x 
+   🔄 -3.0*r + 2.0*x - 2.0 = 0 
+   🔄 3.0*r = 2.0*x - 2.0 
+   🔄 -2*x = -3*r - 2 
+   🔄 1.5*r + 1.0 = x 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 2*x = 3*r + 2 
+   🔄 2.0*x = 3.0*r + 2.0 
+   🔄 -2 = 3*r - 2*x 
+   🔄 3.0*r - 2.0*x = -2.0 
+   🔄 -3.0*r + 2.0*x = 2.0 
+   🔄 -2 = 3*r - 2*x 
+   🔄 2*x = 3*r + 2 
+   🔄 2 - 2*x = -3*r 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 2.0 - 2.0*x = -3.0*r 
+   🔄 -3*r + 2*x - 2 = 0 
+   🔄 -3*r + 2*x - 2 = 0 
+
+📌 Total Rearrangements: 56
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 21 -Comparison Results for: 
+ 2*m + 5=0 and 
+ 3*m + 5=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2*m + 5, 0)
+   📊 Max Similarity Score: 0.9852
+   🔀 Symbolic Difference: -m
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(0, 2*m + 0 + 5)
+   📊 Max Similarity Score: 0.8182
+   🔀 Symbolic Difference: -5*m - 10
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(2*m + 5, 0)
+   📊 Max Similarity Score: 0.9886
+   🔀 Symbolic Difference: -m
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(2*m + 5, 0)
+   📊 Max Similarity Score: 0.4900
+   🔀 Symbolic Difference: -m
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+=== Rearranged Equations ===
+   🔄 5 = -2*m 
+   🔄 0 = -2*m - 5 + 0 
+   🔄 -2*m - 5 + 0 = 0 
+   🔄 2*m = -5 + 0 
+   🔄 0 = 2*m + 0 + 5 
+   🔄 m = -5/2 
+   🔄 -5 = 2*m + 0 
+   🔄 -2*m - 5 = 0 
+   🔄 -5 = 2*m 
+   🔄 -2*m = 0 + 5 
+   🔄 0 = 2.0*m + 5.0 
+   🔄 m = -2.5 
+   🔄 0 = -2.0*m - 5.0 
+   🔄 0 + 5 = -2*m 
+   🔄 -2*m - 5 = 0 
+   🔄 0 = -2*m - 5 + 0 
+   🔄 -2.0*m - 5.0 = 0 
+   🔄 0 = -2*m - 5 
+   🔄 2*m + 0 + 5 = 0 
+   🔄 -2.5 = m 
+   🔄 2*m = -5 
+   🔄 -2*m + 0 = 5 
+   🔄 2*m + 0 = -5 
+   🔄 2*m + 0 + 5 = 0 
+   🔄 5.0 = -2.0*m 
+   🔄 -2*m = 5 
+   🔄 -2.0*m = 5.0 
+   🔄 2.0*m = -5.0 
+   🔄 2*m + 5 = 0 
+   🔄 0 = 2*m + 0 + 5 
+   🔄 2*m + 5 = 0 
+   🔄 0 = -2*m - 5 
+   🔄 -5.0 = 2.0*m 
+   🔄 -5/2 = m 
+   🔄 -2*m - 5 + 0 = 0 
+   🔄 2.0*m + 5.0 = 0 
+   🔄 0 = 2*m + 5 
+   🔄 -5 + 0 = 2*m 
+   🔄 0 = 2*m + 5 
+   🔄 5 = -2*m + 0 
+
+📌 Total Rearrangements: 40
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 22 -Comparison Results for: 
+ 2*x=1 and 
+ x=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2*x, 1)
+   📊 Max Similarity Score: 0.6167
+   🔀 Symbolic Difference: x - 1
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(2*x, 1)
+   📊 Max Similarity Score: 0.5556
+   🔀 Symbolic Difference: x - 1
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(2*x - 1, 0)
+   📊 Max Similarity Score: 0.9180
+   🔀 Symbolic Difference: x - 1
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(2*x, 1)
+   📊 Max Similarity Score: 0.3100
+   🔀 Symbolic Difference: x - 1
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+=== Rearranged Equations ===
+   🔄 x = 0.50 
+   🔄 2*x - 1 = 0 
+   🔄 1.0 = 2.0*x 
+   🔄 2*x = 1 
+   🔄 2*x - 1 = 0 
+   🔄 1 - 2*x = 0 
+   🔄 0 = 1 - 2*x 
+   🔄 0 = 2*x - 1 
+   🔄 0 = 1.0 - 2.0*x 
+   🔄 2.0*x = 1.0 
+   🔄 -2*x = -1 
+   🔄 x = 1/2 
+   🔄 1 - 2*x = 0 
+   🔄 2.0*x - 1.0 = 0 
+   🔄 -1 = -2*x 
+   🔄 0.50 = x 
+   🔄 -2.0*x = -1.0 
+   🔄 0 = 2.0*x - 1.0 
+   🔄 0 = 2*x - 1 
+   🔄 -1.0 = -2.0*x 
+   🔄 1.0 - 2.0*x = 0 
+   🔄 0 = 1 - 2*x 
+   🔄 1 = 2*x 
+   🔄 1/2 = x 
+
+📌 Total Rearrangements: 24
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 23 -Comparison Results for: 
+ -4*o - 4*y=2*y + 4 and 
+ 0=-1:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(4*o + 6*y + 4, 0)
+   📊 Max Similarity Score: 0.4737
+   🔀 Symbolic Difference: 4*o + 6*y + 3
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(0, -4*o - 4*y - 2*y - 4)
+   📊 Max Similarity Score: 0.4615
+   🔀 Symbolic Difference: 4*o + 6*y + 3
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-4*o - 6*y - 4, 0)
+   📊 Max Similarity Score: 0.9122
+   🔀 Symbolic Difference: -4*o - 6*y - 5
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(4*o + 6*y + 4, 0)
+   📊 Max Similarity Score: 0.2400
+   🔀 Symbolic Difference: 4*o + 6*y + 3
+   🔎 Variable Factor Error: o
+   ❌ Suggested Errors:
+      - where did o disappear
+
+=== Rearranged Equations ===
+   🔄 -0.67*o - 0.67 = y 
+   🔄 4*o + 6*y + 4 = 0 
+   🔄 0 = -4*o - 4*y - 2*y - 4 
+   🔄 o = -1/4*4*y - y/2 - 1 
+   🔄 -4.0*o - 2.0*y = 4.0*y + 4.0 
+   🔄 2*y + 4 = -4*o - 4*y 
+   🔄 0 = 4.0*o + 6.0*y + 4.0 
+   🔄 4 = -4*o - 4*y - 2*y 
+   🔄 -4.0*o - 6.0*y - 4.0 = 0 
+   🔄 -4*o - 4*y - 2*y = 4 
+   🔄 2*y = -4*o - 4*y - 4 
+   🔄 -4*y - 2*y - 4 = 4*o 
+   🔄 0 = -4*o - 4*y - 2*y - 4 
+   🔄 -o - y/2 - 1 = y 
+   🔄 4*o + 2*y = -4*y - 4 
+   🔄 o = -1.5*y - 1.0 
+   🔄 4.0*o = -6.0*y - 4.0 
+   🔄 -4*y - 2*y = 4*o + 4 
+   🔄 4*o + 2*y + 4 = -4*y 
+   🔄 4*o + 2*y + 4 = -4*y 
+   🔄 -4*o - 2*y - 4 = 4*y 
+   🔄 -4*o - 4*y - 4 = 2*y 
+   🔄 -4*o - 4 = 2*y + 4*y 
+   🔄 -4.0*o - 2.0*y - 4.0 = 4.0*y 
+   🔄 -6*y = 4*o + 4 
+   🔄 -4*o - 4*y = 2*y + 4 
+   🔄 -4*y - 2*y = 4*o + 4 
+   🔄 -4.0*o - 4.0 = 6.0*y 
+   🔄 6*y + 4 = -4*o 
+   🔄 4*y = -4*o - 2*y - 4 
+   🔄 -2.0*y - 4.0 = 4.0*o + 4.0*y 
+   🔄 -4*o = 2*y + 4*y + 4 
+   🔄 4.0*y = -4.0*o - 2.0*y - 4.0 
+   🔄 -2*o/3 - 2/3 = y 
+   🔄 -4*o - 4*y - 2*y - 4 = 0 
+   🔄 -2*y - 4 = 4*o + 4*y 
+   🔄 -2*o - 2*y - 2 = y 
+   🔄 6.0*y = -4.0*o - 4.0 
+   🔄 -4 = 4*o + 2*y + 4*y 
+   🔄 4*o + 4*y + 4 = -2*y 
+   🔄 -4*o - 4*y - 4 = 2*y 
+   🔄 4.0 = -4.0*o - 6.0*y 
+   🔄 2.0*o + 3.0*y = -2.0 
+   🔄 0 = -4.0*o - 6.0*y - 4.0 
+   🔄 -4*o - 6*y - 4 = 0 
+   🔄 -1.5*y - 1.0 = o 
+   🔄 -4.0*o - 4.0*y - 4.0 = 2.0*y 
+   🔄 4*o + 2*y + 4 = -4*y 
+   🔄 -4 = 4*o + 6*y 
+   🔄 -4*y = 4*o + 2*y + 4 
+   🔄 -4.0*o - 6.0*y = 4.0 
+   🔄 4.0*o + 2.0*y = -4.0*y - 4.0 
+   🔄 -4*o - 2*y - 4 = 4*y 
+   🔄 2*y = -4*o - 4*y - 4 
+   🔄 -4*y - 4 = 4*o + 2*y 
+   🔄 4.0*o + 6.0*y = -4.0 
+   🔄 0 = 4*o + 2*y + 4*y + 4 
+   🔄 -4 = 4*o + 6*y 
+   🔄 y = -2*o/3 - 2/3 
+   🔄 -2.0*y = 4.0*o + 4.0*y + 4.0 
+   🔄 y = -2.0*o - 2.0*y - 2.0 
+   🔄 4*y + 4 = -4*o - 2*y 
+   🔄 -4.0*y - 4.0 = 4.0*o + 2.0*y 
+   🔄 2*y + 4*y + 4 = -4*o 
+   🔄 4*y = -4*o - 2*y - 4 
+   🔄 -4*o - 6*y = 4 
+   🔄 0 = 4*o + 2*y + 4*y + 4 
+   🔄 4*o + 6*y = -4 
+   🔄 -4*o - 4*y - 2*y - 4 = 0 
+   🔄 y = -o - y/2 - 1 
+   🔄 -4*y = 4*o + 2*y + 4 
+   🔄 4*o + 4*y + 4 = -2*y 
+   🔄 2*o + 3*y = -2 
+   🔄 -6*y - 4 = 4*o 
+   🔄 4.0*o + 2.0*y + 4.0 = -4.0*y 
+   🔄 -2.0*o - 2.0*y - 2.0 = y 
+   🔄 -6.0*y - 4.0 = 4.0*o 
+   🔄 4*o + 4 = -4*y - 2*y 
+   🔄 -2*o - 1/2*4*y - 2 = y 
+   🔄 2.0*y + 4.0 = -4.0*o - 4.0*y 
+   🔄 y = -2*o - 2*y - 2 
+   🔄 y = -o - 0.5*y - 1.0 
+   🔄 2.0*y = -4.0*o - 4.0*y - 4.0 
+   🔄 -4.0 = 4.0*o + 6.0*y 
+   🔄 -o - 0.5*y - 1.0 = y 
+   🔄 -4.0*o = 6.0*y + 4.0 
+   🔄 6.0*y + 4.0 = -4.0*o 
+   🔄 4.0*o + 4.0 = -6.0*y 
+   🔄 -4*o - 4 = 6*y 
+   🔄 -4*o = 2*y + 4*y + 4 
+   🔄 y = -2*o - 1/2*4*y - 2 
+   🔄 -4*o - 2*y - 4 = 4*y 
+   🔄 6*y = -4*o - 4 
+   🔄 -4*o - 2*y = 4*y + 4 
+   🔄 4*o + 6*y + 4 = 0 
+   🔄 4*o + 2*y + 4*y = -4 
+   🔄 4*y = -4*o - 2*y - 4 
+   🔄 o = -3*y/2 - 1 
+   🔄 2*y + 4*y + 4 = -4*o 
+   🔄 -4*o - 2*y = 4*y + 4 
+   🔄 2*y + 4 = -4*o - 4*y 
+   🔄 -4*y - 4 = 4*o + 2*y 
+   🔄 4*o + 4*y = -2*y - 4 
+   🔄 4*o + 2*y = -4*y - 4 
+   🔄 -4*y = 4*o + 2*y + 4 
+   🔄 4*o + 2*y + 4*y + 4 = 0 
+   🔄 2*y + 4*y = -4*o - 4 
+   🔄 -4.0*o - 4.0*y = 2.0*y + 4.0 
+   🔄 -2*y = 4*o + 4*y + 4 
+   🔄 4 = -4*o - 6*y 
+   🔄 0 = 4*o + 6*y + 4 
+   🔄 4*o = -4*y - 2*y - 4 
+   🔄 -4*y - 4 = 4*o + 2*y 
+   🔄 -1/4*4*y - y/2 - 1 = o 
+   🔄 4*o + 6*y = -4 
+   🔄 -4*o = 6*y + 4 
+   🔄 4.0*y + 4.0 = -4.0*o - 2.0*y 
+   🔄 4*y + 4 = -4*o - 2*y 
+   🔄 4*o + 2*y = -4*y - 4 
+   🔄 -4*y - 2*y - 4 = 4*o 
+   🔄 4*o + 4 = -4*y - 2*y 
+   🔄 4.0*o + 6.0*y + 4.0 = 0 
+   🔄 4*o = -4*y - 2*y - 4 
+   🔄 2*y = -4*o - 4*y - 4 
+   🔄 0 = 4*o + 6*y + 4 
+   🔄 -3*y/2 - 1 = o 
+   🔄 4*o + 4*y = -2*y - 4 
+   🔄 4.0*o + 4.0*y + 4.0 = -2.0*y 
+   🔄 4*o + 2*y + 4*y + 4 = 0 
+   🔄 0 = -4*o - 6*y - 4 
+   🔄 -4*o - 4*y - 4 = 2*y 
+   🔄 -4*o - 4*y - 2*y = 4 
+   🔄 y = -0.67*o - 0.67 
+   🔄 4 = -4*o - 4*y - 2*y 
+   🔄 -4*o - 4*y = 2*y + 4 
+   🔄 -2*y = 4*o + 4*y + 4 
+   🔄 -2*y - 4 = 4*o + 4*y 
+   🔄 4*o + 4 = -6*y 
+   🔄 -4.0*y = 4.0*o + 2.0*y + 4.0 
+   🔄 -6.0*y = 4.0*o + 4.0 
+   🔄 4.0*o + 4.0*y = -2.0*y - 4.0 
+   🔄 4*o = -6*y - 4 
+
+📌 Total Rearrangements: 142
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 24 -Comparison Results for: 
+ -f - 1=0 and 
+ -5*f - 4=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-f - 1*1, 0)
+   📊 Max Similarity Score: 0.9226
+   🔀 Symbolic Difference: 4*f + 3
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(0 + 1, -f)
+   📊 Max Similarity Score: 0.8333
+   🔀 Symbolic Difference: 6*f + 5
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(0, -f - 1*1 + 0)
+   📊 Max Similarity Score: 0.9905
+   🔀 Symbolic Difference: 6*f + 5
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-f - 1*1, 0)
+   📊 Max Similarity Score: 0.4600
+   🔀 Symbolic Difference: 4*f + 3
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+=== Rearranged Equations ===
+   🔄 0 + 1 = -f 
+   🔄 -1 + 0 = f 
+   🔄 0 = f + 0 + 1 
+   🔄 -f = 1.0 
+   🔄 0 = f + 1 
+   🔄 -f + 0 = 1 
+   🔄 -f - 1*1 = 0 
+   🔄 f + 0 + 1 = 0 
+   🔄 -1*1 = f + 0 
+   🔄 -f - 1 = 0 
+   🔄 -f = 1 
+   🔄 0 = f + 0 + 1 
+   🔄 f + 0 + 1 = 0 
+   🔄 f + 1.0 = 0 
+   🔄 f = -1 + 0 
+   🔄 0 = f + 1 
+   🔄 -f - 1 + 0 = 0 
+   🔄 f + 1 = 0 
+   🔄 1 = -f + 0 
+   🔄 0 = -f - 1.0 
+   🔄 -1.0 = f 
+   🔄 0 = f + 1.0 
+   🔄 f + 1 = 0 
+   🔄 f + 0 = -1*1 
+   🔄 0 = -f - 1*1 
+   🔄 0 = -f - 1*1 + 0 
+   🔄 1.0 = -f 
+   🔄 f = -1*1 + 0 
+   🔄 -1*1 + 0 = f 
+   🔄 1 = -f 
+   🔄 -1 = f + 0 
+   🔄 -f = 0 + 1 
+   🔄 -f - 1*1 + 0 = 0 
+   🔄 f = -1.0 
+   🔄 -1 = f 
+   🔄 f + 0 = -1 
+   🔄 0 = -f - 1 + 0 
+   🔄 0 = -f - 1 
+   🔄 -f - 1.0 = 0 
+   🔄 f = -1 
+
+📌 Total Rearrangements: 40
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 25 -Comparison Results for: 
+ x*(1 + 2*a)=-4 and 
+ x=-4/(1 + 2*a):
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-4/(2*a + 1), x)
+   📊 Max Similarity Score: 0.8422
+   🔀 Symbolic Difference: 2*(-x*(2*a + 1) - 4)/(2*a + 1)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-x*(2*a + 1)/(-2*a - 1), 4/(-2*a - 1))
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: 0
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-4/(2*a + 1), x)
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: 2*(-x*(2*a + 1) - 4)/(2*a + 1)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(-4/(2*a + 1), x)
+   📊 Max Similarity Score: 0.4200
+   🔀 Symbolic Difference: 2*(-x*(2*a + 1) - 4)/(2*a + 1)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+=== Rearranged Equations ===
+   🔄 4.0 = -x*(2.0*a + 1.0) 
+   🔄 -x*(2.0*a + 1.0) - 4.0 = 0 
+   🔄 -x*(2*a + 1) - 4 = 0 
+   🔄 -x*(2*a + 1)/(-2*a - 1) = 4/(-2*a - 1) 
+   🔄 -x*(2.0*a + 1.0)/(-2.0*a - 1.0) = 4.0/(-2.0*a - 1.0) 
+   🔄 4/(-2*a - 1) = -x*(2*a + 1)/(-2*a - 1) 
+   🔄 0 = -x*(2*a + 1) - 4 
+   🔄 x*(2*a + 1) = -4 
+   🔄 4.0/(-2.0*a - 1.0) = -x*(2.0*a + 1.0)/(-2.0*a - 1.0) 
+   🔄 -4/(2*a + 1) = x 
+   🔄 -4.0 = x*(2.0*a + 1.0) 
+   🔄 -x*(2*a + 1) = 4 
+   🔄 a = (-x - 4)/(2*x) 
+   🔄 -x*(2.0*a + 1.0) = 4.0 
+   🔄 x*(2.0*a + 1.0) = -4.0 
+   🔄 x*(2*a + 1) + 4 = 0 
+   🔄 x = -4.0/(2.0*a + 1.0) 
+   🔄 x*(2.0*a + 1.0) + 4.0 = 0 
+   🔄 -4 = x*(2*a + 1) 
+   🔄 -4.0/(2.0*a + 1.0) = x 
+   🔄 4 = -x*(2*a + 1) 
+   🔄 0 = x*(2*a + 1) + 4 
+   🔄 x*(2*a + 1) + 4 = 0 
+   🔄 0 = x*(2.0*a + 1.0) + 4.0 
+   🔄 0 = -x*(2.0*a + 1.0) - 4.0 
+   🔄 0 = -x*(2*a + 1) - 4 
+   🔄 0 = x*(2*a + 1) + 4 
+   🔄 -x*(2*a + 1) - 4 = 0 
+
+📌 Total Rearrangements: 28
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 26 -Comparison Results for: 
+ -4*x=7 + a*x and 
+ x=-7/4 + a*x:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(x, -a*x/4 - 7/4)
+   📊 Max Similarity Score: 0.7949
+   🔀 Symbolic Difference: 5*a*x/4
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(x, (-4*x - 7)/a)
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: a*x - 7/4 + 4*x/a + 7/a
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-(4*x + 7)/a, x)
+   📊 Max Similarity Score: 1.0000
+   🔀 Symbolic Difference: a*x - 2*x - 7/4 - 4*x/a - 7/a
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(x, -a*x/4 - 7/4)
+   📊 Max Similarity Score: 0.4000
+   🔀 Symbolic Difference: 5*a*x/4
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+=== Rearranged Equations ===
+   🔄 -(4.0*x + 7.0)/a = x 
+   🔄 -a*x - 4*x = 7 
+   🔄 7 = -a*x - 4*x 
+   🔄 -a*x - 7 = 4*x 
+   🔄 x = (-4.0*x - 7.0)/a 
+   🔄 -a*x - 7.0 = 4.0*x 
+   🔄 7.0 = x*(-a - 4.0) 
+   🔄 x = (-4*x - 7)/a 
+   🔄 4*x = -a*x - 7 
+   🔄 x*(-a - 4.0) = 7.0 
+   🔄 x*(-a - 4) = 7 
+   🔄 a*x = -4*x - 7 
+   🔄 0 = a*x + 4.0*x + 7.0 
+   🔄 -a*x = 4.0*x + 7.0 
+   🔄 a*x + 7.0 = -4.0*x 
+   🔄 a*x + 4*x + 7 = 0 
+   🔄 a*x + 4*x = -7 
+   🔄 x = -0.25*a*x - 1.8 
+   🔄 -a*x - 4.0*x - 7.0 = 0 
+   🔄 -(4*x + 7)/a = x 
+   🔄 x*(a + 4) = -7 
+   🔄 -7 = x*(a + 4) 
+   🔄 x = -(4.0*x + 7.0)/a 
+   🔄 -7.0 = a*x + 4.0*x 
+   🔄 x = -7/(a + 4) 
+   🔄 -a*x = 4*x + 7 
+   🔄 x*(a + 4.0) = -7.0 
+   🔄 a*x + 7 = -4*x 
+   🔄 a = -4 - 7/x 
+   🔄 -a*x - 4*x - 7 = 0 
+   🔄 0 = a*x + 4*x + 7 
+   🔄 -a*x/4 - 7/4 = x 
+   🔄 4*x + 7 = -a*x 
+   🔄 4.0*x + 7.0 = -a*x 
+   🔄 -4.0*x = a*x + 7.0 
+   🔄 a*x + 4.0*x + 7.0 = 0 
+   🔄 -4*x = a*x + 7 
+   🔄 -4*x - 7 = a*x 
+   🔄 x = (-4*x - 7)/a 
+   🔄 7 = x*(-a - 4) 
+   🔄 -7 = a*x + 4*x 
+   🔄 4.0*x = -a*x - 7.0 
+   🔄 (-4.0*x - 7.0)/a = x 
+   🔄 -7.0 = x*(a + 4.0) 
+   🔄 -0.25*a*x - 1.8 = x 
+   🔄 4*x + 7 = -a*x 
+   🔄 -4.0*x - 7.0 = a*x 
+   🔄 -(4*x + 7)/a = x 
+   🔄 x = -(4*x + 7)/a 
+   🔄 a*x = -4*x - 7 
+   🔄 7.0 = -a*x - 4.0*x 
+   🔄 x = -(4*x + 7)/a 
+   🔄 a*x + 4.0*x = -7.0 
+   🔄 (-4*x - 7)/a = x 
+   🔄 -a*x = 4*x + 7 
+   🔄 -a*x - 4.0*x = 7.0 
+   🔄 a*x + 4*x + 7 = 0 
+   🔄 0 = -a*x - 4*x - 7 
+   🔄 -a*x - 4*x - 7 = 0 
+   🔄 (-4*x - 7)/a = x 
+   🔄 -4*x - 7 = a*x 
+   🔄 a*x = -4.0*x - 7.0 
+   🔄 0 = -a*x - 4*x - 7 
+   🔄 0 = a*x + 4*x + 7 
+   🔄 x = -a*x/4 - 7/4 
+   🔄 0 = -a*x - 4.0*x - 7.0 
+
+📌 Total Rearrangements: 66
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 27 -Comparison Results for: 
+ x=3/2*x and 
+ 1=3/2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(0, -3*x/2 + x)
+   📊 Max Similarity Score: 0.7225
+   🔀 Symbolic Difference: x/2 + 1/2
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-3*x/2, -x)
+   📊 Max Similarity Score: 0.8182
+   🔀 Symbolic Difference: 1/2 - x/2
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-3*x/2, -x)
+   📊 Max Similarity Score: 0.9735
+   🔀 Symbolic Difference: 1/2 - x/2
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+🔍 Similarity Method: Enhanced
+   ✅ Best Matching Equation: Eq(0, -3*x/2 + x)
+   📊 Max Similarity Score: 0.3600
+   🔀 Symbolic Difference: x/2 + 1/2
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - where did x disappear
+
+=== Rearranged Equations ===
+   🔄 -3*x/2 + x = 0 
+   🔄 -3*x/2 = -x 
+   🔄 0.67*x = x 
+   🔄 0 = -3*x/2 + x 
+   🔄 x = 2*x/3 
+   🔄 -x/2 = 0 
+   🔄 3*x/2 = x 
+   🔄 -x + 3*x/2 = 0 
+   🔄 -0.5*x = 0 
+   🔄 x = 0.67*x 
+   🔄 1.5*x = x 
+   🔄 0 = -3*x/2 + x 
+   🔄 3*x/2 = x 
+   🔄 x/2 = 0 
+   🔄 2*x/3 = x 
+   🔄 -3*x/2 = -x 
+   🔄 -x + 3*x/2 = 0 
+   🔄 0 = 0.5*x 
+   🔄 x = 0 
+   🔄 0 = -x/2 
+   🔄 -3*x/2 + x = 0 
+   🔄 0 = -x + 3*x/2 
+   🔄 -x = -3*x/2 
+   🔄 -1.5*x = -x 
+   🔄 0 = x/2 
+   🔄 -x = -1.5*x 
+   🔄 0 = -0.5*x 
+   🔄 x = 3*x/2 
+   🔄 0.5*x = 0 
+   🔄 -x = -3*x/2 
+   🔄 0 = -x + 3*x/2 
+   🔄 0 = x 
+   🔄 x = 3*x/2 
+   🔄 x = 1.5*x 
+
+📌 Total Rearrangements: 34
+--------------------------------------
+--------------------------------------
+--------------------------------------

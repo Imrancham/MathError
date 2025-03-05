@@ -85,6 +85,8 @@ class RearrangementGenerator:
         # get equatoins set from the rearrangements
         
         rearrangements.update(self._generate_term_combinations(canonical_expr))
+       # rearrangements.update(self.generate_all_transformations(equation))
+
         equations = {eq for eq, _, _ in rearrangements} 
         rearrangements.update(self._divid_singel_term_by_coff(rearrangements))
         rearrangements.update(self._convert_to_decimals(rearrangements))
@@ -185,7 +187,7 @@ class RearrangementGenerator:
 
 
         except Exception as e:
-            self.logger.error(f"Transformation sequence failed: {str(e)}")
+            self.logger.error(f"divid_singel_term_by_coff: {str(e)}")
             return transformations
 
     def _convert_to_decimals(self, triples: Set[Tuple[Eq, List[str], List[sp.Expr]]]) -> Set[Eq]:
@@ -217,8 +219,179 @@ class RearrangementGenerator:
                 # If conversion fails, simply skip this equation.
                 continue
         return decimal_equations
+    def subtract_term(self, eq: Eq, term: sp.Expr) -> Eq:
+        """Subtract a given term from both sides of an equation."""
+        try:
+            lhs_str =""
+            rhs_str = ""
+            term_str = str(term)
+            term_str_sign = term_str[0]
+            # remove the first character if it is a negative or positive sign
+            if term_str_sign == '-' or term_str_sign == '+':
+                term_str = term_str[1:]
+
+            # initialize the equation string
+            eq_str = Eq(eq.lhs, eq.rhs)
+            eq_ter_evaluated = Eq(eq.lhs, eq.rhs)
+            # check if term is scalar 
+            
+            if not term.is_Number :
+                if term in eq.lhs.as_ordered_terms() :
+
+                    temp_eq = Eq(term, 0)
+                    term_sign = temp_eq.lhs.coeff(term)
+
+                    lhs_str = str(eq.lhs - term)
+                    rhs_str = str(eq.rhs)
+                    if term_sign > 0 or term_str_sign == '+':
+                        
+                        rhs_str = rhs_str.__add__(' - ').__add__(term_str)
+                    elif term_sign < 0 or term_str_sign == '-':
+                        rhs_str = rhs_str.__add__(' + ').__add__(term_str)
+                    else:
+                        rhs_str = rhs_str.__add__(' - ').__add__(term_str)
+                
+                else:
+
+                    term_sign = eq.rhs.coeff(term)
+
+                    rhs_str = str(eq.rhs - term)
+                    lhs_str = str(eq.lhs)
+
+                    if term_str_sign == '+':
+
+                        lhs_str = lhs_str.__add__(' - ').__add__(term_str)
+                    elif term_str_sign == '-':
+                        lhs_str = lhs_str.__add__(' + ').__add__(term_str)
+                    else:
+                        lhs_str = lhs_str.__add__(' - ').__add__(term_str)
+
+                eq_str = Eq(sp.parse_expr(lhs_str, evaluate=False), sp.parse_expr(rhs_str, evaluate=False))
+                eq_ter_evaluated = Eq(sp.parse_expr(lhs_str), sp.parse_expr(rhs_str))
+
+            # remove term_str from the lhs_str
+            # Add - term_str to the rhs_str
+            #print(f"lhs_str: {lhs_str}")
+            
+            eq_original = Eq(eq.lhs - term, eq.rhs - term)
+            # return both the string and the equation
+            return eq_original, eq_str, eq_ter_evaluated
+        except Exception as e:
+            self.logger.debug(f"Subtraction skipped: {str(e)}")
+            return eq, eq, eq
+
+        
+
+    def divide_equation_by_term(self, eq: Eq) -> Eq:
+        """Safe division with zero-check"""
+        try:
+            variable = next(iter(eq.lhs.free_symbols), None)
+            if variable is None:
+                return eq
+                
+            coeff = eq.lhs.coeff(variable)
+            if coeff == 0:
+                raise ValueError("Zero coefficient")
+                
+            return Eq(eq.lhs/coeff, eq.rhs/coeff)
+        except Exception as e:
+            self.logger.debug(f"Division skipped: {str(e)}")
+            return eq
+
+    def transformation_sequence(self, eq: Eq, terms: List[sp.Expr], index: int) -> Set[Eq]:
+        """Robust transformation sequence with error isolation"""
+        transformations = set()
+        try:
+            if index >= len(terms):
+                return transformations
+                
+            term = terms[index]
+            eq_original, eq1, eq2 = self.subtract_term(eq, term)
+            transformations.add(eq1)
+            transformations.add(eq2)
+            transformations.add(eq_original)
+            
+            # Add simplified version
+            try:
+                transformations.add(simplify(eq1))
+            except Exception as e:
+                self.logger.debug(f"Simplification failed: {str(e)}")
+
+            # Attempt division
+            try:
+                if len(eq1.lhs.as_ordered_terms()) == 1:
+                # check if the term is an integer then skip the division
+                    if not eq1.lhs.as_ordered_terms()[0].is_integer:
+                        eq1_div = self.divide_equation_by_term(eq1)
+                        #print(f"eq1_div: {eq1_div}")
+                        eq1_div_simpified = simplify(eq1_div)
+                        #print(f"eq1_div_simpified: {eq1_div_simpified}")
+
+                        transformations.add(eq1_div)   
+                        transformations.add(eq1_div_simpified)
+                    
+
+                # Now subtract each of the other terms from eq1.
+                for j, term in enumerate(terms):
+                    if j == index:
+                        continue
+                    eq_sub1, eq_sub2, eq_3 = self.subtract_term(eq1, term)
+                    #print(f"eq_sub: {eq_sub1}")
+                    #print(f"eq_sub2: {eq_sub2}")
+                    #print(f"simplify eq_sub: {simplify(eq_sub)}")
+                    transformations.add(eq_sub1)
+                    transformations.add(eq_sub2)
+                    transformations.add(simplify(eq_sub1))
+                    transformations.add(eq_3)
+                    # Check if there is only one term on the left side
+                    if len(eq_sub1.lhs.as_ordered_terms()) == 1 and not eq_sub1.lhs.as_ordered_terms()[0].is_integer:
+                        eq1_div = self.divide_equation_by_term(eq_sub1)
+                        transformations.add(eq1_div)
+                        transformations.add(simplify(eq1_div))
+                        #print(f"eq1_div: {eq1_div}")
+
+                    if len(eq_sub2.lhs.as_ordered_terms()) == 1 and not eq_sub2.lhs.as_ordered_terms()[0].is_integer:
+                        eq2_div = self.divide_equation_by_term(eq_sub2)
+                        transformations.add(eq2_div)
+                        transformations.add(simplify(eq2_div))
+                        #print(f"eq2_div: {eq2_div}")
+                return transformations
 
 
+            except Exception as e:
+                self.logger.warning(f"Transformation sequence aborted: {str(e)}")
+        except Exception as e:
+            self.logger.error(f"Transformation sequence failed: {str(e)}")
+            return transformations
+            
+        return transformations
+
+    def generate_all_transformations(self, eq: Eq) -> Set[Eq]:
+        """Fault-tolerant transformation generator"""
+        transformations = set()
+        try:
+            terms = self.get_terms(eq)
+            for i in range(len(terms)):
+                try:
+                    transforms = self.transformation_sequence(eq, terms, i)
+                    transformations.update(transforms)
+                except Exception as e:
+                    self.logger.debug(f"Skipping term {i}: {str(e)}")
+                    continue
+        except Exception as e:
+            self.logger.error(f"Transformation generation failed: {str(e)}")
+            
+        return transformations
+
+    def get_terms(self, eq: Eq) -> List[sp.Expr]:
+        """Safe term extraction"""
+        try:
+            return Add.make_args(eq.lhs) + Add.make_args(eq.rhs)
+        except Exception as e:
+            self.logger.error(f"Term extraction failed: {str(e)}")
+            return []
+    
+  
 class SimilarityStrategy(ABC):
     """Abstract base class for similarity strategies"""
     @abstractmethod
@@ -263,7 +436,7 @@ class JaccardSimilarity(SimilarityStrategy):
     """Jaccard similarity based on token overlap"""
     def _tokenize(self, expr: sp.Expr) -> Set[str]:
         return set(re.findall(r'[a-zA-Z]+|\d+|[\+\-\*/\^()]', sp.srepr(expr)))
-
+    
     def calculate(self, eq1: Eq, eq2: Eq) -> float:
         try:
             tokens1 = self._tokenize(eq1.lhs) | self._tokenize(eq1.rhs)
@@ -282,12 +455,19 @@ class JaccardSimilarity(SimilarityStrategy):
 class CosineSimilarity(SimilarityStrategy):
     """Cosine similarity using token frequency vectors"""
     def _tokenize(self, expr: sp.Expr) -> List[str]:
-        return re.findall(r'[a-zA-Z]+|\d+|[\+\-\*/\^()]', sp.srepr(expr))
+        """ Tokenize by extracting full terms instead of just individual tokens """
+        terms = expr.as_ordered_terms()  # Extract ordered terms like ['4*x', '-7/x']
+        return [str(term) for term in terms]  # Convert terms to string format
 
     def calculate(self, eq1: Eq, eq2: Eq) -> float:
         try:
-            tokens1 = self._tokenize(eq1.lhs) + self._tokenize(eq1.rhs)
-            tokens2 = self._tokenize(eq2.lhs) + self._tokenize(eq2.rhs)
+            # Normalize expressions to canonical form
+            expr1 = sp.simplify(eq1.lhs - eq1.rhs)
+            expr2 = sp.simplify(eq2.lhs - eq2.rhs)
+
+            # Tokenize the full terms
+            tokens1 = self._tokenize(expr1)
+            tokens2 = self._tokenize(expr2)
 
             # Prevent boolean issues
             if isinstance(tokens1, bool) or isinstance(tokens2, bool):
@@ -295,8 +475,9 @@ class CosineSimilarity(SimilarityStrategy):
             all_tokens = list(set(tokens1 + tokens2))
             vec1 = np.array([tokens1.count(t) for t in all_tokens])
             vec2 = np.array([tokens2.count(t) for t in all_tokens])
+            sim = cosine_similarity([vec1], [vec2])[0][0]
 
-            return cosine_similarity([vec1], [vec2])[0][0]
+            return sim
         except Exception as e:
             logging.error(f"Cosine similarity failed: {str(e)}")
             return 0
@@ -410,9 +591,9 @@ class EquationComparator:
             results = {
                 'exact_matches': self._find_exact_matches(equations, eq2_eval),
                 'similarities': self._calculate_similarities(
-                    equations, eq2_eval
+                    equations, eq2_eval, eq1_eval
                 ),
-                'rearrangements': list(map(str, equations)),
+                'rearrangements':  equations,
                 'total_rearrangements': len(equations)
             }
         except Exception as e:
@@ -427,27 +608,128 @@ class EquationComparator:
             if simplify(eq.lhs - eq.rhs - (target.lhs - target.rhs)) == 0
         ]
 
-    def _calculate_similarities(self, rearrangements: Set[Eq], target: Eq) -> Dict:
+    def _calculate_similarities(self, rearrangements:Set[Eq], target: Eq, original_eq: Eq) -> Dict:
         try:
-            return {
-                strategy_name: {
-                    'best_match': str(max(
-                        [(eq, strategy.calculate(eq, target)) for eq in rearrangements],
-                        key=lambda x: x[1],
-                        default=(Eq(S.Zero, S.Zero), -1)
-                    )[0]),
-                    'max_score': max(
-                        [(eq, strategy.calculate(eq, target)) for eq in rearrangements],
-                        key=lambda x: x[1],
-                        default=(None, -1)
-                    )[1]
+            results = {}
+            target_expr = simplify(target.lhs - target.rhs)
+            for strategy_name, strategy in self.strategies.items():
+                best_match, beset_score = max(
+                    ((eq, strategy.calculate(eq, target)) for eq in rearrangements),
+                    key = lambda x:x[1],
+                    default=(None, -1)
+                )
+
+                if best_match is None:
+                    results[strategy_name] = {'error':'No valid compersion'}
+                    continue
+                # calculate symbolic difference
+                best_expr = simplify(best_match.lhs - best_match.rhs)
+                diff = simplify(best_expr - target_expr)
+
+                # Analyze difference
+                error_info = {
+                    'symbolic_difference': str(diff),
+                    'neumeric_differnce': None,
+                    'variable_factor': None, 
+                    'typo': None,
+                    'suggested_errors': []
                 }
-                for strategy_name, strategy in self.strategies.items()
-            }
+                # check if neumeric diff
+                if diff.is_constant():
+                    error_info['numeric_difference'] = float(diff)
+                    error_info['suggested_errors'].append( f"Arithmetic error: Constant difference of {error_info['numeric_difference']}")
+
+                # Check for variable factor
+                variables_in_diff = diff.free_symbols
+                variables_in_target = target_expr.free_symbols
+                variables_in_original = original_eq.free_symbols
+                for var in variables_in_diff:
+                    if var not in variables_in_original:
+                        error_info['typo'] = {
+                            'variable': str(var)
+                        }
+                        error_info['suggested_errors'].append(
+                            f"There is no such a vriable  {var} in the original equatoin."
+                        )
+
+                    if var not in variables_in_target:
+                        error_info['variable_factor'] = {
+                            'variable': str(var)
+                        }
+                        error_info['suggested_errors'].append(
+                            f"where did {var} disappear"
+                        )
+                        break
+                    
+
+                        
+                    else:
+                        error_info['variable_factor'] = {
+                            'variable': str(var)
+                        }
+                        error_info['suggested_errors'].append(
+                            f"There is an error calculatin the factor of {var}"
+                        )
+
+                    
+                results[strategy_name] = {
+                    'best_match': str(best_match),
+                    'max_score': beset_score,
+                    **error_info
+                }
+
+             
         except Exception as e:
             logging.error(f"Similarity calculation failed: {str(e)}")
-            return {'best_match': None, 'max_score': -1}
+            results[strategy_name] = {'error': str(e)}
+        return results
     
+
+def print_similarity_results(filename, similarities, rearrangements, total_rearrangements):
+
+
+    print("\n=== Similarity Analysis ===\n")
+    
+    for method, details in similarities.items():
+        file.write(f"\n🔍 Similarity Method: {method.capitalize()}\n")
+        file.write(f"   ✅ Best Matching Equation: {details['best_match']}\n")
+        file.write(f"   📊 Max Similarity Score: {details['max_score']:.4f}\n")
+        file.write(f"   🔀 Symbolic Difference: {details['symbolic_difference']}\n")
+            
+        print(f"\n🔍 Similarity Method: {method.capitalize()}")
+        print(f"   ✅ Best Matching Equation: {details['best_match']}")
+        print(f"   📊 Max Similarity Score: {details['max_score']:.4f}")
+        print(f"   🔀 Symbolic Difference: {details['symbolic_difference']}")
+        
+        if details['neumeric_differnce'] is not None:
+            print(f"   🔢 Numeric Difference: {details['neumeric_differnce']}")
+            file.write(f"   🔢 Numeric Difference: {details['neumeric_differnce']}\n")
+        
+        if 'variable_factor' in details and details['variable_factor']:
+            print(f"   🔎 Variable Factor Error: {details['variable_factor'].get('variable')}")
+            file.write(f"   🔎 Variable Factor Error: {details['variable_factor'].get('variable')}\n")
+        
+        if 'typo' in details and details['typo']:
+            print(f"   ✍️ Possible Typo: {details['typo'].get('variable')}")
+            file.write(f"   ✍️ Possible Typo: {details['typo'].get('variable')}\n")
+        
+        print("   ❌ Suggested Errors:")
+        file.write("   ❌ Suggested Errors:\n")
+        for error in details.get('suggested_errors', []):
+            file.write(f"      - {error}\n")
+            print(f"      - {error}")
+    
+    print("\n=== Rearranged Equations ===\n")
+    file.write("\n=== Rearranged Equations ===\n")
+    for i, eq in enumerate(rearrangements, start=1):
+        file.write(f"   🔄 {eq.lhs} = {eq.rhs} \n")
+        print(f"{i}. {eq}")
+
+    print(f"\nTotal Rearrangements: {total_rearrangements}\n")
+    file.write(f"\n📌 Total Rearrangements: {total_rearrangements}\n")
+    file.write("--------------------------------------\n")
+    file.write("--------------------------------------\n")
+    file.write("--------------------------------------\n")
 
 # Example usage
 if __name__ == "__main__":
@@ -455,34 +737,34 @@ if __name__ == "__main__":
         comparator = EquationComparator()
         # Example list of expression pairs for comparison.
         expression_pairs = [
-      ("-4*s + 2", "4*s - r", "2", "-r"),
-    ("-2 - 3", "b + 3", "-3*b", "6"),
-    ("-8*s", "-r - 2", "-8*s", "-2*r"),
-     ("-4*c", "-w/2 - 2", "c", "w/2 - 1/2"),
-     ("-4*n - 3", "3*n - y", "-3", "-1*n - y"),
-     ("3*c + 1", "-c + m", "c", "(m + 1)/4"),
-     ("3*c + 1", "-c + m", "4 + 1", "m"),
-     ("4", "3*d + 4*v", "o", "3*d - 4 + 4*v"),
-     ("o", "3*d + 4*v - 4", "-4*v", "3*d - 4"),
-     #("d*m - d*x - x", "m", "m", "((d + 1)*x)/d - 1"),
-     ("r - 4", "12", "r - 4", "-sqrt(12)"),
-     ("x + 4", "-x - 5*o", "0", "4 + 5*o"),
-     ("8*c", "5 - p", "c", "1.6 - p"),
-     ("-5*c + 5", "3*c + p", "-8*c", "-5*p"),
-     ("b - 3/2", "3/2", "b - 3/2", "-sqrt(3/2)"),
-     ("2*p", "-5 - q", "p", "-2"),
-     ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
-     ("-8*s", "-r - 2", "4*s", "r/2"),
-      ("r*(2 - 3)", "0", "r", "0"),
-      ("3*r + 2", "2*x", "1.5*r", "x"),
-      ("2*m + 5", "0", "3*m + 5", "0"),
-      ("2*x", "1", "x", "0"),
-      ("-4*o - 4*y", "2*y + 4", "0", "-1"),
-      ("-f - 1", "0", "-5*f - 4", "0"),
-      ("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
+ #    ("-4*s + 2", "4*s - r", "2", "-r"),
+ #  ("-2 - 3", "b + 3", "-3*b", "6"),
+ #  ("-8*s", "-r - 2", "-8*s", "-2*r"),
+ #   ("-4*c", "-w/2 - 2", "c", "w/2 - 1/2"),
+ #   ("-4*n - 3", "3*n - y", "-3", "-1*n - y"),
+ #   ("3*c + 1", "-c + m", "c", "(m + 1)/4"),
+ #   ("3*c + 1", "-c + m", "4 + 1", "m"),
+ #   ("4", "3*d + 4*v", "o", "3*d - 4 + 4*v"),
+ #   ("o", "3*d + 4*v - 4", "-4*v", "3*d - 4"),
+ #   #("d*m - d*x - x", "m", "m", "((d + 1)*x)/d - 1"),
+ #   ("r - 4", "12", "r - 4", "-sqrt(12)"),
+ #   ("x + 4", "-x - 5*o", "0", "4 + 5*o"),
+ #   ("8*c", "5 - p", "c", "1.6 - p"),
+ #   ("-5*c + 5", "3*c + p", "-8*c", "-5*p"),
+ #   ("b - 3/2", "3/2", "b - 3/2", "-sqrt(3/2)"),
+ #   ("2*p", "-5 - q", "p", "-2"),
+ #   ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
+ #   ("-8*s", "-r - 2", "4*s", "r/2"),
+ #    ("r*(2 - 3)", "0", "r", "0"),
+ #    ("3*r + 2", "2*x", "1.5*r", "x"),
+ #    ("2*m + 5", "0", "3*m + 5", "0"),
+ #    ("2*x", "1", "x", "0"),
+ #    ("-4*o - 4*y", "2*y + 4", "0", "-1"),
+ #    ("-f - 1", "0", "-5*f - 4", "0"),
+ #    ("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
       ("-4*x", "7 + a*x", "x", "-7/4 + a*x"),
       #("-9*t - 2", "5*o", "(-9*t)/5 (- 2/5)", "o"),
-       ("x", "3/2*x", "1", "3/2")
+  #     ("x", "3/2*x", "1", "3/2")
     ]
     #    df_data = pd.read_json('0_9999_v7.json')
         i = 1
@@ -504,180 +786,31 @@ if __name__ == "__main__":
         
             # Compare two sample equations.
             try:
+                print("Comparison Results:")
                 result = comparator.compare(eq1_str, eq2_str)
                 print(f" {i} -Comparison Results for: \n {eq1_str} and \n {eq2_str}:")
                 i = i + 1
-                print("Comparison Results:")
-            except Exception as e:
-                print(f"Error during comparison: {e}")
-                continue
+                
+            
 
-            # extract the column to be assined to the data frame df_similarity_results
-            js = {'expression 1': eq1_str, 'expression 2': eq2_str, 'similarity score structural': result['similarities']['structural']['max_score'], 'best match structural': result['similarities']['structural']['best_match'], 'similarity score jaccard': result['similarities']['jaccard']['max_score'], 'best match jaccard': result['similarities']['jaccard']['best_match'], 'similarity score cosine': result['similarities']['cosine']['max_score'], 'best match cosine': result['similarities']['cosine']['best_match'], 'similarity score enhanced': result['similarities']['enhanced']['max_score'], 'best match enhanced': result['similarities']['enhanced']['best_match'], 'total rearrangements': result['total_rearrangements']}
-            df_similarity_results.loc[len(df_similarity_results)] = js
-         
-            for key, value in result.items():
-                print(f"{key}: {value}")
-            print("--------------------------------------")
+                # extract the column to be assined to the data frame df_similarity_results
+                #js = {'expression 1': eq1_str, 'expression 2': eq2_str, 'similarity score structural': result['similarities']['structural']['max_score'], 'best match structural': result['similarities']['structural']['best_match'], 'similarity score jaccard': result['similarities']['jaccard']['max_score'], 'best match jaccard': result['similarities']['jaccard']['best_match'], 'similarity score cosine': result['similarities']['cosine']['max_score'], 'best match cosine': result['similarities']['cosine']['best_match'], 'similarity score enhanced': result['similarities']['enhanced']['max_score'], 'best match enhanced': result['similarities']['enhanced']['best_match'], 'total rearrangements': result['total_rearrangements']}
+                #df_similarity_results.loc[len(df_similarity_results)] = js
+                with open("similarity_results3.txt", "a", encoding="utf-8") as file:
+                    file.write("\n=== Similarity Analysis ===\n")
+                    file.write(f" {i} -Comparison Results for: \n {eq1_str} and \n {eq2_str}:")
+                    
+                    print_similarity_results("results3.txt",
+                        result['similarities'], 
+                        result['rearrangements'], 
+                        result['total_rearrangements']
+                    ) 
+                print("--------------------------------------")
+
+            except Exception as e:
+                print(f"Error during comparison....: {e}")
+                continue
         # save the results to a csv file
-        df_similarity_results.to_csv('similarity_results.csv')
+        #df_similarity_results.to_csv('similarity_results.csv')
     except Exception as e:
         logging.error(f"Error during comparison: {e}")
-
-    
-
-
-
-
-def subtract_term(eq: Eq, term: sp.Expr) -> Eq:
-    """Subtract a given term from both sides of an equation."""
-    lhs_str =""
-    rhs_str = ""
-    term_str = str(term)
-    term_str_sign = term_str[0]
-    # remove the first character if it is a negative or positive sign
-    if term_str_sign == '-' or term_str_sign == '+':
-        term_str = term_str[1:]
-
-    variable = term_str.__getitem__(-1)
-    # initialize the equation string
-    eq_str = Eq(eq.lhs, eq.rhs)
-    
-    # check if term is scalar 
-    
-    if not term.is_Number :
-        if term in eq.lhs.as_ordered_terms() :
-
-            term_sign = eq.lhs.coeff(variable)
-
-            lhs_str = str(eq.lhs - term)
-            rhs_str = str(eq.rhs)
-            if term_sign > 0 or term_str_sign == '+':
-                
-                rhs_str = rhs_str.__add__(' - ').__add__(term_str)
-            elif term_sign < 0 or term_str_sign == '-':
-                rhs_str = rhs_str.__add__(' + ').__add__(term_str)
-            else:
-                rhs_str = rhs_str.__add__(' - ').__add__(term_str)
-        
-        else:
-
-            term_sign = eq.rhs.coeff(term)
-
-            rhs_str = str(eq.rhs - term)
-            lhs_str = str(eq.lhs)
-
-            if term_sign > 0 or term_str_sign == '+':
-
-                lhs_str = lhs_str.__add__(' - ').__add__(term_str)
-            elif term_sign < 0 or term_str_sign == '-':
-                lhs_str = lhs_str.__add__(' + ').__add__(term_str)
-            else:
-                lhs_str = lhs_str.__add__(' - ').__add__(term_str)
-
-        eq_str = Eq(sp.parse_expr(lhs_str, evaluate=False), sp.parse_expr(rhs_str, evaluate=False))
-
-    # remove term_str from the lhs_str
-    # Add - term_str to the rhs_str
-    #print(f"lhs_str: {lhs_str}")
-    
-    eq = Eq(eq.lhs - term, eq.rhs - term)
-    # return both the string and the equation
-    return eq, eq_str
-
-def divide_equation_by_term(eq: Eq) -> Eq:
-    """
-    Divide both sides of the equation by the coefficient of `term` in the left-hand side.
-    If the coefficient is zero, return the original equation.
-    """
-    # check if the tern is an integer then skip the division
-    lhs_str = str(eq.lhs)
-    variable = lhs_str.__getitem__(-1)
-    coeff = eq.lhs.coeff(variable)
-    if coeff == 0:
-        return eq
-    return Eq(eq.lhs / coeff, eq.rhs / coeff)
-
-def transformation_sequence(eq: Eq, terms: List[sp.Expr], index: int) -> Set[Eq]:
-    """
-    Generate a set of transformations starting by subtracting the term at position `index`
-    from the equation, then applying simplification, division, and subtracting the other terms.
-    """
-    transformations = set()
-    T = terms[index]
-    # Step 1: Subtract the chosen term T.
-    eq1, eq2 = subtract_term(eq, T)
-    #print(f"eq1: {eq1}")
-    #print(f"simplify eq1: {simplify(eq1)}")
-    transformations.add(eq1)
-    transformations.add(eq2)
-    # Step 2: Add its simplified version.
-    transformations.add(simplify(eq1))
-    # Step 3: Divide both sides by the factor of T.
-    # Check if there is only one term on the left side
-
-    if len(eq1.lhs.as_ordered_terms()) == 1:
-        # check if the term is an integer then skip the division
-        if not eq1.lhs.as_ordered_terms()[0].is_integer:
-            eq1_div = divide_equation_by_term(eq1)
-            #print(f"eq1_div: {eq1_div}")
-            eq1_div_simpified = simplify(eq1_div)
-            #print(f"eq1_div_simpified: {eq1_div_simpified}")
-
-            transformations.add(eq1_div)   
-            transformations.add(eq1_div_simpified)
-        
-
-    # Now subtract each of the other terms from eq1.
-    for j, term in enumerate(terms):
-        if j == index:
-            continue
-        eq_sub1, eq_sub2 = subtract_term(eq1, term)
-        #print(f"eq_sub: {eq_sub1}")
-        #print(f"eq_sub2: {eq_sub2}")
-        #print(f"simplify eq_sub: {simplify(eq_sub)}")
-        transformations.add(eq_sub1)
-        transformations.add(eq_sub2)
-        transformations.add(simplify(eq_sub1))
-        # Check if there is only one term on the left side
-        if len(eq_sub1.lhs.as_ordered_terms()) == 1 and not eq_sub1.lhs.as_ordered_terms()[0].is_integer:
-            eq1_div = divide_equation_by_term(eq_sub1)
-            transformations.add(eq1_div)
-            transformations.add(simplify(eq1_div))
-            #print(f"eq1_div: {eq1_div}")
-
-        if len(eq_sub2.lhs.as_ordered_terms()) == 1 and not eq_sub2.lhs.as_ordered_terms()[0].is_integer:
-            eq2_div = divide_equation_by_term(eq_sub2)
-            transformations.add(eq2_div)
-            transformations.add(simplify(eq2_div))
-            #print(f"eq2_div: {eq2_div}")
-    return transformations
-
-def get_terms(eq: Eq) -> List[sp.Expr]:
-    """
-    Return a list of terms from the equation.
-    For an equation of the form e1 + e2 = e3 + e4, we return [e1, e2, e3, e4].
-    """
-    try:
-        lhs_terms = eq.lhs.as_ordered_terms()
-        rhs_terms = eq.rhs.as_ordered_terms()
-        return lhs_terms + rhs_terms
-    except Exception as e:
-        raise Exception(f"Error in get_terms: {e}")
-
-def generate_all_transformations(eq: Eq) -> Set[Eq]:
-    """
-    Starting from an equation, generate many rearrangements by:
-      - Iterating over each term in the equation.
-      - For each term, subtracting it and then applying a sequence of transformations.
-    """
-    all_transforms = set()
-    try:
-        terms = get_terms(eq)
-        for i in range(len(terms)):
-            transforms = transformation_sequence(eq, terms, i)
-            all_transforms.update(transforms)
-        return all_transforms
-    except Exception as e:
-        raise Exception(f"Error in generate_all_transformations: {e}")
-
