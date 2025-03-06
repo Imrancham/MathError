@@ -85,7 +85,7 @@ class RearrangementGenerator:
         # get equatoins set from the rearrangements
         
         rearrangements.update(self._generate_term_combinations(canonical_expr))
-       # rearrangements.update(self.generate_all_transformations(equation))
+        rearrangements.update(self.generate_all_transformations(equation))
 
         equations = {eq for eq, _, _ in rearrangements} 
         rearrangements.update(self._divid_singel_term_by_coff(rearrangements))
@@ -149,17 +149,22 @@ class RearrangementGenerator:
         try:
             variable = next(iter(eq.lhs.free_symbols), None)
             if variable is None:
-                return eq
+                return eq, eq
                 
-            coeff = eq.lhs.coeff(variable)
-            if coeff == 0:
+            coff = eq.lhs.coeff(variable)
+            if coff == 0:
                 raise ValueError("Zero coefficient")
-            eq = Eq(eq.lhs/coeff, eq.rhs/coeff)
+            if coff == 1:
+                return eq, eq
+            eq_divided = Eq(eq.lhs/coff, eq.rhs/coff)
+            lhs_str = str(eq.lhs/coff)
+            rhs_str = f"({eq.rhs})/{coff}"
+            new_eq = sp.Eq(sp.sympify(lhs_str), sp.parse_expr(rhs_str, evaluate=False), evaluate=False)
    
-            return eq
+            return eq_divided, new_eq
         except Exception as e:
             self.logger.debug(f"Division skipped: {str(e)}")
-            return eq
+            return eq, eq
 
     def _divid_singel_term_by_coff(self, triples: Set[Tuple[Eq, List[str], List[sp.Expr]]]) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
         """Robust transformation sequence with error isolation"""
@@ -172,20 +177,25 @@ class RearrangementGenerator:
                 if len(eq.lhs.as_ordered_terms()) == 1 and not eq.lhs.as_ordered_terms()[0].is_integer:
                 # check if the term is an integer then skip the division
                     
-                    eq1_div = self.divide_equation_by_term(eq)
+                    eq1_div, new_eq = self.divide_equation_by_term(eq)
+                    simnew_eq = Eq(simplify(new_eq.lhs), simplify(new_eq.rhs))
+
                     simp_eq1_div = simplify(eq1_div)
                     flip_eq1_div = Eq(eq1_div.rhs, eq1_div.lhs)
                     simp_flip_eq1_div = simplify(flip_eq1_div)
 
 
                     if eq1_div not in equations:
-                        transformations.add((eq1_div, actions +("divide_coofficint",), terms + (eq.lhs,)))
+                        transformations.add((eq1_div, (actions ,"Divide by coefficient",), (terms , eq.lhs,)))
                     if flip_eq1_div not in equations:
-                        transformations.add((flip_eq1_div, actions +("divide_coofficint",), terms + (eq.lhs,)))
+                        transformations.add((flip_eq1_div, (actions ,"Divide by coefficient",), (terms , eq.lhs,)))
                     if simp_eq1_div not in equations:
-                        transformations.add((simp_eq1_div, actions +("divide_coofficint",), terms + (eq.lhs,)))
+                        transformations.add((simp_eq1_div, (actions ,"Divide by coefficient",), (terms , eq.lhs,)))
                     if simp_flip_eq1_div not in equations:
-                        transformations.add((simp_flip_eq1_div, actions +("divide_coofficint",), terms + (eq.lhs,)))
+                        transformations.add((simp_flip_eq1_div, (actions ,"Divide by coefficient",), (terms , eq.lhs,)))
+                    if new_eq not in equations:
+                        transformations.add((new_eq, (actions , "Divide by coefficient"),(terms, new_eq)))
+                        transformations.add((simnew_eq, (actions , "Divide by coefficient"),(terms, new_eq)))
                  
             return transformations
       
@@ -231,10 +241,15 @@ class RearrangementGenerator:
             lhs_str =""
             rhs_str = ""
             term_str = str(term)
-            term_str_sign = term_str[0]
+            first_char_in_term = term_str[0]
+            term_sign = '+'
             # remove the first character if it is a negative or positive sign
-            if term_str_sign == '-' or term_str_sign == '+':
+            if first_char_in_term == '-' or first_char_in_term == '+':
                 term_str = term_str[1:]
+            
+            if first_char_in_term == '-':
+                term_sign = '-'
+
 
             # initialize the equation string
             eq_str = Eq(eq.lhs, eq.rhs)
@@ -244,33 +259,27 @@ class RearrangementGenerator:
             if not term.is_Number :
                 if term in eq.lhs.as_ordered_terms() :
 
-                    temp_eq = Eq(term, 0)
-                    term_sign = temp_eq.lhs.coeff(term)
 
                     lhs_str = str(eq.lhs - term)
                     rhs_str = str(eq.rhs)
-                    if term_sign > 0 or term_str_sign == '+':
+                    if  term_sign == '+':
                         
                         rhs_str = rhs_str.__add__(' - ').__add__(term_str)
-                    elif term_sign < 0 or term_str_sign == '-':
-                        rhs_str = rhs_str.__add__(' + ').__add__(term_str)
                     else:
-                        rhs_str = rhs_str.__add__(' - ').__add__(term_str)
+                        rhs_str = rhs_str.__add__(' + ').__add__(term_str)
+                    
                 
                 else:
-
-                    term_sign = eq.rhs.coeff(term)
 
                     rhs_str = str(eq.rhs - term)
                     lhs_str = str(eq.lhs)
 
-                    if term_str_sign == '+':
+                    if term_sign == '+':
 
                         lhs_str = lhs_str.__add__(' - ').__add__(term_str)
-                    elif term_str_sign == '-':
-                        lhs_str = lhs_str.__add__(' + ').__add__(term_str)
+                    
                     else:
-                        lhs_str = lhs_str.__add__(' - ').__add__(term_str)
+                        lhs_str = lhs_str.__add__(' + ').__add__(term_str)
 
                 eq_str = Eq(sp.parse_expr(lhs_str, evaluate=False), sp.parse_expr(rhs_str, evaluate=False))
                 eq_ter_evaluated = Eq(sp.parse_expr(lhs_str), sp.parse_expr(rhs_str))
@@ -301,7 +310,7 @@ class RearrangementGenerator:
             
             # Add simplified version
             try:
-                transformations.add((simplify(eq1), ("Sbutract term",), (term,)))
+                transformations.add((simplify(eq1), ("Sbutract term and simplify the result",), (term,)))
             except Exception as e:
                 self.logger.debug(f"Simplification failed: {str(e)}")
 
@@ -310,38 +319,41 @@ class RearrangementGenerator:
                 if len(eq1.lhs.as_ordered_terms()) == 1:
                 # check if the term is an integer then skip the division
                     if not eq1.lhs.as_ordered_terms()[0].is_integer:
-                        eq1_div = self.divide_equation_by_term(eq1)
+                        eq1_div , new_eq= self.divide_equation_by_term(eq1)
                         #print(f"eq1_div: {eq1_div}")
                         eq1_div_simpified = simplify(eq1_div)
                         #print(f"eq1_div_simpified: {eq1_div_simpified}")
 
-                        transformations.add((eq1_div, ("Sbutract term", "Divide by coefficient",), (term, term,)))   
-                        transformations.add((eq1_div_simpified, ("Sbutract term", "Divide by coefficient",), (term,term,))) 
+                        transformations.add((eq1_div, ("Sbutract term", "Divide by coefficient",), (term, eq1.lhs,)))   
+                        transformations.add((eq1_div_simpified, ("Sbutract term", "Divide by coefficient",), (term,eq1.lhs,))) 
                     
 
                 # Now subtract each of the other terms from eq1.
-                for j, term in enumerate(terms):
+                for j, _term in enumerate(terms):
                     if j == index:
                         continue
-                    eq_sub1, eq_sub2, eq_3 = self.subtract_term(eq1, term)
+                    eq_sub1, eq_sub2, eq_3 = self.subtract_term(eq1, _term)
                     #print(f"eq_sub: {eq_sub1}")
                     #print(f"eq_sub2: {eq_sub2}")
                     #print(f"simplify eq_sub: {simplify(eq_sub)}")
-                    transformations.add(eq_sub1)
-                    transformations.add(eq_sub2)
-                    transformations.add(simplify(eq_sub1))
-                    transformations.add(eq_3)
+                    transformations.add((eq_sub1, ("Sbutract term","Sbutract term",), (term, _term,)))
+                    transformations.add((eq_sub2, ("Sbutract term","Sbutract term",), (term, _term,)))
+                    transformations.add((simplify(eq_sub1), ("Sbutract term","Sbutract term",), (term, _term,)))
+                    transformations.add((eq_3, ("Sbutract term","Sbutract term",), (term, _term,)))
                     # Check if there is only one term on the left side
                     if len(eq_sub1.lhs.as_ordered_terms()) == 1 and not eq_sub1.lhs.as_ordered_terms()[0].is_integer:
-                        eq1_div = self.divide_equation_by_term(eq_sub1)
-                        transformations.add(eq1_div)
-                        transformations.add(simplify(eq1_div))
+                        eq1_div, new_eq = self.divide_equation_by_term(eq_sub1)
+                        transformations.add((eq1_div, ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,))) 
+                        transformations.add((simplify(eq1_div), ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,))) 
+                        transformations.add((new_eq, ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,)))
                         #print(f"eq1_div: {eq1_div}")
 
                     if len(eq_sub2.lhs.as_ordered_terms()) == 1 and not eq_sub2.lhs.as_ordered_terms()[0].is_integer:
-                        eq2_div = self.divide_equation_by_term(eq_sub2)
-                        transformations.add(eq2_div)
-                        transformations.add(simplify(eq2_div))
+                        eq2_div, new_eq = self.divide_equation_by_term(eq_sub2)
+                        transformations.add((eq2_div, ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,))) 
+                        transformations.add((simplify(eq2_div), ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,))) 
+                        transformations.add((new_eq, ("Sbutract term","Sbutract term", "Divide by coefficient",), (term, _term, eq1.lhs,)))
+
                         #print(f"eq2_div: {eq2_div}")
                 return transformations
 
