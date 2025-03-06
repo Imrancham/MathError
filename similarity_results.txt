@@ -2515,3 +2515,815 @@
 --------------------------------------
 --------------------------------------
 --------------------------------------
+
+=== Similarity Analysis ===
+ 18 -Comparison Results for: 
+ t0: -8*s=-r - 2 and 
+ t1: 4*s=r/2:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-r, 2 - 8*s)
+   ✅ Best Matching to simplified target: Eq(-r, 2 - 8*s)
+   📊 Max Similarity Score: 0.8152
+   📊 Max Similarity Score simplified: 0.7420
+   🔀 Symbolic Difference: -r/2 + 4*s - 2
+   Actions: ('term_combination', 'Simplify')
+   Terms: (r, 2)
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(s, (r + 2)/8)
+   ✅ Best Matching to simplified target: Eq(r/8 + 1/4, s)
+   📊 Max Similarity Score: 0.7857
+   📊 Max Similarity Score simplified: 0.6923
+   🔀 Symbolic Difference: 3*r/8 - 3*s - 1/4
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((r, 2), Eq(s, (r + 2)/8))
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(r - 8*s + 1*2, -2 + 2)
+   ✅ Best Matching to simplified target: Eq(r - 8*s + 1*2, -2 + 2)
+   📊 Max Similarity Score: 0.0000
+   📊 Max Similarity Score simplified: 0.0000
+   🔀 Symbolic Difference: 3*r/2 - 12*s + 2
+   Actions: ('term_combination', 'Simplify')
+   Terms: ()
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of s
+      - There is an error calculatin the factor of r
+
+=== Rearranged Equations ===
+   🔄 r - 8*s + 1*2 = -2 + 2 
+   🔄 2 = -r + 8*s 
+   🔄 -8*s = -r - 2 
+   🔄 2.0 - 8.0*s = -r 
+   🔄 8*s - 2 = r 
+   🔄 8*s = r + 2 
+   🔄 r/8 + 1/4 = s 
+   🔄 r = 8.0*s - 2.0 
+   🔄 r + 2.0 = 8.0*s 
+   🔄 r - 8*s + 2 = -2 + 2 
+   🔄 0 = -r + 8*s - 2 
+   🔄 -r + 8.0*s - 2.0 = 0 
+   🔄 r = 8*s - 2 
+   🔄 s = (r + 2)/8 
+   🔄 2.0 = -r + 8.0*s 
+   🔄 0 = r - 8*s + 2 
+   🔄 s = r/8 + 1/4 
+   🔄 -r = 2 - 8*s 
+   🔄 0 = r - 8*s + 2 
+   🔄 r = 8*s - 2 
+   🔄 -r + 8.0*s = 2.0 
+   🔄 r - 8*s + 2 = 0 
+   🔄 8.0*s = r + 2.0 
+   🔄 2 = -r + 8*s - 2 + 2 
+   🔄 -r - 2.0 = -8.0*s 
+   🔄 r - 8.0*s = -2.0 
+   🔄 -8.0*s = -r - 2.0 
+   🔄 2 - 8*s = -r 
+   🔄 8*s - 1*1*2 = r 
+   🔄 -2 = r - 8*s 
+   🔄 -r - 2 = -8*s 
+   🔄 2 - 8*s = -r 
+   🔄 8*s = r + 2 
+   🔄 0.13*r + 0.25 = s 
+   🔄 r + 0 = 8*s - 1*2 
+   🔄 8.0*s - 2.0 = r 
+   🔄 -2 = r - 8*s 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 0 = -r + 8.0*s - 2.0 
+   🔄 0 = -r + 8*s - 1*2 
+   🔄 r - 8.0*s + 2.0 = 0 
+   🔄 r = (2 - 8*s)/(-1) 
+   🔄 -r + 8*s = 2 
+   🔄 r - 8*s + 2 = 0 
+   🔄 -r - 2 = -8*s 
+   🔄 -r = 2.0 - 8.0*s 
+   🔄 s = 0.13*r + 0.25 
+   🔄 r - 8*s = -2 
+   🔄 r + 2 = 8*s 
+   🔄 0 = -r + 8*s - 2 
+   🔄 r - 8.0*s + 2.0 = 0E-110 
+   🔄 2 = -r + 8*s - 1*1*2 + 2 
+   🔄 8*s - 2 = r 
+   🔄 r - 8*s + 1*2 = 0 
+   🔄 -8*s + 1*2 = -r - 1*2 + 2 
+   🔄 -r = 2 - 8*s 
+   🔄 r - 8*s + 2 = 0 
+   🔄 -8*s = -r - 2 
+   🔄 0 = -r + 8*s - 2 
+   🔄 r = 8*s - 1*1*2 
+   🔄 -2.0 = r - 8.0*s 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 0 = r - 8.0*s + 2.0 
+   🔄 -r + 8*s - 2 = 0 
+   🔄 0 = -r + 8*s - 2 
+   🔄 r + 0 = 8*s - 2 
+   🔄 0 = r - 8*s + 2 
+   🔄 -r + 8*s = 2 
+   🔄 r - 8*s = -2 
+   🔄 r + 2 = 8*s 
+   🔄 s = (-r - 1*2)/(-8) 
+   🔄 0 + 1*2 = -r + 8*s - 2 + 2 
+   🔄 2 - 8*s = -r - 2 + 2 
+   🔄 2 = -r + 8*s 
+   🔄 2 = -r + 8*s - 2 + 2 
+
+📌 Total Rearrangements: 75
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 19 -Comparison Results for: 
+ t0: r*(2 - 3)=0 and 
+ t1: r=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(r + 0, 0)
+   ✅ Best Matching to simplified target: Eq(r + 0, 0)
+   📊 Max Similarity Score: 0.8547
+   📊 Max Similarity Score simplified: 0.8547
+   🔀 Symbolic Difference: 0
+   Actions: ('term_combination', 'convert_to_decimals')
+   Terms: (0,)
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(0, r)
+   ✅ Best Matching to simplified target: Eq(0, r)
+   📊 Max Similarity Score: 1.0000
+   📊 Max Similarity Score simplified: 1.0000
+   🔀 Symbolic Difference: -2*r
+   Actions: ('term_combination', 'Simplify')
+   Terms: (-r, 0)
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-r*(2 - 1*3), 0)
+   ✅ Best Matching to simplified target: Eq(-r*(2 - 1*3), 0)
+   📊 Max Similarity Score: 1.0000
+   📊 Max Similarity Score simplified: 1.0000
+   🔀 Symbolic Difference: 0
+   Actions: ('term_combination', 'convert_to_decimals')
+   Terms: (0,)
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+=== Rearranged Equations ===
+   🔄 0 = 1.0*r 
+   🔄 r*(2 - 1*3) = 0 
+   🔄 -r*(2 - 1*3) = 0 
+   🔄 0 = -1.0*r 
+   🔄 r*(2 - 1*3) + 0 = 0 
+   🔄 -r*(2 - 1*3) + 0 = 0 
+   🔄 r + 0 = 0 
+   🔄 0 = -r*(2 - 3) + 0 
+   🔄 0 = -r + 0 
+   🔄 r = 0/(-1) 
+   🔄 0 = -r*(2 - 1*3) + 0 
+   🔄 r = -3 + 0/2 
+   🔄 -1.0*r = 0 
+   🔄 0 = r + 0 
+   🔄 0 = r + 0 
+   🔄 r = -3 
+   🔄 r = -3.0 
+   🔄 -r = 0 
+   🔄 0 = r*(2 - 1*3) + 0 
+   🔄 0 = r*(2 - 1*3) 
+   🔄 0 = r 
+   🔄 -r + 0 = 0 
+   🔄 1.0*r = 0 
+   🔄 0 = -r*(2 - 1*3) 
+   🔄 0 = -r 
+
+📌 Total Rearrangements: 25
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 20 -Comparison Results for: 
+ t0: 3*r + 2=2*x and 
+ t1: 1.5*r=x:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(1.5*r + 1.0, x)
+   ✅ Best Matching to simplified target: Eq(1.5*r + 1.0, x)
+   📊 Max Similarity Score: 0.8413
+   📊 Max Similarity Score simplified: 0.8413
+   🔀 Symbolic Difference: 1.0
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((-2*x,), -2*x)
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 1.0
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(x, 1.5*r + 1.0)
+   ✅ Best Matching to simplified target: Eq(x, 1.5*r + 1.0)
+   📊 Max Similarity Score: 0.7143
+   📊 Max Similarity Score simplified: 0.7143
+   🔀 Symbolic Difference: -3.0*r + 2*x - 1.0
+   Actions: (('term_combination',), 'Divide by coefficient')
+   Terms: ((2, 3*r), Eq(x, (3*r + 2)/2))
+   🔎 Variable Factor Error: r
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of r
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(1.5*r + 1.0, x)
+   ✅ Best Matching to simplified target: Eq(1.5*r + 1.0, x)
+   📊 Max Similarity Score: 0.8165
+   📊 Max Similarity Score simplified: 0.8165
+   🔀 Symbolic Difference: 1.0
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((-2*x,), -2*x)
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 1.0
+
+=== Rearranged Equations ===
+   🔄 -3.0*r = 2.0 - 2.0*x 
+   🔄 3.0*r = 2.0*x - 2.0 
+   🔄 -3.0*r + 2.0*x = 2.0 
+   🔄 3.0*r - 2.0*x + 2.0 = 0 
+   🔄 -3*r + 2*x - 2 = 0 
+   🔄 0 = -1*3*r + 2*x - 2 
+   🔄 -3.0*r + 2.0*x - 2.0 = 0 
+   🔄 3.0*r + 2.0 = 2.0*x 
+   🔄 2*x = 3*r + 2 
+   🔄 2 = -3*r + 2*x 
+   🔄 r = (2 - 2*x)/(-3) 
+   🔄 0 = -3.0*r + 2.0*x - 2.0 
+   🔄 -3*r + 2*x = 2 
+   🔄 r = 2*x/3 - 2/3 
+   🔄 2.0*x - 2.0 = 3.0*r 
+   🔄 2 = -3*r + 2*x 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 3*r = 2*x - 2 
+   🔄 -3*r - 2 = -2*x 
+   🔄 -3*r + 2*x = 2 
+   🔄 -1*2*x + 2 = -3*r + 0 
+   🔄 2 - 2*x = -1*3*r 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 -3.0*r - 2.0 = -2.0*x 
+   🔄 x = (3*r + 2)/2 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 -3*r - 2 = -2*x 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 -3*r = 2 - 2*x 
+   🔄 2*x = 3*r + 2 
+   🔄 x = 1.5*r + 1.0 
+   🔄 0 = 3.0*r - 2.0*x + 2.0 
+   🔄 x = 3*r/2 + 1 
+   🔄 -2*x = -3*r - 2 
+   🔄 2.0 - 2.0*x = -3.0*r 
+   🔄 2*x/3 - 2/3 = r 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 3*r - 1*2*x = -2 
+   🔄 3.0*r - 2.0*x = -2.0 
+   🔄 2*x - 2 = 3*r 
+   🔄 2 - 2*x = -1*3*r 
+   🔄 0 = -3*r + 2*x - 2 
+   🔄 0.67*x - 0.67 = r 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 3*r - 2*x = -2 
+   🔄 r = 0.67*x - 0.67 
+   🔄 3*r - 2*x + 2 = 0 
+   🔄 3*r/2 + 1 = x 
+   🔄 0 = 3*r - 2*x + 2 
+   🔄 -3*r + 2*x - 2 = 0 
+   🔄 2 = -3*r + 2*x 
+   🔄 2.0 = -3.0*r + 2.0*x 
+   🔄 -2.0 = 3.0*r - 2.0*x 
+   🔄 3*r - 2*x = -2 
+   🔄 -2.0*x = -3.0*r - 2.0 
+   🔄 x = (-3*r - 1*2)/(-2) 
+   🔄 -1*2*x + 2 = -3*r 
+   🔄 2.0*x = 3.0*r + 2.0 
+   🔄 2 - 2*x = -3*r 
+   🔄 1.5*r + 1.0 = x 
+   🔄 -2 = 3*r - 2*x 
+   🔄 -2 = 3*r - 2*x 
+   🔄 -3*r + 2*x - 2 = 0 
+   🔄 3*r + 2 = 2*x 
+   🔄 r = (2*x - 1*2)/3 
+   🔄 3*r + 2 = 2*x 
+   🔄 -2*x = -3*r - 2 
+
+📌 Total Rearrangements: 68
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 21 -Comparison Results for: 
+ t0: 2*m + 5=0 and 
+ t1: 3*m + 5=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2*m + 5, 0)
+   ✅ Best Matching to simplified target: Eq(2*m + 5, 0)
+   📊 Max Similarity Score: 0.9852
+   📊 Max Similarity Score simplified: 0.9852
+   🔀 Symbolic Difference: -m
+   Actions: ('Sbutract term',)
+   Terms: (0,)
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(2*m + 5, 0)
+   ✅ Best Matching to simplified target: Eq(2*m + 5, 0)
+   📊 Max Similarity Score: 0.8182
+   📊 Max Similarity Score simplified: 0.8182
+   🔀 Symbolic Difference: -m
+   Actions: ('Sbutract term',)
+   Terms: (0,)
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(5, -2*m + 0)
+   ✅ Best Matching to simplified target: Eq(5, -2*m + 0)
+   📊 Max Similarity Score: 0.5000
+   📊 Max Similarity Score simplified: 0.5000
+   🔀 Symbolic Difference: -m
+   Actions: ('Sbutract term',)
+   Terms: (0,)
+   🔎 Variable Factor Error: m
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of m
+
+=== Rearranged Equations ===
+   🔄 -2*m - 5 = 0 
+   🔄 -2.0*m - 5.0 = 0 
+   🔄 5 = -2*m + 0 
+   🔄 2*m + 5 = 0 
+   🔄 5 = -2*m 
+   🔄 m = -5/2 
+   🔄 2.0*m + 5.0 = 0 
+   🔄 0 = -2*m - 5 + 0 
+   🔄 m = 5/(-2) 
+   🔄 -2.5 = m 
+   🔄 0 = 2*m + 0 + 5 
+   🔄 m = (0 + 5)/(-2) 
+   🔄 2*m + 0 + 5 = 0 
+   🔄 0 = 2.0*m + 5.0 
+   🔄 -5.0 = 2.0*m 
+   🔄 0 = -2*m - 5 + 0 
+   🔄 -2*m - 5 + 0 = 0 
+   🔄 2*m = -5 
+   🔄 2*m = -5 + 0 
+   🔄 0 = -2*m - 5 
+   🔄 m = (-5 + 0)/2 
+   🔄 -2*m - 5 + 0 = 0 
+   🔄 -2*m = 5 
+   🔄 -2*m = 0 + 5 
+   🔄 2*m + 0 + 5 = 0 
+   🔄 0 = 2*m + 5 
+   🔄 m = -5/2 
+   🔄 -5/2 = m 
+   🔄 5 = -2*m + 0 
+   🔄 2.0*m = -5.0 
+   🔄 -5 = 2*m + 0 
+   🔄 0 = -2*m - 5 
+   🔄 -2*m - 5 = 0 
+   🔄 0 = -2.0*m - 5.0 
+   🔄 -2.0*m = 5.0 
+   🔄 0 = -1*2*m - 5 
+   🔄 0 = 2*m + 5 
+   🔄 -5 + 0 = 2*m 
+   🔄 2*m + 0 = -5 
+   🔄 m = -2.5 
+   🔄 -2*m + 0 = 5 
+   🔄 2*m + 5 = 0 
+   🔄 -5/2 = m 
+   🔄 5.0 = -2.0*m 
+   🔄 0 + 5 = -2*m 
+   🔄 -5 = 2*m 
+   🔄 0 = 2*m + 0 + 5 
+
+📌 Total Rearrangements: 47
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 22 -Comparison Results for: 
+ t0: 2*x=1 and 
+ t1: x=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(2*x, 1)
+   ✅ Best Matching to simplified target: Eq(2*x, 1)
+   📊 Max Similarity Score: 0.6167
+   📊 Max Similarity Score simplified: 0.6167
+   🔀 Symbolic Difference: x - 1
+   Actions: ('term_combination', 'convert_to_decimals')
+   Terms: ()
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(1, 2*x)
+   ✅ Best Matching to simplified target: Eq(1, 2*x)
+   📊 Max Similarity Score: 0.5556
+   📊 Max Similarity Score simplified: 0.5556
+   🔀 Symbolic Difference: 1 - 3*x
+   Actions: ('term_combination',)
+   Terms: ()
+   🔎 Variable Factor Error: x
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(x, -1/(-2))
+   ✅ Best Matching to simplified target: Eq(x, -1/(-2))
+   📊 Max Similarity Score: 0.7071
+   📊 Max Similarity Score simplified: 0.7071
+   🔀 Symbolic Difference: -1/2
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((-1,), Eq(x, -1/(-2)))
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of -0.5
+
+=== Rearranged Equations ===
+   🔄 x = -1/(-2) 
+   🔄 2.0*x - 1.0 = 0 
+   🔄 2*x - 1 = 0 
+   🔄 0.50 = x 
+   🔄 -1 = -2*x 
+   🔄 1 - 2*x = 0 
+   🔄 x = 1/2 
+   🔄 1.0 - 2.0*x = 0 
+   🔄 x = 0.50 
+   🔄 1 = 2*x 
+   🔄 -2*x = -1 
+   🔄 2*x = 1 
+   🔄 x = 1/2 
+   🔄 0 = 2.0*x - 1.0 
+   🔄 0 = 2*x - 1 
+   🔄 2*x - 1 = 0 
+   🔄 2.0*x = 1.0 
+   🔄 1/2 = x 
+   🔄 0 = 2*x - 1 
+   🔄 0 = 1 - 2*x 
+   🔄 0 = 1.0 - 2.0*x 
+   🔄 0 = 1 - 2*x 
+   🔄 1.0 = 2.0*x 
+   🔄 -1 = -1*2*x 
+   🔄 -2.0*x = -1.0 
+   🔄 -1.0 = -2.0*x 
+   🔄 0 = 1 - 2*x 
+   🔄 1 - 2*x = 0 
+
+📌 Total Rearrangements: 28
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 23 -Comparison Results for: 
+ t0: -4*o - 4*y=2*y + 4 and 
+ t1: 0=-1:
+=== Similarity Analysis ===
+ 24 -Comparison Results for: 
+ t0: -f - 1=0 and 
+ t1: -5*f - 4=0:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-f - 1*1, 0)
+   ✅ Best Matching to simplified target: Eq(-f - 1, 0)
+   📊 Max Similarity Score: 0.9226
+   📊 Max Similarity Score simplified: 0.9119
+   🔀 Symbolic Difference: 4*f + 3
+   Actions: ('Sbutract term',)
+   Terms: (-f,)
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(1, -f + 0)
+   ✅ Best Matching to simplified target: Eq(1, -f + 0)
+   📊 Max Similarity Score: 0.8333
+   📊 Max Similarity Score simplified: 0.8333
+   🔀 Symbolic Difference: 6*f + 5
+   Actions: ('term_combination', 'Simplify')
+   Terms: (-1*1, 0)
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(1, -f + 0)
+   ✅ Best Matching to simplified target: Eq(1, -f + 0)
+   📊 Max Similarity Score: 0.0000
+   📊 Max Similarity Score simplified: 0.0000
+   🔀 Symbolic Difference: 6*f + 5
+   Actions: ('term_combination', 'Simplify')
+   Terms: (-1*1, 0)
+   🔎 Variable Factor Error: f
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of f
+
+=== Rearranged Equations ===
+   🔄 1 = -f + 0 
+   🔄 0 = f + 0 + 1 
+   🔄 f + 1.0 = 0 
+   🔄 -f - 1 = 0 
+   🔄 -1.0 = f 
+   🔄 0 = f + 0 + 1 
+   🔄 1/(-1) = f 
+   🔄 0 = f + 1.0 
+   🔄 -f = 1 
+   🔄 0E-110 = f + 1.0 
+   🔄 -1*1 = f + 0 
+   🔄 0 = -f - 1 + 0 
+   🔄 f + 1 = 0 
+   🔄 1.0 = -f 
+   🔄 -f = 0 + 1 
+   🔄 f + 0 = -1*1 
+   🔄 -f - 1*1 = 0 
+   🔄 f + 0 + 1 = 0 
+   🔄 0 = f + 1 
+   🔄 0 + 1 = -f 
+   🔄 f + 0 = -1 
+   🔄 -f - 1 + 1 = 1 
+   🔄 -f = 1.0 
+   🔄 f = 1/(-1) 
+   🔄 -f + 0 = 1 
+   🔄 0 = -f - 1 
+   🔄 -f - 1*1 + 0 = 0 
+   🔄 -f - 1*1 + 1 = 0 + 1*1 
+   🔄 -1*1 + 0 = f 
+   🔄 0 = -f - 1*1 
+   🔄 -1 = f + 0 
+   🔄 0 = -f - 1*1 + 0 
+   🔄 0 = -f - 1.0 
+   🔄 f = -1.0 
+   🔄 f = -1 
+   🔄 -1 + 0 = f 
+   🔄 1 = -f 
+   🔄 -1 = f 
+   🔄 f = -1*1 + 0 
+   🔄 0 = f + 1 
+   🔄 -1 + 1*1 = f + 1 
+   🔄 -f - 1 + 0 = 0 
+   🔄 -1 + 1 = f + 0 + 1*1 
+   🔄 f + 1 = 0 
+   🔄 f = (0 + 1)/(-1) 
+   🔄 f + 0 + 1 = 0 
+   🔄 -f - 1.0 = 0 
+   🔄 f = -1 + 0 
+   🔄 -1 + 1 = f + 1 
+   🔄 -1 = f + 0 
+
+📌 Total Rearrangements: 50
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 25 -Comparison Results for: 
+ t0: x*(1 + 2*a)=-4 and 
+ t1: x=-4/(1 + 2*a):
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(-4/(2*a + 1), x)
+   ✅ Best Matching to simplified target: Eq(-4/(2*a + 1), x)
+   📊 Max Similarity Score: 0.8422
+   📊 Max Similarity Score simplified: 0.8422
+   🔀 Symbolic Difference: 2*(-x*(2*a + 1) - 4)/(2*a + 1)
+   Actions: (('Sbutract term', 'Divide by coefficient'), 'Divide by coefficient')
+   Terms: ((-4, x*(2*a + 1)), x)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq(-4/(2*a + 1), x)
+   ✅ Best Matching to simplified target: Eq(-4/(2*a + 1), x)
+   📊 Max Similarity Score: 1.0000
+   📊 Max Similarity Score simplified: 1.0000
+   🔀 Symbolic Difference: 2*(-x*(2*a + 1) - 4)/(2*a + 1)
+   Actions: (('Sbutract term', 'Divide by coefficient'), 'Divide by coefficient')
+   Terms: ((-4, x*(2*a + 1)), x)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(-x*(2*a + 1)/(-2*a - 1), 4/(-2*a - 1))
+   ✅ Best Matching to simplified target: Eq(-x*(2*a + 1)/(-2*a - 1), 4/(-2*a - 1))
+   📊 Max Similarity Score: 1.0000
+   📊 Max Similarity Score simplified: 1.0000
+   🔀 Symbolic Difference: 0
+   Actions: ('Sbutract term', 'Divide by coefficient', 'Simplify')
+   Terms: (-4, x*(2*a + 1))
+   ❌ Suggested Errors:
+      - Arithmetic error: Constant difference of 0.0
+
+=== Rearranged Equations ===
+   🔄 0 = x*(2*a + 1) + 4 
+   🔄 x*(2*a + 1) = -4 
+   🔄 0 = -x*(2*a + 1) - 4 
+   🔄 4 = -x*(2*a + 1) 
+   🔄 4 = -x*(2*a + 1) 
+   🔄 4.0 = -x*(2.0*a + 1.0) 
+   🔄 -x*(2.0*a + 1.0) - 4.0 = 0 
+   🔄 4.0/(-2.0*a - 1.0) = -x*(2.0*a + 1.0)/(-2.0*a - 1.0) 
+   🔄 -x*(2.0*a + 1.0) = 4.0 
+   🔄 -4/(2*a + 1) = x 
+   🔄 0 = x*(2*a + 1) + 4 
+   🔄 -4.0/(2.0*a + 1.0) = x 
+   🔄 0 = -x*(2.0*a + 1.0) - 4.0 
+   🔄 4/(-2*a - 1) = -x*(2*a + 1)/(-2*a - 1) 
+   🔄 x = -4.0/(2.0*a + 1.0) 
+   🔄 x*(2*a + 1) + 4 = 0 
+   🔄 -x*(2.0*a + 1.0)/(-2.0*a - 1.0) = -2.0*a - 1.0 
+   🔄 -x*(2*a + 1) - 4 = 0 
+   🔄 a = (-x - 4)/(2*x) 
+   🔄 x = -2*a - 1 
+   🔄 x = 1 - 2*a 
+   🔄 -x*(2*a + 1) = 4 
+   🔄 x = 1.0 - 2.0*a 
+   🔄 -x*(2*a + 1) - 4 = 0 
+   🔄 0 = x*(2.0*a + 1.0) + 4.0 
+   🔄 x = -2.0*a - 1.0 
+   🔄 0 = -x*(2*a + 1) - 4 
+   🔄 x*(2.0*a + 1.0) = -4.0 
+   🔄 -x*(2.0*a + 1.0)/(-2.0*a - 1.0) = 4.0/(-2.0*a - 1.0) 
+   🔄 0 = -x*(2*a + 1) - 4 
+   🔄 x*(2*a + 1) + 4 = 0 
+   🔄 -x*(2*a + 1)/(-2*a - 1) = 4*a/(-2) - 1*1 
+   🔄 x = -4*a/2 + 1 
+   🔄 -4.0 = x*(2.0*a + 1.0) 
+   🔄 -x*(2*a + 1)/(-2*a - 1) = 4/(-2*a - 1) 
+   🔄 x*(2.0*a + 1.0) + 4.0 = 0 
+   🔄 -4 = x*(2*a + 1) 
+
+📌 Total Rearrangements: 37
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 26 -Comparison Results for: 
+ t0: -4*x=7 + a*x and 
+ t1: x=-7/4 + a*x:
+🔍 Similarity Method: Structural
+   ✅ Best Matching Equation: Eq(x, ((-a)*x - 1*7)/4)
+   ✅ Best Matching to simplified target: Eq(x, -a*x/4 - 7/4)
+   📊 Max Similarity Score: 0.8355
+   📊 Max Similarity Score simplified: 0.8896
+   🔀 Symbolic Difference: 5*a*x/4
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((-4*x,), Eq(x, (a*x + 7)/(-4)))
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Jaccard
+   ✅ Best Matching Equation: Eq((-4*x - 7)/a, x)
+   ✅ Best Matching to simplified target: Eq(-a*x/4 - 7/4, x)
+   📊 Max Similarity Score: 1.0000
+   📊 Max Similarity Score simplified: 0.8462
+   🔀 Symbolic Difference: a*x - 2*x - 7/4 - 4*x/a - 7/a
+   Actions: (('Sbutract term', 'Sbutract term'), 'Divide by coefficient')
+   Terms: ((a*x, -4*x), a*x)
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+🔍 Similarity Method: Cosine
+   ✅ Best Matching Equation: Eq(x, (a*x + 7)/(-4))
+   ✅ Best Matching to simplified target: Eq(x, (a*x + 7)/(-4))
+   📊 Max Similarity Score: 0.6667
+   📊 Max Similarity Score simplified: 0.6667
+   🔀 Symbolic Difference: 5*a*x/4
+   Actions: (('term_combination',), 'Divide by coefficient', 'Simplify')
+   Terms: ((-4*x,), Eq(x, (a*x + 7)/(-4)))
+   🔎 Variable Factor Error: a
+   ❌ Suggested Errors:
+      - There is an error calculatin the factor of x
+      - There is an error calculatin the factor of a
+
+=== Rearranged Equations ===
+   🔄 -a*x - 4*x = 7 
+   🔄 0 = a*x + 4.0*x + 7.0 
+   🔄 0 = a*x + 4*x + 7 
+   🔄 x = -(4.0*x + 7.0)/a 
+   🔄 (-4*x - 7)/a = x 
+   🔄 -7 = x*(a + 4) 
+   🔄 (-4*x - 7)/a = x 
+   🔄 -7 = a*x + 4*x 
+   🔄 -a*x - 7.0 = 4.0*x 
+   🔄 x = (-4*x - 7)/a 
+   🔄 0 = a*x + 4*x + 7 
+   🔄 4*x = -a*x - 7 
+   🔄 -a*x = 4*x + 7 
+   🔄 x = -7/(a + 4) 
+   🔄 a = -4 - 7/x 
+   🔄 -a*x/4 - 7/4 = x 
+   🔄 -0.25*a*x - 1.8 = x 
+   🔄 x = 4 - 7/a 
+   🔄 -4.0*x = a*x + 7.0 
+   🔄 -a*x - 4.0*x - 7.0 = 0 
+   🔄 0 = a*x + 4*x + 7 
+   🔄 x = -0.25*a*x - 1.8 
+   🔄 -4*x - 7 = a*x 
+   🔄 x = (a*x + 7)/(-4) 
+   🔄 4.0*x + 7.0 = -a*x 
+   🔄 x = (-4.0*x - 7.0)/a 
+   🔄 a*x + 4*x + 7 = 0 
+   🔄 4*x + 7 = -a*x 
+   🔄 -(4*x + 7)/a = x 
+   🔄 (4*x + 7)/((-a)) = x 
+   🔄 -(4.0*x + 7.0)/a = x 
+   🔄 -4*x = a*x + 7 
+   🔄 x*(a + 4.0) = -7.0 
+   🔄 -7.0 = x*(a + 4.0) 
+   🔄 x = -(4*x + 7)/a 
+   🔄 -7.0 = a*x + 4.0*x 
+   🔄 -a*x = 4*x + 7 
+   🔄 x = ((-a)*x - 1*7)/4 
+   🔄 -a*x - 4.0*x = 7.0 
+   🔄 -a*x - 4*x - 7 = 0 
+   🔄 4.0*x = -a*x - 7.0 
+   🔄 a*x = -4.0*x - 7.0 
+   🔄 (-a)*x = 4*x + 7 
+   🔄 -(4*x + 7)/a = x 
+   🔄 x = -7.0/(a + 4.0) 
+   🔄 x*(-a - 4) = 7 
+   🔄 -4*x - 7 = a*x 
+   🔄 x = 4 - 7/a 
+   🔄 a*x = -4*x - 7 
+   🔄 x = -4.0 - 7.0/a 
+   🔄 x = (-4*x - 7)/a 
+   🔄 x = (4*x + 7)/((-a)) 
+   🔄 4*x + 7 = -a*x 
+   🔄 x = -4 - 7/a 
+   🔄 -a*x - 7 = 4*x 
+   🔄 x = 4.0 - 7.0/a 
+   🔄 -x*(a + 4.0) = 7.0 
+   🔄 x = -1*4 + 7/((-a)) 
+   🔄 7.0/(-a - 4.0) = x 
+   🔄 -7/(a + 4) = x 
+   🔄 7.0 = x*(-a - 4.0) 
+   🔄 x = (-4*x - 1*7)/a 
+   🔄 a*x + 7 = -4*x 
+   🔄 (-4.0*x - 7.0)/a = x 
+   🔄 0 = -a*x - 4.0*x - 7.0 
+   🔄 a*x + 4.0*x + 7.0 = 0 
+   🔄 0 = -a*x - 4*x - 7 
+   🔄 x = 7.0/(-a - 4.0) 
+   🔄 -x*(a + 4) = 7 
+   🔄 x = 7/(-a - 4) 
+   🔄 -a*x - 4*x = 7 
+   🔄 x*(a + 4) = -7 
+   🔄 a*x + 4*x + 7 = 0 
+   🔄 a*x + 4*x = -7 
+   🔄 -a*x = 4.0*x + 7.0 
+   🔄 x*(-a - 4.0) = 7.0 
+   🔄 a*x + 7.0 = -4.0*x 
+   🔄 a*x + 4.0*x = -7.0 
+   🔄 0 = -a*x - 4*x - 7 
+   🔄 -4.0*x - 7.0 = a*x 
+   🔄 x = -a*x/4 - 7/4 
+   🔄 7 = x*(-a - 4) 
+   🔄 7.0 = -a*x - 4.0*x 
+   🔄 -a*x - 4*x - 7 = 0 
+   🔄 -7.0/(a + 4.0) = x 
+   🔄 a*x = -4*x - 7 
+   🔄 -a*x + 0 = 4*x + 7 
+   🔄 7 = -a*x - 4*x 
+   🔄 7/(-a - 4) = x 
+   🔄 x = -(4*x + 7)/a 
+
+📌 Total Rearrangements: 90
+--------------------------------------
+--------------------------------------
+--------------------------------------
+
+=== Similarity Analysis ===
+ 27 -Comparison Results for: 
+ t0: -9*t - 2=5*o and 
+ t1: (-9*t)/5 (- 2/5)=o:
+=== Similarity Analysis ===
+ 28 -Comparison Results for: 
+ t0: x=3/2*x and 
+ t1: 1=3/2:
