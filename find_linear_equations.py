@@ -47,6 +47,7 @@ def is_linear(expr, variables):
 
 
 
+
 # Function to extract features
 def extract_features(expr1, expr2, expr3, expr4):
     # Parse expressions

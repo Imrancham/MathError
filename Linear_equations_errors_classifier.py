@@ -1,17 +1,62 @@
+import csv
+from itertools import combinations
+import os
 import pandas as pd
 import sympy as sp
-from sympy import Eq, simplify, symbols, Add, S, count_ops, Symbol
-from itertools import combinations
+from sympy import Eq, simplify, Add, S, Symbol
 import re
 from difflib import SequenceMatcher
 from functools import lru_cache
-from collections import Counter
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Set, Dict
-from sympy.parsing.latex import parse_latex
 import logging
+from sympy.parsing.latex import parse_latex
+
+#def parse_latex(latex_str: str) -> List[Eq]:
+#    """Handle LaTeX expressions with logical operators"""
+#    from sympy.parsing.latex import parse_latex
+#    import re
+#    
+#    # Split on logical operators (\vee, \wedge, etc.)
+#    split_expr = re.split(r'\\vee|\\wedge', latex_str)
+#    
+#    equations = []
+#    for expr in split_expr:
+#        try:
+#            eq = parse_latex(expr.strip())
+#            equations.append(eq)
+#        except Exception as e:
+#            print(f"Could not parse: {expr}")
+#    
+#    return equations
+
+class LinearEquation:
+    """Find linear equations"""
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        self._variables = sp.symbols('s r b c w n y m d v o p q x a f t')
+    
+    def is_linear(self, expr: sp.Expr) -> bool:
+        """Check if an expression is linear while also ensuring no fractions or square roots"""
+        try:
+            poly = expr.as_poly()
+            if poly is None or poly.degree() != 1:
+                return False
+            
+            # Check for fractions
+            if any(term.is_Pow and term.exp.is_Number and term.exp < 0 for term in expr.atoms(sp.Pow)):
+                return False
+
+            # Check for square roots
+            if any(term.is_Pow and term.exp == sp.Rational(1, 2) for term in expr.atoms(sp.Pow)):
+                return False
+
+            return True
+        except Exception as e:
+            self.logger.error(f"Linear check failed: {str(e)}")
+            return False
 
 class EquationPreprocessor:
     """Handles preprocessing of equation strings"""
@@ -59,43 +104,245 @@ class EquationParser:
             evaluate=False
         )
 
-class RearrangementGenerator:
-    """Generates algebraic rearrangements of equations"""
-    def __init__(self, max_terms: int = 4):
-        self.max_terms = max_terms
-        self.logger = logging.getLogger(__name__)
-
-
-    def generate(self, equation: Eq) -> Set[Eq]:
-        """Generate all valid rearrangements of an equation"""
-        canonical = simplify(equation.lhs - equation.rhs)
-        
-        # Extract terms from LHS and subtract RHS terms manually
-        lhs_terms = equation.lhs.args if equation.lhs.func == sp.Add else (equation.lhs,)
-        rhs_terms = equation.rhs.args if equation.rhs.func == sp.Add else (equation.rhs,)
-
-        # Combine terms: LHS - RHS = LHS + (-RHS_terms)
-        unevaluated_terms = list(lhs_terms) + [-term for term in rhs_terms]
-        canonical_expr = sp.Add(*unevaluated_terms, evaluate=False)
-        # Build the unevaluated expression
-
-        rearrangements = set()
-
-        rearrangements.update(self._generate_term_combinations(canonical))
-        # get equatoins set from the rearrangements
-        
-        rearrangements.update(self._generate_term_combinations(canonical_expr))
-        rearrangements.update(self.generate_all_transformations(equation))
-
-        equations = {eq for eq, _, _ in rearrangements} 
-        rearrangements.update(self._divid_singel_term_by_coff(rearrangements))
-        rearrangements.update(self._convert_to_decimals(rearrangements))
-        rearrangements.update(self._solve_for_variables(canonical, equations))
-
-
-        return rearrangements
+class TransformationsGenerator:
+    """Generates equation transformations with transformation tracking"""
     
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+    
+    def generate(self, equation: Eq) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
+        """Generate all possible equation transformations with transformation tracking"""
+        transformations = set()
+        try:
+            # Add original equation with empty transformation history
+            canonical = simplify(equation.lhs - equation.rhs)
+             # Extract terms from LHS and subtract RHS terms manually
+            lhs_terms = equation.lhs.args if equation.lhs.func == sp.Add else (equation.lhs,)
+            rhs_terms = equation.rhs.args if equation.rhs.func == sp.Add else (equation.rhs,)
 
+            # Combine terms: LHS - RHS = LHS + (-RHS_terms)
+            unevaluated_terms = list(lhs_terms) + [-term for term in rhs_terms]
+            canonical_expr = sp.Add(*unevaluated_terms, evaluate=False)
+
+            transformations.add((equation, tuple(), tuple()))
+            transformations.update(self._generate_term_combinations(canonical))
+            transformations.update(self._generate_term_combinations(canonical_expr))
+            transformations.update(self.generate_all_transformations(equation))
+
+            transformations.update(self._divid_singel_term_by_coff(transformations))
+            
+            # Get all terms in canonical form (lhs - rhs = 0)
+            terms = self._get_terms(equation)
+            
+            # Generate moves for each term
+            for term in terms:
+                moved_equations = self._move_term(equation, term, terms)
+                for eq, actions, _terms in moved_equations:
+                    transformations.add((eq, actions, _terms))
+                #    equation = eq  #
+            
+            # Generate divisions for each variable
+            variables = equation.free_symbols
+            new_set = set()
+            for eq, actions, terms in transformations:
+                if len(Add.make_args(eq.lhs)) ==1:
+                    for var in variables:
+                        if eq.lhs.has(var):
+                            coeff = eq.lhs.as_coefficients_dict().get(var, None)
+                            if coeff and coeff != 1:
+                                new_set.update(self._divide_factor(eq, var, actions, terms))
+            
+            transformations.update(new_set)
+
+
+
+            for var in variables:
+            #    transformations.update(self._divide_factor(equation, var))
+                transformations.update(self._solve_for_variable(equation, var))
+
+            # Convert to decimal representations
+            new_set_decimal = set()
+            for eq, actions, terms in transformations:
+                new_set_decimal.add(self._convert_to_decimals(eq, actions, terms))
+            transformations.update(new_set_decimal)
+
+            
+            
+            # Filter out invalid equations
+            # Remove non equivalent equations
+            valid_transformations = {
+                (eq, tuple(actions), tuple(terms))
+                for eq, actions, terms in transformations
+                if self._is_valid_equation(equation, eq)
+            }
+            
+            return transformations
+            
+        except Exception as e:
+            self.logger.error(f"Generation failed: {str(e)}")
+            return set()
+    
+    def _get_terms(self, equation: Eq) -> List[sp.Expr]:
+        """Extract terms from both sides with proper sign handling"""
+        try:
+            lhs_terms = Add.make_args(equation.lhs)
+            rhs_terms =  Add.make_args(equation.rhs)
+            return list(lhs_terms) + list(rhs_terms)
+        except Exception as e:
+            self.logger.error(f"Term extraction failed: {str(e)}")
+            return []
+    
+    def _move_term(self, equation: Eq, expr: sp.Expr, terms: List[sp.Expr], 
+               actions: List[str] = None, moved_terms: List[sp.Expr] = None) -> Set[Tuple[Eq, Tuple[str, ...], Tuple[sp.Expr, ...]]]:  
+        """Move a term between sides with transformation tracking"""
+        results = set()
+
+        # Initialize actions and moved_terms lists if not provided
+        if actions is None:
+            actions = []
+        if moved_terms is None:
+            moved_terms = []
+
+        # Remove term from terms (creating a new list)
+        new_terms = [t for t in terms if t != expr]
+
+        try:
+            # Create both simplified and unsimplified forms
+            str_lhs = str(equation.lhs)
+            str_rhs = str(equation.rhs)
+            str_expr = str(expr)
+
+            # Append action and moved term
+            new_actions = actions + [f"move term '{expr}'"]
+            new_moved_terms = moved_terms + [expr]
+
+            # Convert to tuples for hashing
+            new_actions_tuple = tuple(new_actions)
+            new_moved_terms_tuple = tuple(new_moved_terms)
+
+            new_lhs = sp.parse_expr(f"{str_lhs} - {str_expr}", evaluate=False)
+            new_rhs = sp.parse_expr(f"{str_rhs} - {str_expr}", evaluate=False)
+
+            lhs_list = [xpr.expand(mul=True, evaluate=False) for xpr in sp.Add.make_args(new_lhs)] 
+            rhs_list = [xpr.expand(mul=True, evaluate=False) for xpr in sp.Add.make_args(new_rhs)] 
+            seme_simpl_lhs = sp.Add(*lhs_list, evaluate=False)
+            seme_simpl_rhs = sp.Add(*rhs_list, evaluate=False)
+            # Generate different forms
+            unsimplified = Eq(new_lhs, new_rhs, evaluate=False)  # Unsimplified form
+            simplified = Eq(sp.simplify(new_lhs), sp.simplify(new_rhs))  # Simplified form
+            sem_simplified = Eq(sp.simplify(new_lhs), new_rhs) if expr in Add.make_args(equation.lhs) else Eq(new_lhs, sp.simplify(new_rhs))
+            sem_simplified_2 = Eq(seme_simpl_lhs, seme_simpl_rhs, evaluate=False)
+            # **Check if equation already exists in results before adding**
+            for eq in [unsimplified, simplified, sem_simplified, sem_simplified_2]:
+                if not any(existing_eq == eq for existing_eq, _, _ in results):
+                    results.add((eq, new_actions_tuple, new_moved_terms_tuple))
+
+            # Recursively call _move_term for remaining terms
+            if new_terms:
+                new_expr = new_terms[0]  # First term in new_terms
+                results.update(self._move_term(
+                    unsimplified, new_expr, new_terms, new_actions, new_moved_terms
+                ))
+
+        except Exception as e:
+            self.logger.error(f"Term move failed: {str(e)}")
+
+        return results
+
+    def _divide_factor(self, equation: Eq, variable: Symbol, actions: List[str] = None,  moved_terms: List[sp.Expr] = None) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
+        """Divide equation by variable's coefficient with tracking"""
+        results = set()
+        try:
+            coeff = equation.lhs.coeff(variable)
+            
+            if coeff == 0:
+                return results
+                
+            # Create divided forms
+            new_lhs = equation.lhs / coeff
+            new_rhs = sp.parse_expr(f"({equation.rhs}) / ({coeff})", evaluate=False)
+
+            rhs_list = [(xpr/coeff).expand(mul=True, evaluate=False) for xpr in sp.Add.make_args(equation.rhs)] 
+            seme_simpl_lhs = sp.Add(*rhs_list, evaluate=False)
+
+            # Ensure actions and moved_terms are initialized
+            if actions is None:
+                actions = []
+            if moved_terms is None:
+                moved_terms = []
+
+            # Append action and moved term
+            new_actions = actions + (f"divide_factor '{equation.lhs}'",)
+            new_moved_terms = moved_terms + (coeff,)
+
+            # Convert to tuples for hashing
+            new_actions_tuple = tuple(new_actions)
+            new_moved_terms_tuple = tuple(new_moved_terms)
+            
+            seme_simplified = Eq(new_lhs, seme_simpl_lhs)
+            # Unsimpified form
+            unsimplified = Eq(new_lhs, new_rhs, evaluate=False)
+            simplified = Eq(new_lhs, equation.rhs / coeff)
+            for eq in [unsimplified, simplified, seme_simplified]:
+                results.add((eq, new_actions_tuple, new_moved_terms_tuple ))
+            
+          
+
+            
+            
+        except Exception as e:
+            self.logger.error(f"Division failed: {str(e)}")
+        return results    
+    
+    def _solve_for_variable(self, equation: Eq, variable: Symbol) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
+        """Solve equation for variable with transformation tracking"""
+        results = set()
+        try:
+            
+            for sol in sp.solve(equation, variable):
+                results.add((Eq(variable, sol), ("solve_variable",), (variable,)))
+                
+        except Exception as e:
+            self.logger.error(f"Solving failed: {str(e)}")
+        return results
+    
+    def _is_valid_equation(self, equation: Eq, transformation:Eq) -> bool:
+        """Validate transformed equation"""
+        try:
+            # check if the transformed equation is not equivilant to the original equation
+            # ??????
+
+            return not equation.is_Identity and \
+                   equation.lhs != equation.rhs and \
+                   not any(arg.is_Boolean for arg in equation.args)
+        except Exception:
+            return False
+
+    def _convert_to_decimals(self, equation: Eq, actions: List[str] = None,  terms: List[sp.Expr] = None) -> Tuple[Eq, List[str], List[sp.Expr]]:
+        """Create decimal representations of equations with exactly two decimals."""
+        decimal_equations = set()
+        try:
+                def format_term(term):
+                    """Format numbers in the term but keep symbols unchanged."""
+                    if term.is_Number:
+                        return int(term) if term == int(term) else round(term, 2)
+                    return term  # Keep symbols unchanged
+                
+                lhs_rounded = sp.simplify(equation.lhs.replace(lambda expr: expr.is_Number, format_term))
+                rhs_rounded = sp.simplify(equation.rhs.replace(lambda expr: expr.is_Number, format_term))
+                new_eq = Eq(sp.sympify(lhs_rounded), sp.sympify(rhs_rounded))
+
+                # Append action and moved term
+                new_actions = actions + (f"convert_to_decimals ",)
+
+                # Convert to tuples for hashing
+                new_actions_tuple = tuple(new_actions)
+                decimal_equations.add((new_eq, new_actions_tuple ,terms))
+                return (new_eq, new_actions, terms)
+        except Exception as e:
+                # If conversion fails, simply skip this equation.
+                self.logger.error(f"Converting to decimal: {str(e)}")
+        return  (new_eq, new_actions, terms)
 
     def _generate_term_combinations(self, expr: sp.Expr) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
         """Generate term combinations without combining like terms."""
@@ -126,24 +373,8 @@ class RearrangementGenerator:
                     rearrangements.add((Eq(-left, -right, evaluate=False), ("term_combination",), term_tuple))
                     rearrangements.add((Eq(-right, -left, evaluate=False), ("term_combination",), term_tuple))
         return rearrangements
+    
 
-    def _solve_for_variables(self, expr: sp.Expr, equations:set) -> Set[Tuple[Eq, List[str], List[sp.Expr]]]:
-        """Solve equation for variables with enhanced safety"""
-        solutions = set()
-        for var in expr.free_symbols:
-            try:
-                solution = sp.solve(expr, var, dict=True)
-                if solution and isinstance(solution[0], dict):
-                    sol_eq = Eq(var, solution[0][var])
-                    # check if the solution in the rearrangements set
-                    if sol_eq not in equations:
-                        solutions.add((sol_eq, ("solve_variable",), (var,) ))
-
-            except (NotImplementedError, TypeError, KeyError) as e:
-                self.logger.debug(f"Skipping variable {var}: {str(e)}")
-                continue
-        return solutions
-   
     def divide_equation_by_term(self, eq: Eq) -> Eq:
         """Safe division with zero-check"""
         try:
@@ -158,7 +389,7 @@ class RearrangementGenerator:
                 return eq, eq
             eq_divided = Eq(eq.lhs/coff, eq.rhs/coff)
             lhs_str = str(eq.lhs/coff)
-            rhs_str = f"({eq.rhs})/{coff}"
+            rhs_str = f"({eq.rhs})/({coff})"
             new_eq = sp.Eq(sp.sympify(lhs_str), sp.parse_expr(rhs_str, evaluate=False), evaluate=False)
    
             return eq_divided, new_eq
@@ -205,7 +436,7 @@ class RearrangementGenerator:
             self.logger.error(f"divid_singel_term_by_coff: {str(e)}")
             return transformations
 
-    def _convert_to_decimals(self, triples: Set[Tuple[Eq, List[str], List[sp.Expr]]]) -> Set[Eq]:
+    def _convert_to_decimals_2(self, triples: Set[Tuple[Eq, List[str], List[sp.Expr]]]) -> Set[Eq]:
         """Create decimal representations of equations with exactly two decimals."""
         decimal_equations = set()
         eqs = {eq for eq, _, _ in triples}
@@ -391,7 +622,6 @@ class RearrangementGenerator:
             self.logger.error(f"Term extraction failed: {str(e)}")
             return []
     
-  
 class SimilarityStrategy(ABC):
     """Abstract base class for similarity strategies"""
     @abstractmethod
@@ -408,15 +638,25 @@ class StructuralSimilarity(SimilarityStrategy):
         try:
             canon1 = simplify(eq1.lhs - eq1.rhs)
             canon2 = simplify(eq2.lhs - eq2.rhs)
+            canon3 = simplify(-eq2.lhs + eq2.rhs)
              # Handle cases where simplify() returns True or False
             if isinstance(canon1, bool):
                 canon1 = sp.S.Zero
             if isinstance(canon2, bool):
                 canon2 = sp.S.Zero
-            base_score = np.mean([
+            if isinstance(canon3, bool):
+                canon3 = sp.S.Zero
+
+            base_score1 = np.mean([
                 self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.lhs)),
                 self._structural_ratio(sp.srepr(eq1.rhs), sp.srepr(eq2.rhs)),
                 self._structural_ratio(sp.srepr(canon1), sp.srepr(canon2))
+            ])
+
+            base_score11 = np.mean([
+                self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.lhs)),
+                self._structural_ratio(sp.srepr(eq1.rhs), sp.srepr(eq2.rhs)),
+                self._structural_ratio(sp.srepr(canon1), sp.srepr(canon3))
             ])
 
             base_score2 = np.mean([
@@ -424,10 +664,16 @@ class StructuralSimilarity(SimilarityStrategy):
                 self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.rhs)),
                 self._structural_ratio(sp.srepr(canon1), sp.srepr(canon2))
             ])
+
+            base_score22 = np.mean([
+                self._structural_ratio(sp.srepr(eq1.rhs), sp.srepr(eq2.lhs)),
+                self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.rhs)),
+                self._structural_ratio(sp.srepr(canon1), sp.srepr(canon3))
+            ])
             
         
         
-            return max(base_score, base_score2)
+            return max(base_score1, base_score2, base_score11, base_score22)
         except Exception as e:
             logging.error(f"Structural similarity failed: {str(e)}")
             return 0
@@ -489,94 +735,96 @@ class EquationComparator:
     def __init__(self):
         self.preprocessor = EquationPreprocessor()
         self.parser = EquationParser(self.preprocessor)
-        self.rearranger = RearrangementGenerator()
+        self.transformer = TransformationsGenerator()
         self.strategies = {
             'structural': StructuralSimilarity(),
-            'jaccard': JaccardSimilarity(),
-            'cosine': CosineSimilarity()
-        #    'enhanced': EnhancedSimilarity(), 
-        #   'enhanced_structural':EnhancedStructuralSimilarity()
+        #    'jaccard': JaccardSimilarity(),
+        #    'cosine': CosineSimilarity()
         }
 
     def compare(self, eq1_str: str, eq2_str: str) -> Dict:
         """Compare two equations using all strategies"""
         try:
-            eq1_eval,  eq1_raw = self.parser.parse(eq1_str)
-            eq2_eval,  eq2_raw       = self.parser.parse(eq2_str)
+            eq1_eval,  eq1_raw  = self.parser.parse(eq1_str)
+            eq2_eval,  eq2_raw  = self.parser.parse(eq2_str)
         except Exception as e:
             logging.error(f"Equation parsing failed: {str(e)}")
             return {}
 
-        rearrangements = self.rearranger.generate(eq1_eval)
-        rearrangements.update(self.rearranger.generate(eq1_raw))
-        # remove eq2_raw from the set of rearrangements
-        # extract equations actions and terms from the rearrangements
-        equations = {eq for eq, _, _ in rearrangements}
+        transformations = self.transformer.generate(eq1_eval)
+        transformations.update(self.transformer.generate(eq1_raw))
 
+        equations = {eq for eq, _, _ in transformations}
 
-        if eq2_raw in equations:
-            equations.remove(eq2_raw)
+    #    if eq2_raw in equations:
+    #        equations.remove(eq2_raw)
 
         try:
 
             results = {
-                'total_rearrangements': len(equations),
-                'exact_matches': self._find_exact_matches(equations, eq2_raw),
-                'similarities': self._calculate_similarities(
-                    rearrangements, eq2_raw, eq1_eval
-                ),
-                'similarity_parsed_target': self._calculate_similarities(rearrangements, eq2_eval, eq1_eval),
-                'rearrangements':  equations
+                'total_transformations': len(equations),
+            #    'exact_matches': self._find_exact_matches(equations, eq2_raw),
+            #    'similarities': self._calculate_similarities(transformations, eq2_raw, eq1_eval),
+            #    'similarity_parsed_target': self._calculate_similarities(transformations, eq2_eval, eq1_eval),
+                'transformations':  equations
                 
             }
+            results.update(self._calculate_similarities(transformations, eq2_raw, eq1_eval)['structural'])
         except Exception as e:
             logging.error(f"Comparison failed: {str(e)}")
-            return {'exact_matches': [], 'similarities': {}, 'rearrangements': [], 'total_rearrangements': 0}
+            return {'exact_matches': [], 'similarities': {}, 'transformations': [], 'total_transformations': 0}
 
         return results
 
-    def _find_exact_matches(self, rearrangements: Set[Eq], target: Eq) -> List[str]:
+    def _find_exact_matches(self, transformations: Set[Eq], target: Eq) -> List[str]:
         return [
-            str(eq) for eq in rearrangements
-            if simplify(eq.lhs - eq.rhs - (target.lhs - target.rhs)) == 0
+            str(eq) for eq in transformations
+            if simplify(eq.lhs + eq.rhs - (target.lhs + target.rhs)) == 0 # Check the difference between all terms.
         ]
 
-    def _calculate_similarities(self, rearrangements:Set[Tuple[Eq, List[str], List[sp.Expr]]], target: Eq, original_eq: Eq) -> Dict:
+    def _calculate_similarities(self, transformations:Set[Tuple[Eq, List[str], List[sp.Expr]]], target: Eq, original_eq: Eq) -> Dict:
         try:
             results = {}
             target_expr = simplify(target.lhs - target.rhs)
-            equations = {eq for eq, _, _ in rearrangements}
+            equations = {eq for eq, _, _ in transformations}
 
-
-            if target in equations:
-                equations.remove(target)
+            
             for strategy_name, strategy in self.strategies.items():
                 best_match, beset_score = max(
-                    ((eq, strategy.calculate(eq, target)) for eq in equations),
-                    key = lambda x:x[1],
-                    default=(None, -1)
-                )
+                        ((eq, strategy.calculate(eq, target)) for eq in equations),
+                        key = lambda x:x[1],
+                        default=(None, -1)
+                        )
 
                 actions =[]
                 terms = []
-                for eq, _actions, _terms in rearrangements:
+                for eq, _actions, _terms in transformations:
                     if simplify(eq.lhs - eq.rhs - (best_match.lhs - best_match.rhs)) == 0:
                         actions = _actions
                         terms  = _terms
+                        break
 
                 if best_match is None:
                     results[strategy_name] = {'error':'No valid compersion'}
                     continue
+
                 # calculate symbolic difference
-                best_expr = simplify(best_match.lhs - best_match.rhs)
-                diff = simplify(best_expr - target_expr)
+                
+                diff1 = simplify((best_match.lhs - best_match.rhs) - (target.lhs - target.rhs))
+                diff2 = simplify((best_match.lhs - best_match.rhs) - (target.rhs - target.lhs))
+                diff = diff2
+                # diff is the less terms have between diff1 and diff2
+                if diff1.count_ops() < diff2.count_ops():
+                    diff = diff1
+
 
                 # Analyze difference
                 # finde 
-                error_info = {
+                result = {
+                    'best_match': str(f"{best_match.lhs} = {best_match.rhs}"),
+                    'max_score': beset_score,
                     'symbolic_difference': str(diff),
-                    'neumeric_differnce': None,
-                    'variable_factor': None, 
+                    'variable_factor': [], 
                     'typo': None,
                     'suggested_errors': [],
                     'actions':actions,
@@ -585,49 +833,37 @@ class EquationComparator:
                 }
                 # check if neumeric diff
                 if diff ==0:
-                    error_info['suggested_errors'].append( f"Correct")
+                    result['suggested_errors'].append( f"Correct")
 
 
                 elif diff.is_constant():
-                    error_info['numeric_difference'] = float(diff)
-                    error_info['suggested_errors'].append( f"Arithmetic error: Constant difference of {error_info['numeric_difference']}")
+                    result['suggested_errors'].append( f"Arithmetic error: Constant difference of {diff}")
 
                 # Check for variable factor
                 variables_in_diff = diff.free_symbols
                 variables_in_target = target_expr.free_symbols
                 variables_in_original = original_eq.free_symbols
+                variables_in_best_match = best_match.free_symbols
                 for var in variables_in_diff:
                     if var not in variables_in_original:
-                        error_info['typo'] = {
-                            'variable': str(var)
-                        }
-                        error_info['suggested_errors'].append(
-                            f"There is no such a vriable  {var} in the original equatoin."
-                        )
+                        result['typo'] = {'variable': str(var)}
+                        result['suggested_errors'].append( f"There is no such a vriable  {var} in the original equatoin.")
 
                     if var not in variables_in_target:
-                        error_info['variable_factor'] = {
-                            'variable': str(var)
-                        }
-                        error_info['suggested_errors'].append(
-                            f"where did {var} disappear"
-                        )
-                        break
-                    
-
+                        result['variable_factor'].append(f"variable: {str(var)}")
+                        result['suggested_errors'].append(f"Sign error: where did {var} disappear?")
                         
+                    if var not in variables_in_best_match:
+                        result['variable_factor'].append(f"variable: {str(var)}")
+                        result['suggested_errors'].append( f"Sign error: factor of {var} sould be zero?" )
+                                            
                     else:
-                        error_info['variable_factor'] = {'variable': str(var)}
-                        error_info['suggested_errors'].append(
-                            f"There is an error calculatin the factor of {var}"
-                        )
+                        result['variable_factor'].append(f"variable: {str(var)}")
+                        result['suggested_errors'].append( f"There is an error calculatin the factor of {var}" )
 
                     
-                results[strategy_name] = {
-                    'best_match': str(best_match),
-                    'max_score': beset_score,
-                    **error_info
-                }
+                results[strategy_name] = result
+                
 
              
         except Exception as e:
@@ -636,7 +872,7 @@ class EquationComparator:
         return results
     
 
-def print_similarity_results(similarities, similarities_parsed, rearrangements, total_rearrangements):
+def print_similarity_results(similarities, similarities_parsed, transformations, total_transformations):
 
 
     print("\n=== Similarity Analysis ===\n")
@@ -679,12 +915,12 @@ def print_similarity_results(similarities, similarities_parsed, rearrangements, 
     
     print("\n=== Rearranged Equations ===\n")
     file.write("\n=== Rearranged Equations ===\n")
-    for i, eq in enumerate(rearrangements, start=1):
+    for i, eq in enumerate(transformations, start=1):
         file.write(f"   🔄 {eq.lhs} = {eq.rhs} \n")
         print(f"{i}. {eq}")
 
-    print(f"\nTotal Rearrangements: {total_rearrangements}\n")
-    file.write(f"\n📌 Total Rearrangements: {total_rearrangements}\n")
+    print(f"\nTotal Rearrangements: {total_transformations}\n")
+    file.write(f"\n📌 Total Rearrangements: {total_transformations}\n")
     file.write("--------------------------------------\n")
     file.write("--------------------------------------\n")
     file.write("--------------------------------------\n")
@@ -693,225 +929,111 @@ def print_similarity_results(similarities, similarities_parsed, rearrangements, 
 if __name__ == "__main__":
     try:
         comparator = EquationComparator()
-        # Example list of expression pairs for comparison.
-        expression_pairs = [
-    ("-4*s + 2", "4*s - r", "2", "-r"),
-  ("-2 - 3", "b + 3", "-3*b", "6"),
-  ("-8*s", "-r - 2", "-8*s", "-2*r"),
-   ("-4*c", "-w/2 - 2", "c", "w/2 - 1/2"),
-   ("-4*n - 3", "3*n - y", "-3", "-1*n - y"),
-   ("3*c + 1", "-c + m", "c", "(m + 1)/4"),
-   ("3*c + 1", "-c + m", "4 + 1", "m"),
-   ("4", "3*d + 4*v", "o", "3*d - 4 + 4*v"),
-   ("o", "3*d + 4*v - 4", "-4*v", "3*d - 4"),
-   #("d*m - d*x - x", "m", "m", "((d + 1)*x)/d - 1"),
-   ("r - 4", "12", "r - 4", "-sqrt(12)"),
-   ("x + 4", "-x - 5*o", "0", "4 + 5*o"),
-   ("8*c", "5 - p", "c", "1.6 - p"),
-   ("-5*c + 5", "3*c + p", "-8*c", "-5*p"),
-   ("b - 3/2", "3/2", "b - 3/2", "-sqrt(3/2)"),
-   ("2*p", "-5 - q", "p", "-2"),
-   ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
-   ("-8*s", "-r - 2", "4*s", "r/2"),
-    ("r*(2 - 3)", "0", "r", "0"),
-    ("3*r + 2", "2*x", "1.5*r", "x"),
-    ("2*m + 5", "0", "3*m + 5", "0"),
-    ("2*x", "1", "x", "0"),
-    ("-4*o - 4*y", "2*y + 4", "0", "-1"),
-    ("-f - 1", "0", "-5*f - 4", "0"),
-    ("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
-      ("-4*x", "7 + a*x", "x", "-7/4 + a*x"),
-      ("-9*t - 2", "5*o", "(-9*t)/5 (- 2/5)", "o"),
-       ("x", "3/2*x", "1", "3/2")
-    ]
-    #    df_data = pd.read_json('0_9999_v7.json')
+        df_data = pd.read_json('0_9999_v7.json')
         i = 1
-    #    for index, row in df_data.head(10).iterrows():
-    #        exp1 = row['t0']
-    #        exp2 = row['t1']
-    #        eq1_str = parse_latex(exp1)
-    #        eq2_str = parse_latex(exp2)
-    #        #eq1_str = f"{parsed_exp1.lhs}={parsed_exp1.rhs}"
-    #        #eq2_str = f"{parsed_exp2.lhs}={parsed_exp2.rhs}"
-    
+        linear_eq = LinearEquation()  # Linearity checker
+        expression_pairs = [
+            ("x*(1-a)","-7","x","-a-7/1")
+#    ("-4*s + 2", "4*s - r", "2", "-r"),
+#  ("-2 - 3", "b + 3", "-3*b", "6"),
+#  ("-8*s", "-r - 2", "-8*s", "-2*r"),
+#   ("-4*c", "-w/2 - 2", "c", "w/2 - 1/2"),
+#   ("-4*n - 3", "3*n - y", "-3", "-1*n - y"),
+#   ("3*c + 1", "-c + m", "c", "(m + 1)/4"),
+#   ("3*c + 1", "-c + m", "4 + 1", "m"),
+#   ("4", "3*d + 4*v", "o", "3*d - 4 + 4*v"),
+#   ("o", "3*d + 4*v - 4", "-4*v", "3*d - 4"),
+#   #("d*m - d*x - x", "m", "m", "((d + 1)*x)/d - 1"),
+#   ("r - 4", "12", "r - 4", "-sqrt(12)"),
+#   ("x + 4", "-x - 5*o", "0", "4 + 5*o"),
+#   ("8*c", "5 - p", "c", "1.6 - p"),
+#   ("-5*c + 5", "3*c + p", "-8*c", "-5*p"),
+#   ("b - 3/2", "3/2", "b - 3/2", "-sqrt(3/2)"),
+#   ("2*p", "-5 - q", "p", "-2"),
+#   ("2*p", "-9*r - 5", "p", "-9/2 - 5/2"),
+#   ("-8*s", "-r - 2", "4*s", "r/2"),
+#    ("r*(2 - 3)", "0", "r", "0"),
+#    ("3*r + 2", "2*x", "1.5*r", "x"),
+#    ("2*m + 5", "0", "3*m + 5", "0"),
+#    ("2*x", "1", "x", "0"),
+#    ("-4*o - 4*y", "2*y + 4", "0", "-1"),
+#    ("-f - 1", "0", "-5*f - 4", "0"),
+#    ("x*(1 + 2*a)", "-4", "x", "-4/(1 + 2*a)"),
+#      ("-4*x", "7 + a*x", "x", "-7/4 + a*x"),
+#      ("-9*t - 2", "5*o", "(-9*t)/5 (- 2/5)", "o"),
+#       ("x", "3/2*x", "1", "3/2")
+    ]
 
-        df_similarity_results = pd.DataFrame(columns=['expression 1', 'expression 2', 'similarity score structural', 'best match structural', 'similarity score jaccard', 'best match jaccard', 'similarity score cosine', 'best match cosine', 'similarity score enhanced', 'best match enhanced', 'total rearrangements'])
-        r, s, x,y = sp.symbols('r s x y')
-        for exp1, exp2, exp3, exp4 in expression_pairs:
-            
-            eq1_str = f"{exp1}={exp2}"
-            eq2_str = f"{exp3}={exp4}"
-        
-            # Compare two sample equations.
+        for index, row in df_data[df_data['category'] == 2].iterrows():
+     #   for exp1_lhs, exp1_rhs, exp2_lhs, exp2_rhs in expression_pairs:
             try:
-                print("Comparison Results:")
+                exp1 = row['t0']
+                exp2 = row['t1']
+                eq1_str = parse_latex(exp1)
+                eq2_str = parse_latex(exp2)
+                eq1_str = f"{eq1_str.lhs}={eq1_str.rhs}"
+                eq2_str = f"{eq2_str.lhs}={eq2_str.rhs}"
+        #        eq1_str = f"{exp1_lhs}={exp1_rhs}"
+        #        eq2_str = f"{exp2_lhs}={exp2_rhs}"
+
+                eq1_eval, eq1_raw = comparator.parser.parse(eq1_str)
+                eq2_eval, eq2_raw = comparator.parser.parse(eq2_str)
+
+                eq1_eval = eq1_raw.lhs - eq1_raw.rhs
+                if not linear_eq.is_linear(eq1_eval):
+                    print(f"Skipping: Non-linear equation - {eq1_str}")
+                    continue
+
+                eq1_symbols = eq1_eval.free_symbols
+                eq2_symbols = eq2_eval.free_symbols
+                typo = False
+                simis_list = {'o': '0', 'p': 'P', 'q': 'g', 's': 'S', 'x': 'X', 'y': 'Y', '0': 'o', 'P': 'p', 'g': 'q', 'S': 's', 'X': 'x', 'Y': 'y', 'L': 'l', 'l': 'L'}
+
+                if not eq2_symbols.issubset(eq1_symbols):
+                    
+                    print(f"Typo detected in {eq1_str} or {eq2_str}")
+                    new_symbols = eq2_symbols - eq1_symbols
+
+                    for var in new_symbols:
+                        var = str(var)
+                        if var in simis_list:
+                            
+                            if simis_list[var] in eq1_str:
+                                typo = True
+                                print(f"Replacing {var} by {simis_list[var]}")
+                                eq2_str = eq2_str.replace(var, simis_list[var])
+
+                print(f"{i} - Comparing:\n{eq1_str} \n{eq2_str}")
+                i += 1
+
                 result = comparator.compare(eq1_str, eq2_str)
-                print(f" {i} -Comparison Results for: \n {eq1_str} and \n {eq2_str}:")
-                i = i + 1
-                
+                if typo:
+                    result['typo'] = f"{result.get('typo', '')}?  ,Typo: replacing {var} by {simis_list[var]}"
+
+                result['expression 1'] = eq1_str
+                result['expression 2'] = eq2_str
+
+                csv_file = "similarity_results_full_Set.csv"
+                fieldnames = list(result.keys())
+                #print(result)
+
+                write_header = not os.path.exists(csv_file)
+                with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
+                    writer = csv.DictWriter(file, fieldnames=fieldnames)
+                    if write_header:
+                        writer.writeheader()
+                    writer.writerow(result)
+
+            except SyntaxError as e:
+                print(f"Skipping due to SyntaxError: {e}")
+                continue
+            except Exception as e:
+                print(f"Skipping due to error: {e}")
+                continue
+
+    except Exception as e:
+        logging.error(f"Critical Error: {e}")
+
             
 
-                # extract the column to be assined to the data frame df_similarity_results
-                #js = {'expression 1': eq1_str, 'expression 2': eq2_str, 'similarity score structural': result['similarities']['structural']['max_score'], 'best match structural': result['similarities']['structural']['best_match'], 'similarity score jaccard': result['similarities']['jaccard']['max_score'], 'best match jaccard': result['similarities']['jaccard']['best_match'], 'similarity score cosine': result['similarities']['cosine']['max_score'], 'best match cosine': result['similarities']['cosine']['best_match'], 'similarity score enhanced': result['similarities']['enhanced']['max_score'], 'best match enhanced': result['similarities']['enhanced']['best_match'], 'total rearrangements': result['total_rearrangements']}
-                #df_similarity_results.loc[len(df_similarity_results)] = js
-                with open("similarity_results.txt", "a", encoding="utf-8") as file:
-                    file.write("\n=== Similarity Analysis ===\n")
-                    file.write(f" {i} -Comparison Results for: \n t0: {eq1_str} and \n t1: {eq2_str}:")
-                    
-                    print_similarity_results(
-                        result['similarities'],
-                        result['similarity_parsed_target'], 
-                        result['rearrangements'], 
-                        result['total_rearrangements']
-                    ) 
-                print("--------------------------------------")
 
-            except Exception as e:
-                print(f"Error during comparison....: {e}")
-                continue
-        # save the results to a csv file
-        #df_similarity_results.to_csv('similarity_results.csv')
-    except Exception as e:
-        logging.error(f"Error during comparison: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#class EnhancedSimilarity(SimilarityStrategy):
-#    """Enhanced similarity using token frequency vectors"""
-#    def _tokenize(self, expr: sp.Expr) -> List[str]:
-#        return re.findall(r'[a-zA-Z]+|\d+|[\+\-\*/\^()]', sp.srepr(expr))
-#    def _structural_ratio(self, a: str, b: str) -> float:
-#        return SequenceMatcher(None, a, b).ratio()
-#
-#    def calculate(self, eq1: Eq, eq2: Eq) -> float:
-#        try:
-#            canon1 = simplify(eq1.lhs - eq1.rhs)
-#            canon2 = simplify(eq2.lhs - eq2.rhs)
-#             # Handle cases where simplify() returns True or False
-#            if isinstance(canon1, bool):
-#                canon1 = sp.S.Zero
-#            if isinstance(canon2, bool):
-#                canon2 = sp.S.Zero
-#            base_score = np.mean([
-#                self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.lhs)),
-#                self._structural_ratio(sp.srepr(eq1.rhs), sp.srepr(eq2.rhs)),
-#                self._structural_ratio(sp.srepr(canon1), sp.srepr(canon2))
-#            ])
-#            enhanced_score = self._enhanced_similarity(canon1, canon2, base_score)
-#
-#            base_score2 = np.mean([
-#                self._structural_ratio(sp.srepr(eq1.rhs), sp.srepr(eq2.lhs)),
-#                self._structural_ratio(sp.srepr(eq1.lhs), sp.srepr(eq2.rhs)),
-#                self._structural_ratio(sp.srepr(canon1), sp.srepr(canon2))
-#            ])
-#            enhanced_score2 = self._enhanced_similarity(canon1, canon2, base_score2)
-#        
-#        
-#            return max(enhanced_score, enhanced_score2)
-#        except Exception as e:
-#            logging.error(f"Enhanced similarity failed: {str(e)}")
-#            return 0
-#        
-#    
-#        
-#    def _get_error_term(correct_eq, transformation_eq):
-#        """Identify the error term between equations"""
-#        try:
-#            diff = simplify(correct_eq.rhs - correct_eq.lhs - (transformation_eq.rhs - transformation_eq.lhs))
-#            return diff if diff != 0 else None
-#        except:
-#            return "Unknown error"
-#    
-#    def _calculate_error_penalty(self, correct_eq, transformation_eq):
-#        """Calculate penalty based on algebraic difference between equations"""
-#        try:
-#            # Calculate algebraic difference
-#            diff = simplify(correct_eq.rhs - correct_eq.lhs - (transformation_eq.rhs - transformation_eq.lhs))
-#            
-#            if diff == 0:
-#                return 0  # No error
-#            
-#            # Calculate penalty based on error complexity
-#            return min(0.5, 0.1 * (count_ops(diff) + abs(diff.as_coefficients_dict()[1])))
-#        except:
-#            return 0.5  # Maximum penalty for unparseable differences
-#        
-#    def _enhanced_similarity(self, correct_eq, transformation_eq, base_similarity):
-#        """Augment similarity score with error analysis"""
-#        penalty = self._calculate_error_penalty(correct_eq, transformation_eq)
-#        
-#        # Combine base similarity with error penalty
-#        adjusted_score = base_similarity * (1 - penalty)
-#        
-#        # Add bonus for exact match after error correction
-#        if penalty == 0:
-#            adjusted_score = min(1.0, adjusted_score + 0.1)
-#            
-#        return round(adjusted_score, 2)
-#
-#class EnhancedStructuralSimilarity(SimilarityStrategy):
-#    """Enhanced structural similarity with semantic-aware tokenization"""
-#    @lru_cache(maxsize=1024)
-#    def _structural_ratio(self, a: str, b: str) -> float:
-#        return SequenceMatcher(None, a, b).ratio()
-#    
-#    def _tokenize(self, expr: sp.Expr) -> str:
-#        """Generate structured representation of expressions"""
-#        if expr.is_Atom:
-#            return str(expr)  # Single symbols (x, a, etc.)
-#        elif expr.is_Add or expr.is_Mul:
-#            return ' '.join(sorted(map(self._tokenize, expr.args)))  # Sort to handle commutativity
-#        elif expr.is_Pow:
-#            base, exponent = expr.args
-#            return f"{self._tokenize(base)} ^ {self._tokenize(exponent)}"
-#        elif expr.is_Function:
-#            return f"{expr.func.__name__}({', '.join(map(self._tokenize, expr.args))})"
-#        else:
-#            return str(expr)
-#
-#    def calculate(self, eq1: Eq, eq2: Eq) -> float:
-#        try:
-#            canon1 = simplify(eq1.lhs - eq1.rhs)
-#            canon2 = simplify(eq2.lhs - eq2.rhs)
-#
-#            # Handle cases where simplify() returns True or False
-#            if isinstance(canon1, bool):
-#                canon1 = sp.S.Zero
-#            if isinstance(canon2, bool):
-#                canon2 = sp.S.Zero
-#
-#            # Tokenize the structured form
-#            tokens1 = self._tokenize(eq1.lhs) + " | " + self._tokenize(eq1.rhs)
-#            tokens2 = self._tokenize(eq2.lhs) + " | " + self._tokenize(eq2.rhs)
-#
-#            canon_tokens1 = self._tokenize(canon1)
-#            canon_tokens2 = self._tokenize(canon2)
-#
-#            # Compute similarity scores
-#            base_score = np.mean([
-#                self._structural_ratio(tokens1, tokens2),
-#                self._structural_ratio(canon_tokens1, canon_tokens2)
-#            ])
-#
-#            swapped_score = np.mean([
-#                self._structural_ratio(self._tokenize(eq1.rhs), self._tokenize(eq2.lhs)),
-#                self._structural_ratio(self._tokenize(eq1.lhs), self._tokenize(eq2.rhs)),
-#                self._structural_ratio(canon_tokens1, canon_tokens2)
-#            ])
-#
-#            return max(base_score, swapped_score)
-#        except Exception as e:
-#            logging.error(f"Structural similarity failed: {str(e)}")
-#            return 0
-#
