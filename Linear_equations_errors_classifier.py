@@ -814,8 +814,7 @@ class EquationComparator:
                 diff2 = simplify((best_match.lhs - best_match.rhs) - (target.rhs - target.lhs))
                 diff = diff2
                 # diff is the less terms have between diff1 and diff2
-                if diff1.count_ops() < diff2.count_ops():
-                    diff = diff1
+                diff  = diff1 if len(diff1.args) < len(diff2.args) else diff2
 
 
                 # Analyze difference
