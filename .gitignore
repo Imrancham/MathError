@@ -5,3 +5,6 @@ Similarity_find_sign_error_class3.py
 .env
 
 find_rearrangments.py
+# add ignore test_resultsfolder
+test_results/
+test_results/*
