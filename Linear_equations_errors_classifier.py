@@ -770,8 +770,9 @@ class EquationComparator:
                 'transformations':  equations
                 
             }
+            
             # check if eq2_eval,  eq2_raw as strings are the same
-            if str(eq2_eval).replace(" ", "") == str(eq2_raw).replace(" ", ""):
+            if str(f"{eq2_eval.lhs}={eq2_eval.rhs}").replace(" ", "") == str(f"{eq2_raw.lhs}={eq2_raw.rhs}").replace(" ", ""):
                 results.update(self._calculate_similarities(transformations, eq2_eval, eq1_raw)['structural'])
 
             else:
@@ -788,40 +789,32 @@ class EquationComparator:
             str(eq) for eq in transformations
             if simplify(eq.lhs + eq.rhs - (target.lhs + target.rhs)) == 0 # Check the difference between all terms.
         ]
+    def _similarity_score(self, expr1: Expr, expr2: Expr) -> int:
+            """Rough similarity score based on matching variables/structure."""
+            return len(expr1.free_symbols & expr2.free_symbols)
+            
 
     def _calculate_similarities(self, transformations:Set[Tuple[Eq, List[str], List[sp.Expr]]], target: Eq, original_eq: Eq) -> Dict:
         try:
             results = {}
             target_expr = simplify(target.lhs - target.rhs)
-            equations = {eq for eq, _, _ in transformations}
 
             
             for strategy_name, strategy in self.strategies.items():
-                best_match, beset_score = max(
-                        ((eq, strategy.calculate(eq, target)) for eq in equations),
-                        key = lambda x:x[1],
-                        default=(None, -1)
-                        )
-
-                actions =[]
-                terms = []
-                for eq, _actions, _terms in transformations:
-                    if simplify(eq.lhs - eq.rhs - (best_match.lhs - best_match.rhs)) == 0:
-                        actions = _actions
-                        terms  = _terms
-                        break
+                best_match, best_score, best_actions, terms_ = max(
+                    ((eq, strategy.calculate(eq, target), actions, terms_) for eq, actions, terms_ in transformations),
+                    key=lambda x: x[1],
+                    default=(None, -1, [])
+                )
 
                 if best_match is None:
-                    results[strategy_name] = {'error':'No valid compersion'}
+                    results[strategy_name] = {'error': 'No valid comparison'}
                     continue
 
                 # calculate symbolic difference
-                def similarity_score(expr1: Expr, expr2: Expr) -> int:
-                    """Rough similarity score based on matching variables/structure."""
-                    return len(expr1.free_symbols & expr2.free_symbols)
-                
-                lhs_score = similarity_score(target.lhs, best_match.lhs)
-                rhs_score = similarity_score(target.lhs, best_match.rhs)
+
+                lhs_score = self._similarity_score(target.lhs, best_match.lhs)
+                rhs_score = self._similarity_score(target.lhs, best_match.rhs)
 
                 # Choose the most similar side
                 if lhs_score >= rhs_score:
@@ -848,13 +841,13 @@ class EquationComparator:
                 # finde 
                 result = {
                     'best_match': str(f"{best_match.lhs} = {best_match.rhs}"),
-                    'max_score': beset_score,
+                    'max_score': best_score,
                     'symbolic_difference': str(diff),
                     'variable_factor': [], 
                     'typo': None,
                     'suggested_errors': [],
-                    'actions':actions,
-                    'terms':terms
+                    'actions':best_actions,
+                    'terms':terms_
 
                 }
                 target_terms = target.lhs.as_ordered_terms() + target.rhs.as_ordered_terms()
@@ -871,20 +864,29 @@ class EquationComparator:
                 
                 if diff.is_number and result['suggested_errors'] == []:
                     half_diff = diff/2
-                    if any(simplify(term - half_diff) == 0 for term in  original_terms) :
-                            result['suggested_errors'].append( f"Sign error: Be awair when adding {term}")
-                    elif any(simplify(term + half_diff) == 0 for term in  original_terms):
-                        result['suggested_errors'].append( f"Sign error: Be awair when adding {term}")
-
-                    elif any(simplify(term + half_diff) == 0 for term in target_terms ):
-                        result['suggested_errors'].append( f"Sign error: Be awair of {term} sign")
-
-                    elif any(simplify(term - half_diff) == 0 for term in target_terms ):
-                        result['suggested_errors'].append( f"Sign error: Be awair of {term} sign")
-
+                    matched_term = next((term for term in original_terms if simplify(term - half_diff) == 0), None)
+                    if matched_term is not None:
+                        result['suggested_errors'].append(f"Sign error 1: Be aware when adding {matched_term}")
 
                     else:
-                            result['suggested_errors'].append( f"Arithmetic error")
+                        matched_term = next((term for term in original_terms if simplify(term + half_diff) == 0), None)
+                        if matched_term is not None:
+                            result['suggested_errors'].append(f"Sign error 2: Be aware when adding {matched_term}")
+
+                        else:
+                            matched_term = next((term for term in target_terms if simplify(term + half_diff) == 0), None)
+                            if matched_term is not None:
+                                result['suggested_errors'].append(f"Sign error 3: Be aware of {matched_term} sign")
+
+                            else:
+                                matched_term = next((term for term in target_terms if simplify(term - half_diff) == 0), None)
+                                if matched_term is not None:
+                                    result['suggested_errors'].append(f"Sign error 4: Be aware of {matched_term} sign")
+
+
+
+                                else:
+                                        result['suggested_errors'].append( f"Arithmetic error")
 
                 # check if the target_eq and bet_mach of the form number*sybmbol = number
                 # if yes check if there is a sign error
@@ -892,9 +894,9 @@ class EquationComparator:
                     # Check for sign error
                     bool_sing, sign_type = self._is_sign_error(best_match, target)
                     if bool_sing and sign_type == 'value':
-                        result['suggested_errors'].append( f"Sign error: Be awair of {diff/2} sign")
+                        result['suggested_errors'].append( f"Sign error 5: Be awair of {diff/2} sign")
                     elif bool_sing and sign_type == 'variable':
-                        result['suggested_errors'].append( f"Sign error: Be awair of {diff/2} sign when moving terms.")
+                        result['suggested_errors'].append( f"Sign error 6: Be awair of {diff/2} sign when moving terms.")
                  #   else:
                   #      result['suggested_errors'].append( f"Check your calculatoin")
                 
@@ -902,16 +904,24 @@ class EquationComparator:
                     for term in diff.as_ordered_terms():
                             half_diff = term/2
 
-                            if any(simplify(term - half_diff) == 0 for term in  original_terms) :
-                                result['suggested_errors'].append( f"Sign error: Be awair when adding {term}")
-                            elif any(simplify(term + half_diff) == 0 for term in  original_terms):
-                                result['suggested_errors'].append( f"Sign error: Be awair when adding {term}")
+                            matched_term = next((term for term in original_terms if simplify(term - half_diff) == 0), None)
+                            if matched_term is not None:
+                                result['suggested_errors'].append(f"Sign error 7: Be aware when adding {matched_term}")
 
-                            elif any(simplify(term + half_diff) == 0 for term in target_terms ):
-                                result['suggested_errors'].append( f"Sign error: Be awair of {term} sign")
+                            else:
+                                matched_term = next((term for term in original_terms if simplify(term + half_diff) == 0), None)
+                                if matched_term is not None:
+                                    result['suggested_errors'].append(f"Sign error 8: Be aware when adding {matched_term}")
 
-                            elif any(simplify(term - half_diff) == 0 for term in target_terms ):
-                                result['suggested_errors'].append( f"Sign error: Be awair of {term} sign")
+                                else:
+                                    matched_term = next((term for term in target_terms if simplify(term + half_diff) == 0), None)
+                                    if matched_term is not None:
+                                        result['suggested_errors'].append(f"Sign error 9: Be aware of {matched_term} sign")
+
+                                    else:
+                                        matched_term = next((term for term in target_terms if simplify(term - half_diff) == 0), None)
+                                        if matched_term is not None:
+                                            result['suggested_errors'].append(f"Sign error 10: Be aware of {matched_term} sign")
 
                         #    else:
                         #        result['suggested_errors'].append( f"Arithmetic error")
@@ -1018,6 +1028,7 @@ if __name__ == "__main__":
         i = 1
         linear_eq = LinearEquation()  # Linearity checker
         expression_pairs = [
+            ("8","-36*x","-8/36","x"),
           #  ("-5*k - 5","-k + 4*m", "-4*k","4*m + 2"), #Check move terms operations.
           #  ("-2*r","2*z + 1","r","-z + 1/2"), # Sould get 'Sign error'
           #  ("-2*d","2*q + 5", "d","-q + 5/2"), # Sould get 'Sign error'
