@@ -13,7 +13,7 @@ api_key = os.getenv("api_key_deepSeek")
 client = OpenAI(api_key, base_url="https://api.deepseek.com")
 model = "mistral-large-latest"
 matched_ids = []
-df = pd.read_json("0_9999_v7.json")
+df = pd.read_json("data\0_9999_v7.json")
 output_file_path = "matched_ids2.txt"
 
 

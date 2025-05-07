@@ -1,12 +1,5 @@
 [
-  {
-    "id": 1,
-    "category": 2,
-    "assumptions": "\\textrm{wahr}",
-    "t0": "\\left| \\begin{array}{cc}a + 7& 7\\\\2& 4\\end{array} \\right| = -4",
-    "t1": "4\\,(a + 7) + 2 \\cdot 7 = -4",
-    "label": 6
-  },
+ 
   {
     "id": 2,
     "category": 1,

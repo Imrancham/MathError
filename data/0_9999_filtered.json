@@ -1,0 +1,208 @@
+[{
+  "id": 10,
+  "category": 2,
+  "assumptions": "\\left( h\\neq y\\right) \\wedge \\left( q\\neq 1\\right)",
+  "t0": "-q\\,y-y = h\\,(1-q)",
+  "t1": "-q\\,y-\\frac{y}{1-q} = h",
+  "label": 14
+},
+{
+  "id": 50,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-4\\,s + 2 = 4\\,s-r",
+  "t1": "2 = -r",
+  "label": 39
+},
+{
+  "id": 53,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-8\\,s = -r-2",
+  "t1": "-8\\,s = 2\\,r",
+  "label": 13
+},
+{
+  "id": 54,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-2-3 = b + 3",
+  "t1": "-3\\,b = 6",
+  "label": 13
+},
+{
+  "id": 55,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-8\\,s = -r-2",
+  "t1": "-8\\,s = -2\\,r",
+  "label": 13
+},
+{
+  "id": 56,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "n + 2 = 4\\,n-o",
+  "t1": "3\\,n = -o-2",
+  "label": 6
+},
+{
+  "id": 59,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "h = 2",
+  "t1": "L = \\left\\{2\\right\\}",
+  "label": -1
+},
+{
+  "id": 61,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-4\\,c = -2\\,w-2",
+  "t1": "c = \\frac{w}{2}-\\frac{1}{2}",
+  "label": 6
+},
+{
+  "id": 62,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-4\\,c = -2\\,w-2",
+  "t1": "c = \\frac{2\\,w}{4}-\\frac{2}{4}",
+  "label": 6
+},
+{
+  "id": 64,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "5\\,l = -5\\,b-1",
+  "t1": "l = -b-0",
+  "label": 4
+},
+{
+  "id": 65,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-4\\,n-3 = 3\\,n-y",
+  "t1": "-3 = -1\\,n-y",
+  "label": 39
+},
+{
+  "id": 67,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "7\\,s-4 = 4\\,c",
+  "t1": "\\mathbb{L} = \\left\\{\\frac{1}{8}\\right\\}",
+  "label": 13
+},
+{
+  "id": 70,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "-5\\,z + 1 = 2\\,z-5",
+  "t1": "7\\,z = -6",
+  "label": 6
+},
+{
+  "id": 75,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "3\\,c + 1 = -c + m",
+  "t1": "c = \\frac{m + 1}{4}",
+  "label": 6
+},
+{
+  "id": 78,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "3\\,c + 1 = -c + m",
+  "t1": "4 + 1 = m",
+  "label": 5
+},
+{
+  "id": 82,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "4 = 3\\,d + 4\\,\\nu",
+  "t1": "o = 3\\,d-4 + 4\\,\\nu",
+  "label": 27
+},
+{
+  "id": 83,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "o = 3\\,d-4 + 4\\,\\nu",
+  "t1": "-4\\,\\nu = 3\\,d-4",
+  "label": 28
+},
+{
+  "id": 85,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "4 = 3\\,d + 4\\,v",
+  "t1": "o = 3\\,d-4 + 4\\,v",
+  "label": 27
+},
+{
+  "id": 87,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "o = 3\\,d-4 + 4\\,v",
+  "t1": "-4\\,v = 3\\,d-4",
+  "label": 28
+},
+{
+  "id": 88,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "4 = 3\\,d + 4\\,v",
+  "t1": "o = 3\\,d + 4 + 4\\,v",
+  "label": 27
+},
+{
+  "id": 89,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "o = 3\\,d + 4 + 4\\,v",
+  "t1": "-4\\,v = 3\\,d + 4",
+  "label": 27
+},
+{
+  "id": 91,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "4 = 3\\,d + 4\\,v",
+  "t1": "o = 3\\,d + 4\\,v-4",
+  "label": 27
+},
+{
+  "id": 92,
+  "category": 2,
+  "assumptions": "\\textrm{wahr}",
+  "t0": "o = 3\\,d + 4\\,v-4",
+  "t1": "-4\\,v = 3\\,d-4",
+  "label": 28
+},
+{
+  "id": 107,
+  "category": 2,
+  "assumptions": "\\left( m\\neq x\\right) \\wedge \\left( d\\neq 1\\right)",
+  "t0": "d\\,m-d\\,x-x = m",
+  "t1": "m = \\frac{(d + 1)\\,x}{d}-1",
+  "label": 30
+},
+{
+  "id": 109,
+  "category": 2,
+  "assumptions": "\\left( m\\neq x\\right) \\wedge \\left( d\\neq 1\\right)",
+  "t0": "d\\,m-d\\,x-x = m",
+  "t1": "m = \\frac{(d + 1)\\,x}{d-1}",
+  "label": 32
+},
+{
+  "id": 110,
+  "category": 2,
+  "assumptions": "\\left( m\\neq x\\right) \\wedge \\left( d\\neq 1\\right)",
+  "t0": "d\\,m-d\\,x-x = m",
+  "t1": "-d\\,x-\\frac{x}{d\\,m} = \\frac{m}{d\\,m}",
+  "label": 30
+}]
